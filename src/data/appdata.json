@@ -1,0 +1,10 @@
+{
+    "appname" : "Shopping App",
+    "version" : "1.0",
+    "database" : [{
+        "server" : "localhost",
+        "username" : "root",
+        "password" : "",
+        "database" : "online-shopping"
+    }]
+}

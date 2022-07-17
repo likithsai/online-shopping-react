@@ -1,23 +1,14 @@
-import logo from './logo.svg';
-import './App.css';
+// import './assets/css/App.css';
+import './assets/sass/App.scss';
+import Header from './component/Header';
+import Jumboltron from './component/Jumboltron';
+import AppData from './data/appdata.json';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header headerTitle={AppData.appname} />
+      <Jumboltron title="Shop in style" subTitle="Search with over 1000+ products listed" />
     </div>
   );
 }
