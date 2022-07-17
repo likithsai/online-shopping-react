@@ -1,17 +1,11 @@
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';  
 import './assets/sass/App.scss';
-import Header from './component/Header';
-import Jumboltron from './component/Jumboltron';
-import Content from './component/Content';
-import Footer from './component/Footer';
-import AppData from './data/appdata.json';
+import Homepage from './pages/Homepage';
 
 function App() {
   return (
     <div className="App">
-      <Header headerTitle={AppData.appname} />
-      <Jumboltron title="Shop in style" subTitle="Search with over 1000+ products listed" />
-      <Content />
-      <Footer />
+      <Homepage />
     </div>
   );
 }

@@ -1,0 +1,20 @@
+//  homepage
+import React from 'react';
+import Header from './component/Header';
+import Jumboltron from './component/Jumboltron';
+import Content from './component/Content';
+import Footer from './component/Footer';
+import AppData from '../data/appdata.json';
+
+const Homepage = (props) => {
+    return (
+        <div className="homepage">
+            <Header headerTitle={AppData.appname} />
+            <Jumboltron title="Shop in style" subTitle="Search with over 1000+ products listed" />
+            <Content items={AppData.products} />
+            <Footer content="Copyright © Your Website 2022" />
+        </div>
+    );
+}
+
+export default Homepage;

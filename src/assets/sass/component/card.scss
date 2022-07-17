@@ -1,0 +1,15 @@
+//  card component
+
+.card {
+    .item-shorttext {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+    }
+
+    .card_txt_nip {
+        font-size: 1.3em;
+    }
+}
