@@ -1,4 +1,3 @@
-// import './assets/css/App.css';
 import './assets/sass/App.scss';
 import Header from './component/Header';
 import Jumboltron from './component/Jumboltron';
