@@ -15,10 +15,12 @@ const Content = (props) => {
                                     <img className="card-img-top" src={item.itemcardimg} alt="..." />
                                     <div className="card-body p-4">
                                         <a className="h5 fw-bolder text-dark" href={ '/products/' + item.itemid}>{item.itemname}</a>
-                                        <p className="item-shorttext">{item.itemdescshort}</p>
-                                        <span className="fw-bold me-2 card_txt_nip">${item.itemnewprice}</span>
-                                        <span className="text-muted text-decoration-line-through me-2">${item.itemoldprice}</span>
-                                        <span className="me-2 text-success">{Math.round((item.itemoldprice - item.itemnewprice)/item.itemnewprice * 100)}% off</span>
+                                        <p className="item-shorttext mb-3">{item.itemdescshort}</p>
+                                        <div className="w-100">
+                                            <span className="fw-bold me-2 card_txt_nip">${item.itemnewprice}</span>
+                                            <span className="text-muted text-decoration-line-through me-2">${item.itemoldprice}</span>
+                                            <span className="me-2 text-success">{Math.round((item.itemoldprice - item.itemnewprice)/item.itemnewprice * 100)}% off</span>
+                                        </div>
                                     </div>
                                     <div className="card-footer p-4 pt-0 border-top-0 bg-transparent">
                                         <div className="text-center d-flex align-items-center justify-content-between">
