@@ -12,7 +12,7 @@ const HomePage = (props) => {
             <Header headerTitle={AppData.appname} />
             <Jumboltron title="Shop in style" subTitle="Search with over 1000+ products listed" />
             <Content items={AppData.products} />
-            <Footer content="Copyright © Your Website 2022" />
+            <Footer content={AppData.footertext} />
         </div>
     );
 }

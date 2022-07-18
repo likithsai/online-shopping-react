@@ -2,23 +2,16 @@ import { BrowserRouter as Router, Routes, Route, Link, useParams } from 'react-r
 import './assets/sass/App.scss';
 import HomePage from './pages/HomePage';
 import ProductPage from './pages/ProductPage';
+import ErrorPage from './pages/ErrorPage';
 
 function App() {
-  const OtherPage = (props) => {
-      const id  = useParams();
-      return(
-          <p>Params: { id.productname }</p>
-      );
-  }
-
   return (
     <div className="App">
-      {/* <Homepage /> */}
       <Router>
           <Routes>
               <Route exact path='/' element={<HomePage />}></Route>
               <Route path='/products/:productname' element={<ProductPage />}></Route>
-              <Route path="*" element={<OtherPage />} />
+              <Route path="*" element={<ErrorPage />} />
           </Routes>
        </Router>
     </div>
