@@ -6,7 +6,7 @@ import Content from './component/Content';
 import Footer from './component/Footer';
 import AppData from '../data/appdata.json';
 
-const Homepage = (props) => {
+const HomePage = (props) => {
     return (
         <div className="homepage">
             <Header headerTitle={AppData.appname} />
@@ -17,4 +17,4 @@ const Homepage = (props) => {
     );
 }
 
-export default Homepage;
+export default HomePage;

@@ -74,6 +74,74 @@
             "itemurl": "/fancy-products",
             "itemnewprice": 18,
             "itemoldprice": 20.9
+        },
+        {
+            "itemid": "SKU1948756",
+            "itemname": "fancy product",
+            "itemdescshort": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent a mi ultrices nunc blandit suscipit.",
+            "itemdesclong": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent a mi ultrices nunc blandit suscipit. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Proin sit amet nunc fermentum, hendrerit urna vitae, ornare elit. Ut sit amet lectus interdum, dignissim ante in, suscipit quam. Nunc sed vulputate tellus, sit amet suscipit odio. Integer at lorem lorem. Phasellus porttitor felis id nisl scelerisque, ac semper magna sodales. In hac habitasse platea dictumst. Vivamus ultricies in arcu vitae hendrerit.",
+            "itemcardimg": "https://dummyimage.com/450x300/dee2e6/6c757d.jpg",
+            "itemimages": [
+                { "itemimageurl": "https://dummyimage.com/450x300/dee2e6/6c757d.jpg", "alt": "this is sample example" },
+                { "itemimageurl": "https://dummyimage.com/450x300/dee2e6/6c757d.jpg", "alt": "this is sample example" },
+                { "itemimageurl": "https://dummyimage.com/450x300/dee2e6/6c757d.jpg", "alt": "this is sample example" },
+                { "itemimageurl": "https://dummyimage.com/450x300/dee2e6/6c757d.jpg", "alt": "this is sample example" }
+            ],
+            "category": "design",
+            "itemurl": "/fancy-products",
+            "itemnewprice": 18,
+            "itemoldprice": 20.9
+        },
+        {
+            "itemid": "SKU1948756",
+            "itemname": "fancy product",
+            "itemdescshort": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent a mi ultrices nunc blandit suscipit.",
+            "itemdesclong": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent a mi ultrices nunc blandit suscipit. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Proin sit amet nunc fermentum, hendrerit urna vitae, ornare elit. Ut sit amet lectus interdum, dignissim ante in, suscipit quam. Nunc sed vulputate tellus, sit amet suscipit odio. Integer at lorem lorem. Phasellus porttitor felis id nisl scelerisque, ac semper magna sodales. In hac habitasse platea dictumst. Vivamus ultricies in arcu vitae hendrerit.",
+            "itemcardimg": "https://dummyimage.com/450x300/dee2e6/6c757d.jpg",
+            "itemimages": [
+                { "itemimageurl": "https://dummyimage.com/450x300/dee2e6/6c757d.jpg", "alt": "this is sample example" },
+                { "itemimageurl": "https://dummyimage.com/450x300/dee2e6/6c757d.jpg", "alt": "this is sample example" },
+                { "itemimageurl": "https://dummyimage.com/450x300/dee2e6/6c757d.jpg", "alt": "this is sample example" },
+                { "itemimageurl": "https://dummyimage.com/450x300/dee2e6/6c757d.jpg", "alt": "this is sample example" }
+            ],
+            "category": "design",
+            "itemurl": "/fancy-products",
+            "itemnewprice": 18,
+            "itemoldprice": 20.9
+        },
+        {
+            "itemid": "SKU1948756",
+            "itemname": "fancy product",
+            "itemdescshort": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent a mi ultrices nunc blandit suscipit.",
+            "itemdesclong": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent a mi ultrices nunc blandit suscipit. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Proin sit amet nunc fermentum, hendrerit urna vitae, ornare elit. Ut sit amet lectus interdum, dignissim ante in, suscipit quam. Nunc sed vulputate tellus, sit amet suscipit odio. Integer at lorem lorem. Phasellus porttitor felis id nisl scelerisque, ac semper magna sodales. In hac habitasse platea dictumst. Vivamus ultricies in arcu vitae hendrerit.",
+            "itemcardimg": "https://dummyimage.com/450x300/dee2e6/6c757d.jpg",
+            "itemimages": [
+                { "itemimageurl": "https://dummyimage.com/450x300/dee2e6/6c757d.jpg", "alt": "this is sample example" },
+                { "itemimageurl": "https://dummyimage.com/450x300/dee2e6/6c757d.jpg", "alt": "this is sample example" },
+                { "itemimageurl": "https://dummyimage.com/450x300/dee2e6/6c757d.jpg", "alt": "this is sample example" },
+                { "itemimageurl": "https://dummyimage.com/450x300/dee2e6/6c757d.jpg", "alt": "this is sample example" }
+            ],
+            "category": "design",
+            "itemurl": "/fancy-products",
+            "itemnewprice": 18,
+            "itemoldprice": 20.9
+        },
+        {
+            "itemid": "SKU1948756",
+            "itemname": "fancy product",
+            "itemdescshort": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent a mi ultrices nunc blandit suscipit.",
+            "itemdesclong": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent a mi ultrices nunc blandit suscipit. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Proin sit amet nunc fermentum, hendrerit urna vitae, ornare elit. Ut sit amet lectus interdum, dignissim ante in, suscipit quam. Nunc sed vulputate tellus, sit amet suscipit odio. Integer at lorem lorem. Phasellus porttitor felis id nisl scelerisque, ac semper magna sodales. In hac habitasse platea dictumst. Vivamus ultricies in arcu vitae hendrerit.",
+            "itemcardimg": "https://dummyimage.com/450x300/dee2e6/6c757d.jpg",
+            "itemimages": [
+                { "itemimageurl": "https://dummyimage.com/450x300/dee2e6/6c757d.jpg", "alt": "this is sample example" },
+                { "itemimageurl": "https://dummyimage.com/450x300/dee2e6/6c757d.jpg", "alt": "this is sample example" },
+                { "itemimageurl": "https://dummyimage.com/450x300/dee2e6/6c757d.jpg", "alt": "this is sample example" },
+                { "itemimageurl": "https://dummyimage.com/450x300/dee2e6/6c757d.jpg", "alt": "this is sample example" }
+            ],
+            "category": "design",
+            "itemurl": "/fancy-products",
+            "itemnewprice": 18,
+            "itemoldprice": 20.9
         }
     ]
 }

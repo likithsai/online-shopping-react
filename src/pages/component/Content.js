@@ -14,7 +14,7 @@ const Content = (props) => {
                                 <div className="card shadow-sm h-100">
                                     <img className="card-img-top" src={item.itemcardimg} alt="..." />
                                     <div className="card-body p-4">
-                                        <a className="h5 fw-bolder text-dark" href={item.itemurl}>{item.itemname}</a>
+                                        <a className="h5 fw-bolder text-dark" href={ '/products/' + item.itemid}>{item.itemname}</a>
                                         <p className="item-shorttext">{item.itemdescshort}</p>
                                         <span className="fw-bold me-2 card_txt_nip">${item.itemnewprice}</span>
                                         <span className="text-muted text-decoration-line-through me-2">${item.itemoldprice}</span>
