@@ -10,7 +10,7 @@ const Content = (props) => {
                 {
                     props.items.map((item, index) => {
                         return (
-                            <div className="col mb-5 px-2">
+                            <div className="col mb-5 px-2" key={index}>
                                 <div className="card shadow-sm h-100">
                                     <img className="card-img-top" src={item.itemcardimg} alt="..." />
                                     <div className="card-body p-4">

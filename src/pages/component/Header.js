@@ -3,16 +3,16 @@ import React from 'react';
 
 const Header = (props) => {
     return (
-        <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
-            <div class="container px-4 px-lg-5 d-flex align-items-center justify-content-between">
-                <a class="navbar-brand fw-bold" href="/">
-                    <i class="bi-cart-fill me-2"></i>
+        <nav className="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
+            <div className="container px-4 px-lg-5 d-flex align-items-center justify-content-between">
+                <a className="navbar-brand fw-bold" href="/">
+                    <i className="bi-cart-fill me-2"></i>
                     <span>{props.headerTitle}</span>
                 </a>
                 <div>
-                    <button class="btn">
+                    <button className="btn">
                         <span>Cart</span>
-                        <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
+                        <span className="badge bg-dark text-white ms-1 rounded-pill">0</span>
                     </button>
                 </div>
             </div>
