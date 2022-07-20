@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route, Link, useParams } from 'react-router-dom';  
+import { BrowserRouter as Router, Routes, Route , useParams } from 'react-router-dom';  
 import './assets/sass/App.scss';
 import './assets/js/Script.js';
 import HomePage from './pages/HomePage';

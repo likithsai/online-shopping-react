@@ -28,7 +28,7 @@
                 { "imageurl": "https://dummyimage.com/600x600/dee2e6/6c757d.jpg", "imagealt": "simple image" },
                 { "imageurl": "https://dummyimage.com/600x600/dee2e6/6c757d.jpg", "imagealt": "simple image" }
             ],
-            "category": "design",
+            "category": "Software",
             "itemnewprice": 18.0,
             "itemoldprice": 20.0
         },
@@ -43,7 +43,7 @@
                 { "imageurl": "https://dummyimage.com/600x600/dee2e6/6c757d.jpg", "imagealt": "simple image" },
                 { "imageurl": "https://dummyimage.com/600x600/dee2e6/6c757d.jpg", "imagealt": "simple image" }
             ],
-            "category": "design",
+            "category": "Music",
             "itemnewprice": 18.0,
             "itemoldprice": 20.0
         },
@@ -58,7 +58,7 @@
                 { "imageurl": "https://dummyimage.com/600x600/dee2e6/6c757d.jpg", "imagealt": "this is sample example" },
                 { "imageurl": "https://dummyimage.com/600x600/dee2e6/6c757d.jpg", "imagealt": "this is sample example" }
             ],
-            "category": "design",
+            "category": "Music",
             "itemnewprice": 18,
             "itemoldprice": 20.9
         },

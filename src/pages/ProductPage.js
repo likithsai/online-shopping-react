@@ -10,7 +10,7 @@ import Carousel from 'react-bootstrap/Carousel';
 const ProductPage = (props) => {
     const [ DATA, setDATA ] = useState(AppData);
     const params  = useParams();
-
+    
     return (
         <div className="productpage">
             <Header headerTitle={AppData.appname} />
@@ -26,7 +26,7 @@ const ProductPage = (props) => {
                                             {
                                                 item.itemimages.map((img, ind) => {
                                                     return(
-                                                        <Carousel.Item>
+                                                        <Carousel.Item key={ind}>
                                                             <img
                                                                 loading="lazy"
                                                                 className="card-img-top mb-5 mb-md-0"
@@ -67,10 +67,36 @@ const ProductPage = (props) => {
                                 <div className="container px-4 px-lg-5 mt-5">
                                     <h2 className="fw-bolder mb-4">Related products</h2>
                                     <div className="row row-cols-1 row-cols-md-2 row-cols-xl-4 justify-content-center g-2">
-                                        <div className="col mb-5 px-2"><div className="card shadow-sm h-100"><img loading="lazy" className="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." /><div className="card-body p-4"><a className="h5 fw-bolder text-dark" href="/products/SKU1948756">fancy product</a><p className="item-shorttext mb-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent a mi ultrices nunc blandit suscipit.</p><div className="w-100"><span className="fw-bold me-2 card_txt_nip">$18</span><span className="text-muted text-decoration-line-through me-2">$20</span><span className="me-2 text-success">11% off</span></div></div><div className="card-footer p-4 pt-0 border-top-0 bg-transparent"><div className="text-center d-flex align-items-center justify-content-between"><a className="btn btn-outline-dark mt-auto" href="#"><span>Add to cart</span></a><a className="btn btn-outline-dark mt-auto" href="#"><span>Buy Now</span></a></div></div></div></div>
-                                        <div className="col mb-5 px-2"><div className="card shadow-sm h-100"><img loading="lazy" className="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." /><div className="card-body p-4"><a className="h5 fw-bolder text-dark" href="/products/SKU1948756">fancy product</a><p className="item-shorttext mb-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent a mi ultrices nunc blandit suscipit.</p><div className="w-100"><span className="fw-bold me-2 card_txt_nip">$18</span><span className="text-muted text-decoration-line-through me-2">$20</span><span className="me-2 text-success">11% off</span></div></div><div className="card-footer p-4 pt-0 border-top-0 bg-transparent"><div className="text-center d-flex align-items-center justify-content-between"><a className="btn btn-outline-dark mt-auto" href="#"><span>Add to cart</span></a><a className="btn btn-outline-dark mt-auto" href="#"><span>Buy Now</span></a></div></div></div></div>
-                                        <div className="col mb-5 px-2"><div className="card shadow-sm h-100"><img loading="lazy" className="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." /><div className="card-body p-4"><a className="h5 fw-bolder text-dark" href="/products/SKU1948756">fancy product</a><p className="item-shorttext mb-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent a mi ultrices nunc blandit suscipit.</p><div className="w-100"><span className="fw-bold me-2 card_txt_nip">$18</span><span className="text-muted text-decoration-line-through me-2">$20</span><span className="me-2 text-success">11% off</span></div></div><div className="card-footer p-4 pt-0 border-top-0 bg-transparent"><div className="text-center d-flex align-items-center justify-content-between"><a className="btn btn-outline-dark mt-auto" href="#"><span>Add to cart</span></a><a className="btn btn-outline-dark mt-auto" href="#"><span>Buy Now</span></a></div></div></div></div>
-                                        <div className="col mb-5 px-2"><div className="card shadow-sm h-100"><img loading="lazy" className="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." /><div className="card-body p-4"><a className="h5 fw-bolder text-dark" href="/products/SKU1948756">fancy product</a><p className="item-shorttext mb-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent a mi ultrices nunc blandit suscipit.</p><div className="w-100"><span className="fw-bold me-2 card_txt_nip">$18</span><span className="text-muted text-decoration-line-through me-2">$20</span><span className="me-2 text-success">11% off</span></div></div><div className="card-footer p-4 pt-0 border-top-0 bg-transparent"><div className="text-center d-flex align-items-center justify-content-between"><a className="btn btn-outline-dark mt-auto" href="#"><span>Add to cart</span></a><a className="btn btn-outline-dark mt-auto" href="#"><span>Buy Now</span></a></div></div></div></div>
+                                    {
+                                        DATA.products.filter(item => item.category === DATA.products.filter(d => d.itemid === params.productname)[0].category).map((item, index) => {
+                                            return (
+                                                <div className="col mb-5 px-2" key={index}>
+                                                    <a className="card shadow-sm h-100 text-decoration-none" href={ '/products/' + item.itemid}>
+                                                        <img loading="lazy" className="card-img-top" src={item.itemimages[0].imageurl} alt={item.itemimages[0].imagealt} />
+                                                        <div className="card-body p-4">
+                                                            <span className="h5 fw-bolder text-dark text-decoration-none">{item.itemname}</span>
+                                                            <p className="item-shorttext mb-3 text-dark">{item.itemdescshort}</p>
+                                                            <div className="w-100">
+                                                                <span className="fw-bold me-2 card_txt_nip text-dark">${item.itemnewprice}</span>
+                                                                <span className="text-muted text-decoration-line-through me-2">${item.itemoldprice}</span>
+                                                                <span className="me-2 text-success">{Math.round((item.itemoldprice - item.itemnewprice)/item.itemnewprice * 100)}% off</span>
+                                                            </div>
+                                                        </div>
+                                                        <div className="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                                            <div className="text-center d-flex align-items-center justify-content-between">
+                                                                <button className="btn btn-outline-dark mt-auto" href="#">
+                                                                    <span>Add to cart</span>
+                                                                </button>
+                                                                <button className="btn btn-outline-dark mt-auto" href="#">
+                                                                    <span>Buy Now</span>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                            )
+                                        })
+                                    }
                                     </div>
                                 </div>
                             </section>
