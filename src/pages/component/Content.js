@@ -6,6 +6,7 @@ const Content = (props) => {
     return (
         <section className="py-5 bg-light">
             <div className="container px-4 px-lg-5">
+                <div className="row text-align-center"></div>
                 <div className="row gx-4 gx-lg-5 row-cols-1 row-cols-md-2 row-cols-xl-4 justify-content-center">
                 {
                     props.items.map((item, index) => {
