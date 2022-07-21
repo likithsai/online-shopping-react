@@ -2,10 +2,8 @@
     "appname" : "Shopping App",
     "version" : "1.0",
     "categories" : [
-        { "catname": "All", "caticon": "bi bi-universal-access-circle" },
-        { "catname": "Software", "caticon": "bi bi-universal-access-circle" },
-        { "catname": "Hardware", "caticon": "bi bi-cart" },
-        { "catname": "Music", "caticon": "bi bi-universal-access-circle" }
+        { "catname": "All", "caticon": "bi bi-grid-3x3-gap-fill" },
+        { "catname": "Music", "caticon": "bi bi-music-note-list" }
     ],
     "products": [
         {
@@ -34,7 +32,7 @@
                 { "imageurl": "https://dummyimage.com/600x600/dee2e6/6c757d.jpg", "imagealt": "simple image" },
                 { "imageurl": "https://dummyimage.com/600x600/dee2e6/6c757d.jpg", "imagealt": "simple image" }
             ],
-            "catname": "design",
+            "catname": "music",
             "itemnewprice": 18.0,
             "itemoldprice": 20.0
         },
@@ -49,7 +47,7 @@
                 { "imageurl": "https://dummyimage.com/600x600/dee2e6/6c757d.jpg", "imagealt": "simple image" },
                 { "imageurl": "https://dummyimage.com/600x600/dee2e6/6c757d.jpg", "imagealt": "simple image" }
             ],
-            "catname": "design",
+            "catname": "music",
             "itemnewprice": 18.0,
             "itemoldprice": 20.0
         },
@@ -64,7 +62,7 @@
                 { "imageurl": "https://dummyimage.com/600x600/dee2e6/6c757d.jpg", "imagealt": "this is sample example" },
                 { "imageurl": "https://dummyimage.com/600x600/dee2e6/6c757d.jpg", "imagealt": "this is sample example" }
             ],
-            "catname": "design",
+            "catname": "music",
             "itemnewprice": 18,
             "itemoldprice": 20.9
         },
@@ -79,7 +77,7 @@
                 { "imageurl": "https://dummyimage.com/600x600/dee2e6/6c757d.jpg", "imagealt": "this is sample example" },
                 { "imageurl": "https://dummyimage.com/600x600/dee2e6/6c757d.jpg", "imagealt": "this is sample example" }
             ],
-            "catname": "design",
+            "catname": "music",
             "itemnewprice": 18,
             "itemoldprice": 20.9
         },
@@ -94,7 +92,7 @@
                 { "imageurl": "https://dummyimage.com/600x600/dee2e6/6c757d.jpg", "imagealt": "this is sample example" },
                 { "imageurl": "https://dummyimage.com/600x600/dee2e6/6c757d.jpg", "imagealt": "this is sample example" }
             ],
-            "catname": "design",
+            "catname": "music",
             "itemnewprice": 18,
             "itemoldprice": 20.9
         },
@@ -109,7 +107,7 @@
                 { "imageurl": "https://dummyimage.com/600x600/dee2e6/6c757d.jpg", "imagealt": "this is sample example" },
                 { "imageurl": "https://dummyimage.com/600x600/dee2e6/6c757d.jpg", "imagealt": "this is sample example" }
             ],
-            "catname": "design",
+            "catname": "music",
             "itemnewprice": 18,
             "itemoldprice": 20.9
         },
@@ -124,7 +122,7 @@
                 { "imageurl": "https://dummyimage.com/600x600/dee2e6/6c757d.jpg", "imagealt": "this is sample example" },
                 { "imageurl": "https://dummyimage.com/600x600/dee2e6/6c757d.jpg", "imagealt": "this is sample example" }
             ],
-            "catname": "design",
+            "catname": "music",
             "itemnewprice": 18,
             "itemoldprice": 20.9
         }
