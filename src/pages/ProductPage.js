@@ -68,7 +68,7 @@ const ProductPage = (props) => {
                                     <h2 className="fw-bolder mb-4">Related products</h2>
                                     <div className="row row-cols-1 row-cols-md-2 row-cols-xl-4 justify-content-center g-2">
                                     {
-                                        DATA.products.filter(item => item.category === DATA.products.filter(d => d.itemid === params.productname)[0].category).map((item, index) => {
+                                        DATA.products.filter(item => item.category === DATA.products.filter(d => d.itemid === params.productname)[0].category).sort(() => Math.random() - 0.5).slice(0, 4).map((item, index) => {
                                             return (
                                                 <div className="col mb-5 px-2" key={index}>
                                                     <a className="card shadow-sm h-100 text-decoration-none" href={ '/products/' + item.itemid}>
