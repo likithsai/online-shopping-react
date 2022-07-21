@@ -2,6 +2,7 @@
     "appname" : "Shopping App",
     "version" : "1.0",
     "categories" : [
+        { "catname": "All", "caticon": "bi bi-universal-access-circle" },
         { "catname": "Software", "caticon": "bi bi-universal-access-circle" },
         { "catname": "Hardware", "caticon": "bi bi-cart" },
         { "catname": "Music", "caticon": "bi bi-universal-access-circle" }
@@ -18,7 +19,7 @@
                 { "imageurl": "https://dummyimage.com/600x600/dee2e6/6c757d.jpg", "imagealt": "simple image" },
                 { "imageurl": "https://dummyimage.com/600x600/dee2e6/6c757d.jpg", "imagealt": "simple image" }
             ],
-            "catname": "design",
+            "catname": "software",
             "itemnewprice": 18.0,
             "itemoldprice": 20.0
         },

@@ -3,23 +3,32 @@
 import React, { useState } from 'react';
 
 const Content = (props) => {
-    const [ filteredData, setFilteredData ] = useState('');
+    
+    const [ itemData, setItemData ] = useState(props.items);
+
+    const handleCategoriesClick = (value) => {
+        if(value.toLowerCase() !== 'all') {
+            setItemData(props.items.filter(item => item.catname === value.toLowerCase()));
+        } else {
+            setItemData(props.items);
+        }
+    }
 
     return (
         <section className="py-5 bg-light">
             <div className="container px-4 px-lg-5">
                 <div className="row mb-5">
-                    <ul class="nav justify-content-center">
+                    <ul className="nav justify-content-center">
                     {
                         props.categories.map((item, index) => {
                             return (
-                                <li class="nav-item" onClick={() => { alert("clieck"); }}>
-                                    <div class="card shadow-sm rounded-0 me-2 my-1">
-                                        <div class="card-body text-center py-2 px-4">
-                                            <i class={ item.caticon + " me-2"}></i>
-                                            <span class="card-text text-center fw-bold">{ item.catname }</span>
+                                <li className="nav-item" key={index} onClick={(e) => handleCategoriesClick(item.catname)}>
+                                    <button className="card shadow-sm rounded-0 me-2 my-1 me-2" value={item.catname}>
+                                        <div className="card-body text-center py-2 px-4">
+                                            <i className={ item.caticon + " me-2"}></i>
+                                            <span className="card-text text-center fw-bold">{ item.catname }</span>
                                         </div>
-                                    </div>
+                                    </button>
                                 </li>
                             )
                         })
@@ -28,7 +37,7 @@ const Content = (props) => {
                 </div>
                 <div className="row gx-4 gx-lg-5 row-cols-1 row-cols-md-2 row-cols-xl-4 justify-content-center">
                 {
-                    props.items.map((item, index) => {
+                    itemData.map((item, index) => {
                         return (
                             <div className="col mb-5 px-2" key={index}>
                                 <a className="card shadow-sm h-100 text-decoration-none" href={ '/products/' + item.itemid}>
@@ -44,12 +53,12 @@ const Content = (props) => {
                                     </div>
                                     <div className="card-footer p-4 pt-0 border-top-0 bg-transparent">
                                         <div className="text-center d-flex align-items-center justify-content-between">
-                                            <a className="btn btn-outline-dark mt-auto" href="#">
+                                            <button className="btn btn-outline-dark mt-auto" href="#">
                                                 <span>Add to cart</span>
-                                            </a>
-                                            <a className="btn btn-outline-dark mt-auto" href="#">
+                                            </button>
+                                            <button className="btn btn-outline-dark mt-auto" href="#">
                                                 <span>Buy Now</span>
-                                            </a>
+                                            </button>
                                         </div>
                                     </div>
                                 </a>
