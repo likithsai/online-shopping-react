@@ -1,11 +1,31 @@
 //  content.js
 
-import React from 'react';
+import React, { useState } from 'react';
 
 const Content = (props) => {
+    const [ filteredData, setFilteredData ] = useState('');
+
     return (
         <section className="py-5 bg-light">
             <div className="container px-4 px-lg-5">
+                <div className="row mb-5">
+                    <ul class="nav justify-content-center">
+                    {
+                        props.categories.map((item, index) => {
+                            return (
+                                <li class="nav-item" onClick={() => { alert("clieck"); }}>
+                                    <div class="card shadow-sm rounded-0 me-2 my-1">
+                                        <div class="card-body text-center py-2 px-4">
+                                            <i class={ item.caticon + " me-2"}></i>
+                                            <span class="card-text text-center fw-bold">{ item.catname }</span>
+                                        </div>
+                                    </div>
+                                </li>
+                            )
+                        })
+                    }
+                    </ul>
+                </div>
                 <div className="row gx-4 gx-lg-5 row-cols-1 row-cols-md-2 row-cols-xl-4 justify-content-center">
                 {
                     props.items.map((item, index) => {
