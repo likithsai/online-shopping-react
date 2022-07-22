@@ -27,9 +27,9 @@ const Content = (props) => {
                             return (
                                 <li className="nav-item" key={index} onClick={(e) => handleCategoriesClick(item.catname)}>
                                     <button className={ (item.catname.toLowerCase() === selectedCategories.toLowerCase()) ? 'card shadow-sm me-2 my-1 me-2 bg-warning' : 'card shadow-sm me-2 my-1 me-2'} value={item.catname}>
-                                        <div className="card-body text-center py-2 px-4">
+                                        <div className="card-body text-center py-2 px-4 d-flex align-items-center">
                                             <i className={ item.caticon + " me-2"}></i>
-                                            <span className="card-text text-center fw-bold">{ item.catname }</span>
+                                            <span className="card-text text-center fw-bold me-2">{ item.catname }</span>
                                         </div>
                                     </button>
                                 </li>
@@ -37,7 +37,7 @@ const Content = (props) => {
                         })
                     }
                     </ul>
-                    <p className="my-2 text-muted text-center">{itemData.length} Items</p>
+                    <p className="my-2 text-muted text-center">{itemData.length} Items found</p>
                 </div>
                 <div className="row gx-4 gx-lg-5 row-cols-1 row-cols-md-2 row-cols-xl-4 justify-content-center">
                 {

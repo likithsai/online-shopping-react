@@ -8,7 +8,7 @@ import AppData from '../data/appdata.json';
 const ErrorPage = (props) => {
     return (
         <div className="errorpage">
-            <Header headerTitle={AppData.appname} />
+            <Header headerTitle={AppData.appname} logoURL="/" cartURL="/cart" />
             <div className="d-flex align-items-center justify-content-center vh-100">
                 <div className="text-center">
                     <h1 className="display-1 fw-bold">404</h1>

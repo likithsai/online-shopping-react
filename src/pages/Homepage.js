@@ -9,8 +9,8 @@ import AppData from '../data/appdata.json';
 const HomePage = (props) => {
     return (
         <div className="homepage">
-            <Header headerTitle={AppData.appname} />
-            <Jumboltron title="Shop By Category" subTitle="Search with over 1000+ products listed" />
+            <Header headerTitle={AppData.appname} logoURL="/" cartURL="/cart" />
+            <Jumboltron title="Shop By Category" subTitle={ "Search with over " + AppData.products.length + " products listed" } />
             <Content items={AppData.products} categories={AppData.categories} />
             <Footer content={AppData.footertext} />
         </div>

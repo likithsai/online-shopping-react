@@ -13,7 +13,7 @@ const ProductPage = (props) => {
     
     return (
         <div className="productpage">
-            <Header headerTitle={AppData.appname} />
+            <Header headerTitle={AppData.appname} logoURL="/" cartURL="/cart" />
             {
                 DATA.products.filter(item => item.itemid === params.productname).map((item, index) => {
                     return (
