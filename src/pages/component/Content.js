@@ -37,6 +37,7 @@ const Content = (props) => {
                         })
                     }
                     </ul>
+                    <p className="my-2 text-muted text-center">{itemData.length} Items</p>
                 </div>
                 <div className="row gx-4 gx-lg-5 row-cols-1 row-cols-md-2 row-cols-xl-4 justify-content-center">
                 {

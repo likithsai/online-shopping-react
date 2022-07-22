@@ -10,7 +10,7 @@ const HomePage = (props) => {
     return (
         <div className="homepage">
             <Header headerTitle={AppData.appname} />
-            <Jumboltron title="Shop in style" subTitle="Search with over 1000+ products listed" />
+            <Jumboltron title="Shop By Category" subTitle="Search with over 1000+ products listed" />
             <Content items={AppData.products} categories={AppData.categories} />
             <Footer content={AppData.footertext} />
         </div>
