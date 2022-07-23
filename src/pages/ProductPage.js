@@ -11,6 +11,31 @@ const ProductPage = (props) => {
     const [ DATA, setDATA ] = useState(AppData);
     const params  = useParams();
     
+    const addToCart = (item) => {
+        var itemInCart = JSON.parse(localStorage.getItem('cartData')) || [];
+        if(itemInCart !== null) {
+            if(!itemInCart.find(x => x.itemid === item.itemid)) {
+                itemInCart.push({
+                    "itemid": item.itemid,
+                    "itemname": item.itemname,
+                    "itemdescshort": item.itemdescshort,
+                    "itemimages": item.itemimages,
+                    "itemnewprice": item.itemnewprice
+                });
+            }
+        } else {
+            itemInCart.push({
+                "itemid": item.itemid,
+                "itemname": item.itemname,
+                "itemdescshort": item.itemdescshort,
+                "itemimages": item.itemimages,
+                "itemnewprice": item.itemnewprice
+            });
+        }
+        localStorage.setItem('cartData', JSON.stringify(itemInCart));
+    }
+    
+
     return (
         <div className="productpage">
             <Header headerTitle={AppData.appname} logoURL="/" cartURL="/cart" />
@@ -47,7 +72,7 @@ const ProductPage = (props) => {
                                             </div>
                                             <p className="lead">{item.itemdescshort}</p>
                                             <div className="d-flex">
-                                                <button className="btn btn-outline-dark flex-shrink-0 me-2" type="button">
+                                                <button className="btn btn-outline-dark flex-shrink-0 me-2" type="button" onClick={() => addToCart(item)}>
                                                     <i className="bi-cart-fill me-1"></i>
                                                     <span>Add to cart</span>
                                                 </button>
@@ -84,7 +109,7 @@ const ProductPage = (props) => {
                                                         </div>
                                                         <div className="card-footer p-4 pt-0 border-top-0 bg-transparent">
                                                             <div className="text-center d-flex align-items-center justify-content-between">
-                                                                <button className="btn btn-outline-dark mt-auto" href="#">
+                                                                <button className="btn btn-outline-dark mt-auto" onClick={() => addToCart(item)}>
                                                                     <span>Add to cart</span>
                                                                 </button>
                                                                 <button className="btn btn-outline-dark mt-auto" href="#">
