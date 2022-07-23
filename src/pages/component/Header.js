@@ -1,9 +1,14 @@
 //  header.js
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const Header = (props) => {
     const history = useNavigate();
+    const [ cartCount, setCartCount ] = useState(0);
+
+    useEffect(() => {
+        setCartCount((JSON.parse(localStorage.getItem('cartData')) !== null) ? JSON.parse(localStorage.getItem('cartData')).length : 0);
+    });
 
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
@@ -15,7 +20,7 @@ const Header = (props) => {
                 <div>
                     <button className="btn" onClick={() => history(props.cartURL)}>
                         <span>Cart</span>
-                        <span className="badge bg-dark text-white ms-1 rounded-pill">2</span>
+                        <span className="badge bg-dark text-white ms-1 rounded-pill">{ cartCount }</span>
                     </button>
                 </div>
             </div>

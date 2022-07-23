@@ -1,11 +1,13 @@
 //  content.js
 
 import React, { useState } from 'react';
+import Toast from 'react-bootstrap/Toast';
 
 const Content = (props) => {
     
     const [ itemData, setItemData ] = useState(props.items);
     const [ selectedCategories, setSelectedCategories ] = useState('All');
+    const [ toast, setToast ] = useState(false);
 
     const handleCategoriesClick = (value) => {
         if(value.toLowerCase() !== 'all') {
@@ -17,10 +19,42 @@ const Content = (props) => {
         setSelectedCategories(value);
     }
 
+    const addToCart = (item) => {
+        var itemInCart = JSON.parse(localStorage.getItem('cartData')) || [];
+        if(itemInCart !== null) {
+            if(!itemInCart.find(x => x.itemid === item.itemid)) {
+                itemInCart.push({
+                    "itemid": item.itemid,
+                    "itemname": item.itemname,
+                    "itemdescshort": item.itemdescshort,
+                    "itemimages": item.itemimages,
+                    "itemnewprice": item.itemnewprice
+                });
+                setToast(true);
+            }
+        } else {
+            itemInCart.push({
+                "itemid": item.itemid,
+                "itemname": item.itemname,
+                "itemdescshort": item.itemdescshort,
+                "itemimages": item.itemimages,
+                "itemnewprice": item.itemnewprice
+            });
+            setToast(true);
+        }
+        localStorage.setItem('cartData', JSON.stringify(itemInCart));
+    }
+
     return (
         <section className="py-5 bg-light">
             <div className="container px-4 px-lg-5">
                 <div className="row mb-5">
+                    <Toast className="fixed-bottom end-0 m-3" onClose={() => setToast(false)} show={toast} delay={3000} autohide>
+                        <Toast.Header>
+                            <strong className="me-auto">Added To Cart</strong>
+                        </Toast.Header>
+                        <Toast.Body>Product added to cart</Toast.Body>
+                    </Toast>
                     <ul className="nav justify-content-center">
                     {
                         props.categories.map((item, index) => {
@@ -44,28 +78,30 @@ const Content = (props) => {
                     itemData.map((item, index) => {
                         return (
                             <div className="col mb-5 px-2" key={index}>
-                                <a className="card shadow-sm h-100 text-decoration-none" href={ '/products/' + item.itemid}>
-                                    <img loading="lazy" className="card-img-top" src={item.itemimages[0].imageurl} alt={item.itemimages[0].imagealt} />
-                                    <div className="card-body p-4">
-                                        <span className="h5 fw-bolder text-dark text-decoration-none">{item.itemname}</span>
-                                        <p className="item-shorttext mb-3 text-dark">{item.itemdescshort}</p>
-                                        <div className="w-100">
-                                            <span className="fw-bold me-2 card_txt_nip text-dark">${item.itemnewprice}</span>
-                                            <span className="text-muted text-decoration-line-through me-2">${item.itemoldprice}</span>
-                                            <span className="me-2 text-success">{Math.round((item.itemoldprice - item.itemnewprice)/item.itemnewprice * 100)}% off</span>
+                                <div className="card shadow-sm h-100">
+                                    <a href={ '/products/' + item.itemid} className="text-decoration-none">
+                                        <img loading="lazy" className="card-img-top" src={item.itemimages[0].imageurl} alt={item.itemimages[0].imagealt} />
+                                        <div className="card-body p-4">
+                                            <span className="h5 fw-bolder text-dark text-decoration-none">{item.itemname}</span>
+                                            <p className="item-shorttext mb-3 text-dark">{item.itemdescshort}</p>
+                                            <div className="w-100">
+                                                <span className="fw-bold me-2 card_txt_nip text-dark">${item.itemnewprice}</span>
+                                                <span className="text-muted text-decoration-line-through me-2">${item.itemoldprice}</span>
+                                                <span className="me-2 text-success">{Math.round((item.itemoldprice - item.itemnewprice)/item.itemnewprice * 100)}% off</span>
+                                            </div>
                                         </div>
-                                    </div>
+                                    </a>
                                     <div className="card-footer p-4 pt-0 border-top-0 bg-transparent">
                                         <div className="text-center d-flex align-items-center justify-content-between">
-                                            <button className="btn btn-outline-dark mt-auto" href="#">
+                                            <button className="btn btn-outline-dark mt-auto" onClick={(e) => addToCart(item)}>
                                                 <span>Add to cart</span>
                                             </button>
-                                            <button className="btn btn-outline-dark mt-auto" href="#">
+                                            <button className="btn btn-outline-dark mt-auto">
                                                 <span>Buy Now</span>
                                             </button>
                                         </div>
                                     </div>
-                                </a>
+                                </div>
                             </div>
                         )
                     })
