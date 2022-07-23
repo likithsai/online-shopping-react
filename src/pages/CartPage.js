@@ -6,86 +6,66 @@ import Footer from './component/Footer';
 import AppData from '../data/appdata.json';
 
 const CartPage = (props) => {
-    // var itemInCart = JSON.parse(localStorage.getItem('cartData')) || [];
     const [ itemData, setItemData ] = useState([]);
 
     useEffect(() => {
-        setItemData(JSON.parse(localStorage.getItem('cartData')));
+        setItemData(JSON.parse(localStorage.getItem('cartData')) || []);
     }, []);
+
+    const removeItems = (item) => {
+        const temp = itemData.filter((el) => {
+            return el.itemid != item.itemid
+        });
+        setItemData(temp);
+        localStorage.setItem('cartData', JSON.stringify(itemData));
+    }
 
     return (
         <div className="homepage">
             <Header headerTitle={AppData.appname} logoURL="/" cartURL="/cart" />
             <div className="container my-5">
-            <div class="row px-5">
-                            <div class="col-12">
-                                    <div class="card-body">
-                                        <div class="row">
-                                            <div class="col-lg-12">
-                                                <div class="table-responsive">
-                                                    <table class="table table-borderless table-centered mb-0">
-                                                        <thead class="table-light">
+            <div className="row px-5">
+                            <div className="col-12">
+                                    <div className="card-body">
+                                        <div className="row">
+                                            <div className="col-lg-12">
+                                                <div className="table-responsive">
+                                                    <table className="table table-borderless table-centered mb-0">
+                                                        <thead className="table-light">
                                                             <tr>
-                                                                <th class="py-3">Product</th>
-                                                                <th class="py-3">Price</th>
+                                                                <th className="py-3">Product</th>
+                                                                <th className="py-3">Price</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
                                                         {
                                                             itemData.map((item, index) => {
                                                                 return (
-                                                                    <tr class="border-bottom">
-                                                                        <td class="py-4">
-                                                                            <img src={ item.itemimages[0].imageurl } alt={ item.itemimages[0].imagealt } title="contact-img" class="rounded me-3" height="64" />
-                                                                            <p class="m-0 d-inline-block align-middle font-16">
-                                                                                <a href="apps-ecommerce-products-details.html" class="text-body fw-bold">{ item.itemname }</a>
+                                                                    <tr className="border-bottom" key={index}>
+                                                                        <td className="py-4">
+                                                                            <img src={ item.itemimages[0].imageurl } alt={ item.itemimages[0].imagealt } className="rounded me-3 shadow-sm border" height="100" />
+                                                                            <p className="m-0 d-inline-block align-middle font-16">
+                                                                                <a href="apps-ecommerce-products-details.html" className="text-body fw-bold">{ item.itemname }</a>
                                                                                 <br />
-                                                                                <p class="my-0 mb-1">{ item.itemdescshort }</p>
-                                                                                <a href="#">Remove</a>
+                                                                                <p className="my-0 mb-1">{ item.itemdescshort }</p>
+                                                                                <button className="btn btn-link px-0" onClick={(e) => removeItems(item) }>Remove</button>
                                                                             </p>
                                                                         </td>
-                                                                        <td class="py-3">
-                                                                            <p class="fw-bold">${ item.itemnewprice }</p>
+                                                                        <td className="py-3">
+                                                                            <p className="fw-bold">${ item.itemnewprice }</p>
                                                                         </td>
                                                                     </tr>
                                                                 )
                                                             })
                                                         }
-
-                                                            {/* <tr class="border-bottom">
-                                                                <td class="py-4">
-                                                                    <img src="assets/images/products/product-1.jpg" alt="contact-img" title="contact-img" class="rounded me-3" height="64" />
-                                                                    <p class="m-0 d-inline-block align-middle font-16">
-                                                                        <a href="apps-ecommerce-products-details.html" class="text-body fw-bold">Amazing Modern Chair</a>
-                                                                        <br />
-                                                                        <p class="me-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent a mi ultrices nunc blandit suscipit.</p>
-                                                                    </p>
-                                                                </td>
-                                                                <td class="py-3">
-                                                                    <p class="fw-bold">$148.66</p>
-                                                                </td>
-                                                            </tr>
-                                                            <tr class="border-bottom">
-                                                                <td class="py-4">
-                                                                    <img src="assets/images/products/product-1.jpg" alt="contact-img" title="contact-img" class="rounded me-3" height="64" />
-                                                                    <p class="m-0 d-inline-block align-middle font-16">
-                                                                        <a href="apps-ecommerce-products-details.html" class="text-body fw-bold">Amazing Modern Chair</a>
-                                                                        <br />
-                                                                        <p class="me-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent a mi ultrices nunc blandit suscipit.</p>
-                                                                    </p>
-                                                                </td>
-                                                                <td class="py-3">
-                                                                    <p class="fw-bold">$148.66</p>
-                                                                </td>
-                                                            </tr> */}
                                                         </tbody>
-                                                        <tfoot class="table-light">
-                                                            <tr class="border-bottom">
-                                                                <td class="py-2 text-end">
-                                                                    <p class="fw-bold">Subtotal: </p>
+                                                        <tfoot className="table-light">
+                                                            <tr className="border-bottom">
+                                                                <td className="py-2 text-end">
+                                                                    <p className="fw-bold">total: </p>
                                                                 </td>
-                                                                <td class="py-2">
-                                                                    <p class="fw-bold">$148.66</p>
+                                                                <td className="py-2">
+                                                                    <p className="fw-bold">${ itemData.map(bill => bill.itemnewprice).reduce((acc, amount) => amount + acc, 0) }</p>
                                                                 </td>
                                                             </tr>
                                                         </tfoot>
@@ -93,8 +73,8 @@ const CartPage = (props) => {
                                                 </div> 
                                             </div>
                                         </div>
-                                        <div class="col-md-12 my-5">
-                                            <button type="button" class="btn btn-success p-3 w-100">Proceed to  Checkout</button>  
+                                        <div className="col-md-12 my-5">
+                                            <button type="button" className="btn btn-success p-3 w-100">Proceed to  Checkout</button>  
                                         </div>
                                     </div>
                             </div>
