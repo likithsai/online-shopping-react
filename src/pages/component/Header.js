@@ -11,7 +11,7 @@ const Header = (props) => {
     });
 
     return (
-        <nav className="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
+        <nav className="navbar navbar-expand-lg navbar-light bg-light shadow-sm position-sticky top-0 w-100">
             <div className="container px-4 px-lg-5 d-flex align-items-center justify-content-between">
                 <a className="navbar-brand fw-bold" href={props.logoURL}>
                     <i className="bi-cart-fill me-2"></i>
