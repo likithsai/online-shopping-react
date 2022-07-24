@@ -8,6 +8,7 @@ const Content = (props) => {
     const [ itemData, setItemData ] = useState(props.items);
     const [ selectedCategories, setSelectedCategories ] = useState('All');
     const [ toast, setToast ] = useState(false);
+    const [ itemCount, setItemCount ] = useState(0);
 
     const handleCategoriesClick = (value) => {
         if(value.toLowerCase() !== 'all') {
@@ -60,7 +61,7 @@ const Content = (props) => {
                         props.categories.map((item, index) => {
                             return (
                                 <li className="nav-item" key={index} onClick={(e) => handleCategoriesClick(item.catname)}>
-                                    <button className={ (item.catname.toLowerCase() === selectedCategories.toLowerCase()) ? 'card shadow-sm me-2 my-1 me-2 bg-warning' : 'card shadow-sm me-2 my-1 me-2'} value={item.catname}>
+                                    <button className={ (item.catname.toLowerCase() === selectedCategories.toLowerCase()) ? 'text-dark card shadow-sm me-2 my-1 me-2 bg-warning' : 'text-dark card shadow-sm me-2 my-1 me-2'} value={item.catname}>
                                         <div className="card-body text-center py-2 px-4 d-flex align-items-center">
                                             <i className={ item.caticon + " me-2"}></i>
                                             <span className="card-text text-center fw-bold me-2">{ item.catname }</span>
