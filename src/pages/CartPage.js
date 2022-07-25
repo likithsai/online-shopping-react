@@ -11,7 +11,7 @@ const CartPage = (props) => {
     const CARTDATA = "cartData";
 
     useEffect(() => {
-        setItemData(JSON.parse(localStorage.getItem(CARTDATA)));
+        setItemData(JSON.parse(localStorage.getItem(CARTDATA)) || []);
     });
 
     const removeItems = (item) => {
