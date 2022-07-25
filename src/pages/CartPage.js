@@ -98,7 +98,7 @@ const CartPage = (props) => {
                         <div className="col-md-12 text-center my-5 h-100">
                             <div className="my-3">
                                 <h1 className="h1 fw-bolder">No Items</h1>
-                                <div className="error-details">Please add items to cart.</div>
+                                <div className="error-details">Your cart is empty. Please add items to cart.</div>
                             </div>
                             <button href="/" className="btn btn-dark btn-l mt-3">
                                 <span className="glyphicon glyphicon-home"></span>
