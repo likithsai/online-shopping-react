@@ -12,7 +12,7 @@ const CartPage = (props) => {
 
     useEffect(() => {
         setItemData(JSON.parse(localStorage.getItem(CARTDATA)));
-    }, []);
+    });
 
     const removeItems = (item) => {
         const temp = itemData.filter((el) => {
@@ -78,7 +78,8 @@ const CartPage = (props) => {
                                                 itemData.map(bill => bill.itemnewprice).reduce((acc, amount) => amount + acc, 0),
                                                 function(response) {
                                                     alert(response.razorpay_payment_id);
-                                                    localStorage.removeItems(CARTDATA)
+                                                    setItemData([]);
+                                                    localStorage.setItem('cartData', JSON.stringify([]));
                                                 }
                                             ) 
                                         }}>Proceed to  Checkout</button>  
@@ -90,24 +91,24 @@ const CartPage = (props) => {
                 <Footer content={AppData.footertext} />
             </div>
         :
-        <div className="cartpage">
-            <Header headerTitle={AppData.appname} logoURL="/" cartURL="/cart" />
-            <div className="container my-5">
-                <div className="row px-lg-5">
-                    <div className="col-md-12 text-center my-5 h-100">
-                        <div className="my-3">
-                            <h1 className="h1 fw-bolder">No Items</h1>
-                            <div className="error-details">Please add items to cart.</div>
+            <div className="cartpage">
+                <Header headerTitle={AppData.appname} logoURL="/" cartURL="/cart" />
+                <div className="container my-5">
+                    <div className="row px-lg-5">
+                        <div className="col-md-12 text-center my-5 h-100">
+                            <div className="my-3">
+                                <h1 className="h1 fw-bolder">No Items</h1>
+                                <div className="error-details">Please add items to cart.</div>
+                            </div>
+                            <button href="/" className="btn btn-dark btn-l mt-3">
+                                <span className="glyphicon glyphicon-home"></span>
+                                <span>Go to homepage</span>
+                            </button>
                         </div>
-                        <button href="/" className="btn btn-dark btn-l mt-3">
-                            <span className="glyphicon glyphicon-home"></span>
-                            <span>Go to homepage</span>
-                        </button>
                     </div>
                 </div>
+                <Footer content={AppData.footertext} />
             </div>
-            <Footer content={AppData.footertext} />
-        </div>
     );
 }
 

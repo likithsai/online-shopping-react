@@ -74,7 +74,7 @@ const Content = (props) => {
                     </ul>
                     <p className="my-2 text-muted text-center">{itemData.length} Items found</p>
                 </div>
-                <div className="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+                <div className="row gx-4 gx-lg-5 row-cols-1 row-cols-md-2 row-cols-xl-4 justify-content-center">
                 {
                     itemData.map((item, index) => {
                         return (
