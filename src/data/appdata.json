@@ -5,6 +5,7 @@
         { "catname": "All", "caticon": "bi bi-grid-3x3-gap-fill" },
         { "catname": "Music", "caticon": "bi bi-music-note-list" }
     ],
+    "apiKey": "rzp_test_nPSGNPWFlRCMci",
     "products": [
         {
             "itemid": "SKU1948750",

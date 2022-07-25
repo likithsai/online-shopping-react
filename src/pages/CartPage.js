@@ -4,12 +4,14 @@ import Header from './component/Header';
 import Jumboltron from './component/Jumboltron';
 import Footer from './component/Footer';
 import AppData from '../data/appdata.json';
+import payment from '../utils/Payment';
 
 const CartPage = (props) => {
     const [ itemData, setItemData ] = useState([]);
+    const CARTDATA = "cartData";
 
     useEffect(() => {
-        setItemData(JSON.parse(localStorage.getItem('cartData')));
+        setItemData(JSON.parse(localStorage.getItem(CARTDATA)));
     }, []);
 
     const removeItems = (item) => {
@@ -55,7 +57,7 @@ const CartPage = (props) => {
                                                                         <p className="m-0 d-inline-block align-middle font-16">
                                                                             <a className="text-body fw-bold" href={ "/products/" + item.itemid }>{ item.itemname }</a>
                                                                             <br />
-                                                                            <p className="my-0 mb-1 text-truncation">{ item.itemdescshort }</p>
+                                                                            <span className="my-0 mb-1 text-truncation">{ item.itemdescshort }</span>
                                                                             <button className="btn btn-link px-0" onClick={(e) => removeItems(item) }>Remove</button>
                                                                         </p>
                                                                     </td>
@@ -72,7 +74,20 @@ const CartPage = (props) => {
                                         </div>
                                     </div>
                                 <div className="col-md-12 my-5">
-                                    <button type="button" className="btn btn-success p-3 w-100">Proceed to  Checkout</button>  
+                                    <button 
+                                        type="button" 
+                                        className="btn btn-success p-3 w-100" 
+                                        onClick={() => {
+                                            payment.initiatePayment (
+                                                'Payment Confirmation', 
+                                                'Payment confirmation', 
+                                                itemData.map(bill => bill.itemnewprice).reduce((acc, amount) => amount + acc, 0),
+                                                function(response) {
+                                                    alert(response.razorpay_payment_id);
+                                                    localStorage.removeItems(CARTDATA)
+                                                }
+                                            ) 
+                                        }}>Proceed to  Checkout</button>  
                                 </div>
                             </div>
                         </div>
@@ -90,7 +105,10 @@ const CartPage = (props) => {
                             <h1 className="h1 fw-bolder">No Items</h1>
                             <div className="error-details">Please add items to cart.</div>
                         </div>
-                        <a href="/" className="btn btn-dark btn-l mt-3"><span className="glyphicon glyphicon-home"></span> <span>Go to homepage</span></a>
+                        <button href="/" className="btn btn-dark btn-l mt-3">
+                            <span className="glyphicon glyphicon-home"></span>
+                            <span>Go to homepage</span>
+                        </button>
                     </div>
                 </div>
             </div>

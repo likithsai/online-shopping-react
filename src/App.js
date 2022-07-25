@@ -12,6 +12,7 @@ function App() {
   useEffect(() => {
       const URL = "https://checkout.razorpay.com/v1/checkout.js"
       const script = document.createElement("script");
+      script.type = 'text/javascript';
       script.src = URL;
       script.async = true;
       document.body.appendChild(script);
@@ -23,8 +24,8 @@ function App() {
           <Routes>
               <Route exact path='/' element={<HomePage />}></Route>
               <Route path='/products/:productname' element={<ProductPage />}></Route>
-              <Route path="*" element={<ErrorPage />} />
-              <Route path="/cart" element={<CartPage />} />
+              {/* <Route path="*" element={<ErrorPage />} /> */}
+              <Route exact path="/cart" element={<CartPage />} />
               <Route path="/download/:fileid" element={<DownloadPage />} />
           </Routes>
        </Router>
