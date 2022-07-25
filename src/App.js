@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route , useParams } from 'react-router-dom';  
 import './assets/sass/App.scss';
 import './assets/js/Script.js';
@@ -8,6 +9,14 @@ import CartPage from './pages/CartPage';
 import DownloadPage from './pages/DownloadPage';
 
 function App() {
+  useEffect(() => {
+      const URL = "https://checkout.razorpay.com/v1/checkout.js"
+      const script = document.createElement("script");
+      script.src = URL;
+      script.async = true;
+      document.body.appendChild(script);
+  }, []);
+
   return (
     <div className="App">
       <Router>
