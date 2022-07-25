@@ -6,6 +6,7 @@ import Header from './component/Header';
 import Footer from './component/Footer';
 import AppData from '../data/appdata.json';
 import Carousel from 'react-bootstrap/Carousel';
+import payment from '../utils/Payment';
 
 const ProductPage = (props) => {
     const [ DATA, setDATA ] = useState(AppData);
@@ -76,7 +77,17 @@ const ProductPage = (props) => {
                                                     <i className="bi-cart-fill me-1"></i>
                                                     <span>Add to cart</span>
                                                 </button>
-                                                <button className="btn btn-outline-dark flex-shrink-0" type="button">
+                                                <button className="btn btn-outline-dark flex-shrink-0" type="button" onClick={() => {
+                                                    payment.initiatePayment (
+                                                        item.itemname, 
+                                                        item.itemdescshort,
+                                                        item.itemimages[0].imageurl, 
+                                                        item.itemnewprice,
+                                                        function(response) {
+                                                            alert(response.razorpay_payment_id);
+                                                        }
+                                                    ) 
+                                                }}>
                                                     <i className="bi-bag-fill me-1"></i>
                                                     <span>Buy now</span>
                                                 </button>

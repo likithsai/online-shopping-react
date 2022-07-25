@@ -74,7 +74,7 @@ const Content = (props) => {
                     </ul>
                     <p className="my-2 text-muted text-center">{itemData.length} Items found</p>
                 </div>
-                <div className="row gx-4 gx-lg-5 row-cols-1 row-cols-md-2 row-cols-xl-4 justify-content-center">
+                <div className="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
                 {
                     itemData.map((item, index) => {
                         return (
@@ -94,11 +94,8 @@ const Content = (props) => {
                                     </a>
                                     <div className="card-footer p-4 pt-0 border-top-0 bg-transparent">
                                         <div className="text-center d-flex align-items-center justify-content-between">
-                                            <button className="btn btn-outline-dark mt-auto" onClick={(e) => addToCart(item)}>
+                                            <button className="btn btn-outline-dark mt-auto w-100" onClick={(e) => addToCart(item)}>
                                                 <span>Add to cart</span>
-                                            </button>
-                                            <button className="btn btn-outline-dark mt-auto">
-                                                <span>Buy Now</span>
                                             </button>
                                         </div>
                                     </div>

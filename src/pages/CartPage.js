@@ -1,7 +1,7 @@
 //  cart page
 import React, { useState, useEffect } from 'react';
 import Header from './component/Header';
-import Jumboltron from './component/Jumboltron';
+import CartJumboltron from './component/CartJumboltron';
 import Footer from './component/Footer';
 import AppData from '../data/appdata.json';
 import payment from '../utils/Payment';
@@ -26,14 +26,7 @@ const CartPage = (props) => {
         (itemData.length > 0) ?
             <div className="cartpage">
                 <Header headerTitle={AppData.appname} logoURL="/" cartURL="/cart" />
-                <section className="bg-dark py-1">
-                    <div className="container px-4 px-lg-5 my-5">
-                        <div className="text-center text-white">
-                            <p className="lead fw-normal text-white-50 mb-0">Total bill payable</p>
-                            <h1 className="display-4 fw-bolder">${ itemData.map(bill => bill.itemnewprice).reduce((acc, amount) => amount + acc, 0) }</h1>
-                        </div>
-                    </div>
-                </section>
+                <CartJumboltron amt={ itemData.map(bill => bill.itemnewprice).reduce((acc, amount) => amount + acc, 0) } />
                 <div className="container my-5">
                     <div className="row px-lg-5">
                         <div className="col-12">
@@ -79,8 +72,9 @@ const CartPage = (props) => {
                                         className="btn btn-success p-3 w-100" 
                                         onClick={() => {
                                             payment.initiatePayment (
-                                                'Payment Confirmation', 
-                                                'Payment confirmation', 
+                                                AppData.appname, 
+                                                "Amount to be paid", 
+                                                null,
                                                 itemData.map(bill => bill.itemnewprice).reduce((acc, amount) => amount + acc, 0),
                                                 function(response) {
                                                     alert(response.razorpay_payment_id);

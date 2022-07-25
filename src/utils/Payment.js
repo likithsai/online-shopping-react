@@ -2,14 +2,14 @@
 
 import AppData from '../data/appdata.json';
 
-const initiatePayment = (name, desc, amt, sucessHandler) => {
+const initiatePayment = (name, desc, img, amt, sucessHandler) => {
     let options = {
         "key": AppData.apiKey,
         "amount": amt * 100, // 2000 paise = INR 20, amount in paisa
         "currency": "INR",
         "name": name,
         "description": desc,
-        "image": "/your_logo.png",
+        "image": img,
         "handler": sucessHandler,
         // "prefill": {
         //   "name": "Harshil Mathur",
