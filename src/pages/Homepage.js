@@ -10,7 +10,7 @@ const HomePage = (props) => {
     return (
         <div className="homepage">
             <Header headerTitle={AppData.appname} logoURL="/" cartURL="/cart" />
-            <Jumboltron title="Shop By Category" subTitle={ "Search with over " + AppData.products.length + " products listed" } />
+            <Jumboltron title="Shop By Category" subTitle={ "Shop with over " + AppData.products.length + " products listed." } />
             <Content items={AppData.products} categories={AppData.categories} />
             <Footer content={AppData.footertext} />
         </div>

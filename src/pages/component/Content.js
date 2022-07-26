@@ -29,7 +29,8 @@ const Content = (props) => {
                     "itemname": item.itemname,
                     "itemdescshort": item.itemdescshort,
                     "itemimages": item.itemimages,
-                    "itemnewprice": item.itemnewprice
+                    "itemnewprice": item.itemnewprice,
+                    "itemoldprice": item.itemoldprice
                 });
                 setToast(true);
             }
@@ -39,7 +40,8 @@ const Content = (props) => {
                 "itemname": item.itemname,
                 "itemdescshort": item.itemdescshort,
                 "itemimages": item.itemimages,
-                "itemnewprice": item.itemnewprice
+                "itemnewprice": item.itemnewprice,
+                "itemoldprice": item.itemoldprice
             });
             setToast(true);
         }
@@ -52,9 +54,12 @@ const Content = (props) => {
                 <div className="row mb-5">
                     <Toast className="fixed-bottom end-0 m-3" onClose={() => setToast(false)} show={toast} delay={3000} autohide>
                         <Toast.Header>
-                            <strong className="me-auto">Added To Cart</strong>
+                            <strong className="me-auto">Info</strong>
                         </Toast.Header>
-                        <Toast.Body>Product added to cart</Toast.Body>
+                        <Toast.Body>
+                            <i class="bi bi-check-circle-fill me-2 text-success"></i>
+                            <span>Product added to cart</span>
+                        </Toast.Body>
                     </Toast>
                     <ul className="nav justify-content-center">
                     {
