@@ -82,8 +82,8 @@ const CartPage = (props) => {
                                                             {
                                                                 itemData.map((item, index) => {
                                                                     return (
-                                                                        <tr className="border-bottom" key={index}>
-                                                                            <td className="py-4 d-flex align-items-center">
+                                                                        <tr className="border-bottom d-flex align-items-center justify-content-between w-100" key={index}>
+                                                                            <td className="py-4 d-flex align-items-center w-75">
                                                                                 <img src={ item.itemimages[0].imageurl } alt={ item.itemimages[0].imagealt } className="rounded me-3 shadow-sm border" height="100" />
                                                                                 <p className="m-0 d-inline-block align-middle font-16">
                                                                                     <a className="text-body fw-bold" href={ "/products/" + item.itemid }>{ item.itemname }</a>
