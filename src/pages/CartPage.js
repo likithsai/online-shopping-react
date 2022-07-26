@@ -31,29 +31,38 @@ const CartPage = (props) => {
     return (
         <div className="cartpage">
             <Modal show={paymentSuccessDialog} onHide={() => setPaymentSuccessDialog(false)}>
-                <Modal.Header className="bg-success text-white" closeButton>
+                {/* <Modal.Header className="bg-success text-white" closeButton>
                     <Modal.Title>Payment successfull</Modal.Title>
-                </Modal.Header>
-                <Modal.Body className="text-center p-0">
-                    <section className="py-5 shadow-sm">
-                        <div className="container px-4 px-lg-5 my-5">
-                            <div className="text-center">
-                                <p className="lead fw-normal mb-0">Your order is confirmed. You will recieve an order confirmation email/SMS shortly with download link for your items.</p>
-                            </div>
+                </Modal.Header> */}
+                <Modal.Body className="text-center p-0 py-5">
+                    <div class="text-center">
+                        <div class="pt-3">
+                            <i class="display-1 bi bi-check-circle-fill text-success"></i>
                         </div>
-                    </section>
+                        <div class="my-3">
+                            <h4>Great!</h4>	
+                            <p class="mb-4">Your order have been processed.</p>
+                            <p>{transactionID}</p>
+                        </div>
+                        <div class="mt-4">
+                            <button class="btn btn-success me-2" data-dismiss="modal" onClick={() => {
+                                setPaymentSuccessDialog(false)
+                                history('/')
+                            }}><span class="me-2">Continue shopping</span> <i class="bi bi-arrow-right-circle-fill"></i></button>
+                        </div>
+                    </div>
                 </Modal.Body>
-                <Modal.Footer className="text-center d-flex justify-content-center">
+                {/* <Modal.Footer className="text-center d-flex justify-content-center">
                     <Button variant="secondary" onClick={() => {
                         setPaymentSuccessDialog(false);
                     }}>Continue Shopping</Button>
-                </Modal.Footer>
+                </Modal.Footer> */}
             </Modal>
             <Header headerTitle={AppData.appname} logoURL="/" cartURL="/cart" />
             {
                 (itemData.length > 0) ?
                     <>
-                        <CartJumboltron amt={ itemData.map(bill => bill.itemnewprice).reduce((acc, amount) => amount + acc, 0) } />
+                        <CartJumboltron amt={ itemData.map(bill => bill.itemnewprice).reduce((acc, amount) => amount + acc, 0) } amtOld={ itemData.map(bill => bill.itemoldprice).reduce((acc, amount) => amount + acc, 0) } />
                         <div className="container my-5">
                             <div className="row px-lg-5">
                                 <div className="col-12">
