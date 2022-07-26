@@ -3,8 +3,8 @@
 import React, { useState } from 'react';
 import Toast from 'react-bootstrap/Toast';
 import AppData from '../../data/appdata.json';
+
 const Content = (props) => {
-    
     const [ itemData, setItemData ] = useState(props.items);
     const [ selectedCategories, setSelectedCategories ] = useState('All');
     const [ toast, setToast ] = useState(false);
@@ -86,8 +86,8 @@ const Content = (props) => {
                                             <span className="h5 fw-bolder text-dark text-decoration-none">{item.itemname}</span>
                                             <p className="item-shorttext mb-3 text-dark">{item.itemdescshort}</p>
                                             <div className="w-100">
-                                                <span className="fw-bold me-2 card_txt_nip text-dark">{ AppData.currencySymbol + item.itemnewprice }</span>
-                                                <span className="text-muted text-decoration-line-through me-2">{ AppData.currencySymbol + item.itemoldprice }</span>
+                                                <span className="fw-bold me-2 card_txt_nip text-dark">{ AppData.currency[0].baseCurrencySymbol + item.itemnewprice }</span>
+                                                <span className="text-muted text-decoration-line-through me-2">{ AppData.currency[0].baseCurrencySymbol + item.itemoldprice }</span>
                                                 <span className="me-2 text-success">{Math.round((item.itemoldprice - item.itemnewprice)/item.itemnewprice * 100)}% off</span>
                                             </div>
                                         </div>

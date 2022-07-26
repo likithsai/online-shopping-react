@@ -6,8 +6,10 @@
         { "catname": "Music", "caticon": "bi bi-music-note-list" }
     ],
     "apiKey": "rzp_test_nPSGNPWFlRCMci",
-    "baseCurrency": "INR",
-    "currencySymbol": "₹",
+    "currency" : [{
+        "baseCurrency": "INR",
+        "baseCurrencySymbol": "₹"
+    }],
     "products": [
         {
             "itemid": "SKU1948750",

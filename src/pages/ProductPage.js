@@ -67,8 +67,8 @@ const ProductPage = (props) => {
                                         <div className="col-md-6">
                                             <h1 className="display-5 fw-bolder">{item.itemname}</h1>
                                             <div className="w-100 fs-5 mb-5 mt-2">
-                                                <span className="fw-bold me-2 h2">{ AppData.currencySymbol + item.itemnewprice }</span>
-                                                <span className="text-muted text-decoration-line-through me-2">{ AppData.currencySymbol + item.itemoldprice }</span>
+                                                <span className="fw-bold me-2 h2">{ AppData.currency[0].baseCurrencySymbol + item.itemnewprice }</span>
+                                                <span className="text-muted text-decoration-line-through me-2">{ AppData.currency[0].baseCurrencySymbol + item.itemoldprice }</span>
                                                 <span className="me-2 text-success">{Math.round((item.itemoldprice - item.itemnewprice)/item.itemnewprice * 100)}% off</span>
                                             </div>
                                             <p className="lead">{item.itemdescshort}</p>
@@ -113,8 +113,8 @@ const ProductPage = (props) => {
                                                             <span className="h5 fw-bolder text-dark text-decoration-none">{item.itemname}</span>
                                                             <p className="item-shorttext mb-3 text-dark">{item.itemdescshort}</p>
                                                             <div className="w-100">
-                                                                <span className="fw-bold me-2 card_txt_nip text-dark">{ AppData.currencySymbol + item.itemnewprice }</span>
-                                                                <span className="text-muted text-decoration-line-through me-2">{ AppData.currencySymbol + item.itemoldprice }</span>
+                                                                <span className="fw-bold me-2 card_txt_nip text-dark">{ AppData.currency[0].baseCurrencySymbol + item.itemnewprice }</span>
+                                                                <span className="text-muted text-decoration-line-through me-2">{ AppData.currency[0].baseCurrencySymbol + item.itemoldprice }</span>
                                                                 <span className="me-2 text-success">{Math.round((item.itemoldprice - item.itemnewprice)/item.itemnewprice * 100)}% off</span>
                                                             </div>
                                                         </div>

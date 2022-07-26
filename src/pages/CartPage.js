@@ -55,7 +55,7 @@ const CartPage = (props) => {
                                                                         </p>
                                                                     </td>
                                                                     <td className="py-5">
-                                                                        <p className="fw-bolder">{ AppData.currencySymbol + item.itemnewprice }</p>
+                                                                        <p className="fw-bolder">{ AppData.currency[0].baseCurrencySymbol + item.itemnewprice }</p>
                                                                     </td>
                                                                 </tr>
                                                             )
