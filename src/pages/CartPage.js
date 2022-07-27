@@ -8,6 +8,7 @@ import payment from '../utils/Payment';
 import { useNavigate } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
+import MD5 from "crypto-js/md5";
 
 const CartPage = (props) => {
     const [ itemData, setItemData ] = useState([]);
@@ -41,8 +42,17 @@ const CartPage = (props) => {
                         </div>
                         <div class="my-3">
                             <h4>Great!</h4>	
-                            <p class="mb-4">Your order have been processed.</p>
-                            <p>{transactionID}</p>
+                            <p class="mb-4 mx-5">Your order have been processed. You will recieve download link in your mail or in your inbox within 2hrs.</p>
+
+                            <div class="card m-5">
+                                <div class="card-header">
+                                    <strong>Order ID</strong>
+                                </div>
+                                <div class="card-body">
+                                    {/* <p className="h4 text-muted">{ MD5(transactionID).toString() }</p> */}
+                                    <p className="h4 text-muted">{ transactionID }</p>
+                                </div>
+                            </div>
                         </div>
                         <div class="mt-4">
                             <button class="btn btn-success me-2" data-dismiss="modal" onClick={() => {
@@ -127,7 +137,10 @@ const CartPage = (props) => {
                                                             }
                                                         }
                                                     ) 
-                                                }}>Proceed to  Checkout</button>  
+                                                }}>
+                                                    <i class="bi bi-credit-card-fill me-2"></i>
+                                                    <span>Proceed to  Checkout</span>
+                                                </button>  
                                         </div>
                                     </div>
                                 </div>

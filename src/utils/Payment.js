@@ -1,6 +1,7 @@
 //  Utils.js
 
 import AppData from '../data/appdata.json';
+import MD5 from "crypto-js/md5";
 
 const initiatePayment = (name, desc, img, amt, sucessHandler) => {
     let options = {
@@ -24,6 +25,15 @@ const initiatePayment = (name, desc, img, amt, sucessHandler) => {
     };
     
     let rzp = new window.Razorpay(options);
+    rzp.on('payment.failed', function (response){
+        // alert(response.error.code);
+        alert("Error code: " + response.error.code + "\nError Desc: " + response.error.description);
+        // alert(response.error.source);
+        // alert(response.error.step);
+        // alert(response.error.reason);
+        // alert(response.error.metadata.order_id);
+        // alert(response.error.metadata.payment_id);
+    });
     rzp.open();
 }
 
