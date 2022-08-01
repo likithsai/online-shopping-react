@@ -24,7 +24,6 @@ function App() {
           <Routes>
               <Route exact path='/' element={<HomePage />}></Route>
               <Route path='/products/:productname' element={<ProductPage />}></Route>
-              {/* <Route path="*" element={<ErrorPage />} /> */}
               <Route exact path="/cart" element={<CartPage />} />
               <Route path="/download/:fileid" element={<DownloadPage />} />
           </Routes>

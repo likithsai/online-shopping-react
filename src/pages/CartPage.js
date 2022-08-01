@@ -9,6 +9,8 @@ import { useNavigate } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import MD5 from "crypto-js/md5";
+import { removeItemToCart, removeAllCartItems } from "../actions/index.js";
+import { useSelector, useDispatch } from "react-redux";
 
 const CartPage = (props) => {
     const [ itemData, setItemData ] = useState([]);
@@ -16,9 +18,11 @@ const CartPage = (props) => {
     const [ transactionID, setTransactionID ] = useState(''); 
     const CARTDATA = "cartData";
     const history = useNavigate();
-
+    const cartItems = useSelector((state) => state.cartItems);
+    const dispatch = useDispatch();
+    
     useEffect(() => {
-        setItemData(JSON.parse(localStorage.getItem(CARTDATA)) || []);
+        setItemData(cartItems.items);
     }, []);
 
     const removeItems = (item) => {
@@ -26,15 +30,13 @@ const CartPage = (props) => {
             return el.itemid != item.itemid
         });
         setItemData(temp);
-        localStorage.setItem('cartData', JSON.stringify(temp));
+        dispatch(removeItemToCart(item));
+        // localStorage.setItem('cartData', JSON.stringify(temp));
     }
 
     return (
         <div className="cartpage">
             <Modal show={paymentSuccessDialog} onHide={() => setPaymentSuccessDialog(false)}>
-                {/* <Modal.Header className="bg-success text-white" closeButton>
-                    <Modal.Title>Payment successfull</Modal.Title>
-                </Modal.Header> */}
                 <Modal.Body className="text-center p-0 py-5">
                     <div class="text-center">
                         <div class="pt-3">
@@ -49,7 +51,6 @@ const CartPage = (props) => {
                                     <strong>Order ID</strong>
                                 </div>
                                 <div class="card-body">
-                                    {/* <p className="h4 text-muted">{ MD5(transactionID).toString() }</p> */}
                                     <p className="h4 text-muted">{ transactionID }</p>
                                 </div>
                             </div>
@@ -62,11 +63,6 @@ const CartPage = (props) => {
                         </div>
                     </div>
                 </Modal.Body>
-                {/* <Modal.Footer className="text-center d-flex justify-content-center">
-                    <Button variant="secondary" onClick={() => {
-                        setPaymentSuccessDialog(false);
-                    }}>Continue Shopping</Button>
-                </Modal.Footer> */}
             </Modal>
             <Header headerTitle={AppData.appname} logoURL="/" cartURL="/cart" />
             {
@@ -96,7 +92,7 @@ const CartPage = (props) => {
                                                                             <td className="py-4 d-flex align-items-center w-75">
                                                                                 <img src={ item.itemimages[0].imageurl } alt={ item.itemimages[0].imagealt } className="rounded me-3 shadow-sm border" height="100" />
                                                                                 <p className="m-0 d-inline-block align-middle font-16">
-                                                                                    <a className="text-body fw-bold" href={ "/products/" + item.itemid }>{ item.itemname }</a>
+                                                                                    <a className="text-body fw-bold" onClick={() => history("/products/" + item.itemid)}>{ item.itemname }</a>
                                                                                     <br />
                                                                                     <span className="my-0 mb-1 text-truncation">{ item.itemdescshort }</span>
                                                                                     <button className="btn btn-link px-0" onClick={(e) => removeItems(item) }>Remove</button>
@@ -133,7 +129,8 @@ const CartPage = (props) => {
                                                                 setPaymentSuccessDialog(true);
                                                                 setTransactionID(response.razorpay_payment_id);
                                                                 setItemData([]);
-                                                                localStorage.setItem('cartData', JSON.stringify([]));
+                                                                dispatch(removeAllCartItems());
+                                                                // localStorage.setItem('cartData', JSON.stringify([]));
                                                             }
                                                         }
                                                     ) 
@@ -157,9 +154,9 @@ const CartPage = (props) => {
                                         <h1 className="h1 fw-bolder">No Items</h1>
                                         <div className="error-details">Your cart is empty. Please add items to cart.</div>
                                     </div>
-                                    <button href="/" className="btn btn-dark btn-l mt-3">
+                                    <button onClick={() => history("/")} className="btn btn-dark btn-l mt-3">
                                         <span className="glyphicon glyphicon-home"></span>
-                                        <button className="btn text-white" onClick={() => { history('/') }}>Go to homepage</button>
+                                        <span className="btn text-white">Go to homepage</span>
                                     </button>
                                 </div>
                             </div>

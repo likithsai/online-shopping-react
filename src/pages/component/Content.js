@@ -3,13 +3,18 @@
 import React, { useState } from 'react';
 import Toast from 'react-bootstrap/Toast';
 import AppData from '../../data/appdata.json';
+import { addItemToCart } from '../../actions/index';
+import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from 'react-router-dom';
 
 const Content = (props) => {
+    const dispatch = useDispatch();
+    const history = useNavigate();
+    const cartItems = useSelector((state) => state.cartItems);
     const [ itemData, setItemData ] = useState(props.items);
     const [ selectedCategories, setSelectedCategories ] = useState('All');
     const [ toast, setToast ] = useState(false);
-    const [ itemCount, setItemCount ] = useState(0);
-
+    
     const handleCategoriesClick = (value) => {
         if(value.toLowerCase() !== 'all') {
             setItemData(props.items.filter(item => item.catname === value.toLowerCase()));
@@ -21,31 +26,35 @@ const Content = (props) => {
     }
 
     const addToCart = (item) => {
-        var itemInCart = JSON.parse(localStorage.getItem('cartData')) || [];
-        if(itemInCart !== null) {
-            if(!itemInCart.find(x => x.itemid === item.itemid)) {
-                itemInCart.push({
-                    "itemid": item.itemid,
-                    "itemname": item.itemname,
-                    "itemdescshort": item.itemdescshort,
-                    "itemimages": item.itemimages,
-                    "itemnewprice": item.itemnewprice,
-                    "itemoldprice": item.itemoldprice
-                });
-                setToast(true);
-            }
-        } else {
-            itemInCart.push({
-                "itemid": item.itemid,
-                "itemname": item.itemname,
-                "itemdescshort": item.itemdescshort,
-                "itemimages": item.itemimages,
-                "itemnewprice": item.itemnewprice,
-                "itemoldprice": item.itemoldprice
-            });
-            setToast(true);
-        }
-        localStorage.setItem('cartData', JSON.stringify(itemInCart));
+        dispatch(addItemToCart(item));
+
+        // var itemInCart = JSON.parse(localStorage.getItem('cartData')) || [];
+        // if(itemInCart !== null) {
+        //     if(!itemInCart.find(x => x.itemid === item.itemid)) {
+        //         itemInCart.push({
+        //             "itemid": item.itemid,
+        //             "itemname": item.itemname,
+        //             "itemdescshort": item.itemdescshort,
+        //             "itemimages": item.itemimages,
+        //             "itemnewprice": item.itemnewprice,
+        //             "itemoldprice": item.itemoldprice
+        //         });
+        //         setToast(true);
+        //         dispatch(addItemToCart(item));
+        //     }
+        // } else {
+        //     itemInCart.push({
+        //         "itemid": item.itemid,
+        //         "itemname": item.itemname,
+        //         "itemdescshort": item.itemdescshort,
+        //         "itemimages": item.itemimages,
+        //         "itemnewprice": item.itemnewprice,
+        //         "itemoldprice": item.itemoldprice
+        //     });
+        //     setToast(true);
+        //     dispatch(addItemToCart(item));
+        // }
+        // localStorage.setItem('cartData', JSON.stringify(itemInCart));
     }
 
     return (
@@ -85,7 +94,7 @@ const Content = (props) => {
                         return (
                             <div className="col mb-5 px-2" key={index}>
                                 <div className="card shadow-sm h-100">
-                                    <a href={ '/products/' + item.itemid} className="text-decoration-none">
+                                    <a onClick={() => history('/products/' + item.itemid)} className="text-decoration-none">
                                         <img loading="lazy" className="card-img-top" src={item.itemimages[0].imageurl} alt={item.itemimages[0].imagealt} />
                                         <div className="card-body p-4">
                                             <span className="h5 fw-bolder text-dark text-decoration-none">{item.itemname}</span>
