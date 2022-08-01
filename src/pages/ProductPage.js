@@ -9,11 +9,13 @@ import Carousel from 'react-bootstrap/Carousel';
 import payment from '../utils/Payment';
 import { addItemToCart } from "../actions/index.js";
 import { useDispatch } from "react-redux";
+import { useNavigate } from 'react-router-dom';
 
 const ProductPage = (props) => {
     const [ DATA, setDATA ] = useState(AppData);
     const params  = useParams();
     const dispatch = useDispatch();
+    const history = useNavigate();
 
     useEffect(() => {
         window.scrollTo(0, 0)
@@ -115,15 +117,17 @@ const ProductPage = (props) => {
                                         DATA.products.filter(item => item.category === DATA.products.filter(d => d.itemid === params.productname)[0].category).sort(() => Math.random() - 0.5).slice(0, 4).map((item, index) => {
                                             return (
                                                 <div className="col mb-5 px-2" key={index}>
-                                                    <a className="card shadow-sm h-100 text-decoration-none" href={ '/products/' + item.itemid}>
-                                                        <img loading="lazy" className="card-img-top" src={item.itemimages[0].imageurl} alt={item.itemimages[0].imagealt} />
-                                                        <div className="card-body p-4">
-                                                            <span className="h5 fw-bolder text-dark text-decoration-none">{item.itemname}</span>
-                                                            <p className="item-shorttext mb-3 text-dark">{item.itemdescshort}</p>
-                                                            <div className="w-100">
-                                                                <span className="fw-bold me-2 card_txt_nip text-dark">{ AppData.currency[0].baseCurrencySymbol + item.itemnewprice }</span>
-                                                                <span className="text-muted text-decoration-line-through me-2">{ AppData.currency[0].baseCurrencySymbol + item.itemoldprice }</span>
-                                                                <span className="me-2 text-success">{Math.round((item.itemoldprice - item.itemnewprice)/item.itemnewprice * 100)}% off</span>
+                                                    <a className="card shadow-sm h-100 text-decoration-none">
+                                                        <div onClick={() => history('/products/' + item.itemid)}>
+                                                            <img loading="lazy" className="card-img-top" src={item.itemimages[0].imageurl} alt={item.itemimages[0].imagealt} />
+                                                            <div className="card-body p-4">
+                                                                <span className="h5 fw-bolder text-dark text-decoration-none">{item.itemname}</span>
+                                                                <p className="item-shorttext mb-3 text-dark">{item.itemdescshort}</p>
+                                                                <div className="w-100">
+                                                                    <span className="fw-bold me-2 card_txt_nip text-dark">{ AppData.currency[0].baseCurrencySymbol + item.itemnewprice }</span>
+                                                                    <span className="text-muted text-decoration-line-through me-2">{ AppData.currency[0].baseCurrencySymbol + item.itemoldprice }</span>
+                                                                    <span className="me-2 text-success">{Math.round((item.itemoldprice - item.itemnewprice)/item.itemnewprice * 100)}% off</span>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                         <div className="card-footer p-4 pt-0 border-top-0 bg-transparent">
