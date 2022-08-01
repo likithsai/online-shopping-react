@@ -7,8 +7,12 @@ const INITIAL_STATE = {
 const reducers = (state = INITIAL_STATE, action) => {
     switch(action.type) {
         case "ADDTOCART":
-            return { ...state, items: [...state.items, action.payload] };
-        
+            if(!state.items.includes(action.payload)) {
+                return { ...state, items: [...state.items, action.payload] };
+            } else {
+                return { ...state, items: state.items };
+            }
+            
         case "REMOVEFROMCART":
             return { ...state, items: state.items.filter((el) => el.itemid != action.payload.itemid ) };
 
