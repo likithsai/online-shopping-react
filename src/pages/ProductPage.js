@@ -19,7 +19,7 @@ const ProductPage = (props) => {
 
     useEffect(() => {
         window.scrollTo(0, 0)
-    }, [])
+    }, [params])
 
     const addToCart = (item) => {
         dispatch(addItemToCart(item));
