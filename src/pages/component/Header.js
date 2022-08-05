@@ -23,7 +23,9 @@ const Header = (props) => {
                 <div>
                     <button className="btn" onClick={() => history(props.cartURL)}>
                         <span>Cart</span>
-                        <span className="badge bg-dark text-white ms-1 px-2 rounded-pill">{ cartCount }</span>
+                        <span className="badge bg-dark text-white ms-1 px-2 rounded-pill">
+                            <span>{ cartCount }</span>
+                        </span>
                     </button>
                 </div>
             </div>
