@@ -81,18 +81,18 @@ const Content = (props) => {
                                     </a>
                                     <div className="card-footer p-4 pt-0 border-top-0 bg-transparent">
                                         <div className="text-center d-flex align-items-center justify-content-between">
-                                            {
-                                                //  check if item exist in cart or not
-                                                cartItems.items.some(val => val.itemid === item.itemid) ? (
-                                                    <button className="btn btn-outline-dark mt-auto w-100 disabled" onClick={(e) => addToCart(item)}>
-                                                        <span>Item added to cart</span>
-                                                    </button>
-                                                ) : (
-                                                    <button className="btn btn-outline-dark mt-auto w-100" onClick={(e) => addToCart(item)}>
-                                                        <span>Add to cart</span>
-                                                    </button>
-                                                )
-                                            }
+                                        {
+                                            //  check if item exist in cart or not
+                                            cartItems.items.some(val => val.itemid === item.itemid) ? (
+                                                <button className="btn btn-outline-dark mt-auto w-100" disabled>
+                                                    <span>Added to cart</span>
+                                                </button>
+                                            ) : (
+                                                <button className="btn btn-outline-dark mt-auto w-100" onClick={(e) => addToCart(item)}>
+                                                    <span>Add to cart</span>
+                                                </button>
+                                            )
+                                        }
                                         </div>
                                     </div>
                                 </div>
