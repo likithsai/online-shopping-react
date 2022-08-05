@@ -22,8 +22,8 @@ function App() {
     <div className="App">
       <Router>
           <Routes>
-              <Route exact path='/' element={<HomePage />}></Route>
-              <Route path='/products/:productname' element={<ProductPage />}></Route>
+              <Route exact path='/' element={<HomePage />} />
+              <Route path='/products/:productname' element={<ProductPage />} />
               <Route exact path="/cart" element={<CartPage />} />
               <Route path="/download/:fileid" element={<DownloadPage />} />
           </Routes>
