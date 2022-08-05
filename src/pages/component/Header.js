@@ -9,7 +9,6 @@ const Header = (props) => {
     const history = useNavigate();
     const [ cartCount, setCartCount ] = useState(cartItems.items.length);
 
-    
     useEffect(() => {
         setCartCount(cartItems.items.length);
     }, [cartItems.items]);

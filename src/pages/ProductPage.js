@@ -7,12 +7,14 @@ import Footer from './component/Footer';
 import AppData from '../data/appdata.json';
 import Carousel from 'react-bootstrap/Carousel';
 import payment from '../utils/Payment';
-import { addItemToCart } from "../actions/index.js";
+import { addItemToCart } from "../actions/index";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from 'react-router-dom';
+import LoginComponent from './component/LoginComponent';
 
 const ProductPage = (props) => {
     const [ DATA, setDATA ] = useState(AppData);
+    const [ loginModalShow, setLoginModalShow ] = React.useState(false);
     const params  = useParams();
     const cartItems = useSelector((state) => state.cartItems);
     const dispatch = useDispatch();
@@ -25,10 +27,10 @@ const ProductPage = (props) => {
     const addToCart = (item) => {
         dispatch(addItemToCart(item));
     }
-    
 
     return (
         <div className="productpage">
+            <LoginComponent show={loginModalShow} onHide={() => setLoginModalShow(false)} />
             <Header headerTitle={AppData.appname} logoURL="/" cartURL="/cart" />
             {
                 DATA.products.filter(item => item.itemid === params.productname).map((item, index) => {
@@ -77,6 +79,7 @@ const ProductPage = (props) => {
                                                     )
                                                 }
                                                 <button className="btn btn-outline-dark flex-shrink-0" type="button" onClick={() => {
+                                                    setLoginModalShow(true);
                                                     payment.initiatePayment (
                                                         item.itemname, 
                                                         item.itemdescshort,
