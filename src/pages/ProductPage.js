@@ -24,27 +24,6 @@ const ProductPage = (props) => {
 
     const addToCart = (item) => {
         dispatch(addItemToCart(item));
-        // var itemInCart = JSON.parse(localStorage.getItem('cartData')) || [];
-        // if(itemInCart !== null) {
-        //     if(!itemInCart.find(x => x.itemid === item.itemid)) {
-        //         itemInCart.push({
-        //             "itemid": item.itemid,
-        //             "itemname": item.itemname,
-        //             "itemdescshort": item.itemdescshort,
-        //             "itemimages": item.itemimages,
-        //             "itemnewprice": item.itemnewprice
-        //         });
-        //     }
-        // } else {
-        //     itemInCart.push({
-        //         "itemid": item.itemid,
-        //         "itemname": item.itemname,
-        //         "itemdescshort": item.itemdescshort,
-        //         "itemimages": item.itemimages,
-        //         "itemnewprice": item.itemnewprice
-        //     });
-        // }
-        // localStorage.setItem('cartData', JSON.stringify(itemInCart));
     }
     
 
