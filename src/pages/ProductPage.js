@@ -8,12 +8,13 @@ import AppData from '../data/appdata.json';
 import Carousel from 'react-bootstrap/Carousel';
 import payment from '../utils/Payment';
 import { addItemToCart } from "../actions/index.js";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from 'react-router-dom';
 
 const ProductPage = (props) => {
     const [ DATA, setDATA ] = useState(AppData);
     const params  = useParams();
+    const cartItems = useSelector((state) => state.cartItems);
     const dispatch = useDispatch();
     const history = useNavigate();
 
@@ -83,10 +84,19 @@ const ProductPage = (props) => {
                                             </div>
                                             <p className="lead">{item.itemdescshort}</p>
                                             <div className="d-flex">
-                                                <button className="btn btn-outline-dark flex-shrink-0 me-2" type="button" onClick={() => addToCart(item)}>
-                                                    <i className="bi-cart-fill me-1"></i>
-                                                    <span>Add to cart</span>
-                                                </button>
+                                                {
+                                                    cartItems.items.some(val => val.itemid === item.itemid) ? (
+                                                        <button className="btn btn-outline-dark flex-shrink-0 me-2" type="button" disabled>
+                                                            <i className="bi-cart-fill me-1"></i>
+                                                            <span>Added to cart</span>
+                                                        </button>
+                                                    ) : (
+                                                        <button className="btn btn-outline-dark flex-shrink-0 me-2" type="button" onClick={() => addToCart(item)}>
+                                                            <i className="bi-cart-fill me-1"></i>
+                                                            <span>Add to cart</span>
+                                                        </button>
+                                                    )
+                                                }
                                                 <button className="btn btn-outline-dark flex-shrink-0" type="button" onClick={() => {
                                                     payment.initiatePayment (
                                                         item.itemname, 
