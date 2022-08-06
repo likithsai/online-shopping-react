@@ -25,7 +25,10 @@ const RegisterPage = (props) => {
                                 <input type="password" class="form-control rounded-3" id="floatingPassword" placeholder="Confirm Password" />
                                 <label for="floatingPassword">Confirm Password</label>
                             </div>
-                            <button class="w-100 mb-2 btn btn-lg rounded-3 btn-primary" type="submit">Sign up</button>
+                            <button class="w-100 mb-2 btn btn-lg rounded-3 btn-dark" type="submit">
+                                <i class="bi bi-check-circle-fill me-2"></i>
+                                <span>Sign up</span>
+                            </button>
                             <small class="text-muted">By clicking Sign up, you agree to the terms of use.</small>
                         </form>
                     </div>

@@ -21,7 +21,10 @@ const loginpage = (props) => {
                                 <input type="password" class="form-control rounded-3" id="floatingPassword" placeholder="Password" />
                                 <label for="floatingPassword">Password</label>
                             </div>
-                            <button class="w-100 mb-2 btn btn-lg rounded-3 btn-primary" type="submit">Sign up</button>
+                            <button class="w-100 mb-2 btn btn-lg rounded-3 btn-dark" type="submit">
+                                <i class="bi bi-box-arrow-in-right me-2"></i>
+                                <span>Sign In</span>
+                            </button>
                             <hr class="my-4" />
                             <button class="w-100 py-2 mb-2 btn btn-outline-dark rounded-3" onClick={() =>alert('clicked')}>Not a user, Register</button>
                         </form>
