@@ -11,6 +11,7 @@ import Modal from 'react-bootstrap/Modal';
 import MD5 from "crypto-js/md5";
 import { removeItemToCart, removeAllCartItems } from "../actions/cartActions.js";
 import { useSelector, useDispatch } from "react-redux";
+import LoginOffcanvas from "./component/LoginOffcanvas";
 
 const CartPage = (props) => {
     const [ itemData, setItemData ] = useState([]);
@@ -21,7 +22,8 @@ const CartPage = (props) => {
     const cartItems = useSelector((state) => state.cartItems);
     const loginSession = useSelector((state) => state.loginSession);
     const dispatch = useDispatch();
-    
+    const [showLoginModal, setShowLoginModal] = useState(false);
+
     useEffect(() => {
         setItemData(cartItems.items);
     }, []);
@@ -32,11 +34,11 @@ const CartPage = (props) => {
         });
         setItemData(temp);
         dispatch(removeItemToCart(item));
-        // localStorage.setItem('cartData', JSON.stringify(temp));
     }
 
     return (
         <div className="cartpage">
+            <LoginOffcanvas placement="bottom" show={showLoginModal} onHide={() => setShowLoginModal(false)} />
             <Modal show={paymentSuccessDialog} onHide={() => setPaymentSuccessDialog(false)}>
                 <Modal.Body className="text-center p-0 py-5">
                     <div class="text-center">
@@ -80,7 +82,7 @@ const CartPage = (props) => {
                                                     <table className="table table-borderless table-centered mb-0 tbl-cart">
                                                         <thead>
                                                             <tr>
-                                                                <th rowspan="2" className="py-3 h3">
+                                                                <th rowSpan="2" className="py-3 h3">
                                                                     <span>Items in your cart ({itemData.length})</span>
                                                                 </th>
                                                             </tr>
@@ -120,7 +122,6 @@ const CartPage = (props) => {
                                                 type="button" 
                                                 className="btn btn-success p-3 w-100" 
                                                 onClick={() => {
-                                                    console.log(loginSession);
                                                     if(loginSession.isLoggedIn) {
                                                         payment.initiatePayment (
                                                             AppData.appname, 
@@ -138,7 +139,8 @@ const CartPage = (props) => {
                                                             }
                                                         ) 
                                                     } else {
-                                                        history('/login');
+                                                        // history('/login');
+                                                        setShowLoginModal(true);
                                                     }
                                                 }}>
                                                     <i class="bi bi-credit-card-fill me-2"></i>

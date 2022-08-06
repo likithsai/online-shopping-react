@@ -9,9 +9,11 @@ import payment from '../utils/Payment';
 import { addItemToCart } from "../actions/cartActions";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams, useNavigate } from 'react-router-dom';
+import LoginOffcanvas from "./component/LoginOffcanvas";
 
 const ProductPage = (props) => {
     const [ DATA, setDATA ] = useState(AppData);
+    const [showLoginModal, setShowLoginModal] = useState(false);
     const params  = useParams();
     const cartItems = useSelector((state) => state.cartItems);
     const loginSession = useSelector((state) => state.loginSession);
@@ -28,6 +30,7 @@ const ProductPage = (props) => {
 
     return (
         <div className="productpage">
+            <LoginOffcanvas placement="bottom" show={showLoginModal} onHide={() => setShowLoginModal(false)} />
             <Header headerTitle={AppData.appname} logoURL="/" cartURL="/cart" />
             {
                 DATA.products.filter(item => item.itemid === params.productname).map((item, index) => {
@@ -87,7 +90,8 @@ const ProductPage = (props) => {
                                                             }
                                                         ) 
                                                     } else {
-                                                        history('/login');
+                                                        // history('/login');
+                                                        setShowLoginModal(true);
                                                     }
                                                 }}>
                                                     <i className="bi-bag-fill me-1"></i>
