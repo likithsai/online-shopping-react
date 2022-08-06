@@ -1,7 +1,6 @@
 //  product page
 
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';  
 import Header from './component/Header';
 import Footer from './component/Footer';
 import AppData from '../data/appdata.json';
@@ -9,7 +8,7 @@ import Carousel from 'react-bootstrap/Carousel';
 import payment from '../utils/Payment';
 import { addItemToCart } from "../actions/index";
 import { useSelector, useDispatch } from "react-redux";
-import { useNavigate } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 
 const ProductPage = (props) => {
     const [ DATA, setDATA ] = useState(AppData);
