@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import Toast from 'react-bootstrap/Toast';
 import AppData from '../../data/appdata.json';
-import { addItemToCart } from '../../actions/index';
+import { addItemToCart } from '../../actions/cartActions';
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from 'react-router-dom';
 

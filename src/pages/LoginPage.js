@@ -1,8 +1,11 @@
 //  loginpage.js
 
 import React from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 
-const loginpage = (props) => {
+const LoginPage = (props) => {
+    const history = useNavigate();
+
     return (
         <div class="modal modal-signin position-static d-block bg-dark py-5 vh-100" tabindex="-1" role="dialog" id="modalSignin">
             <div class="modal-dialog" role="document">
@@ -26,7 +29,7 @@ const loginpage = (props) => {
                                 <span>Sign In</span>
                             </button>
                             <hr class="my-4" />
-                            <button class="w-100 py-2 mb-2 btn btn-outline-dark rounded-3" onClick={() =>alert('clicked')}>Not a user, Register</button>
+                            <button class="w-100 py-2 mb-2 btn btn-outline-dark rounded-3" onClick={() => history('/register')}>Not a user, Register</button>
                         </form>
                     </div>
                 </div>
@@ -35,4 +38,4 @@ const loginpage = (props) => {
     );
 }
 
-export default loginpage;
+export default LoginPage;

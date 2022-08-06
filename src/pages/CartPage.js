@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import MD5 from "crypto-js/md5";
-import { removeItemToCart, removeAllCartItems } from "../actions/index.js";
+import { removeItemToCart, removeAllCartItems } from "../actions/cartActions.js";
 import { useSelector, useDispatch } from "react-redux";
 
 const CartPage = (props) => {
@@ -19,6 +19,7 @@ const CartPage = (props) => {
     const CARTDATA = "cartData";
     const history = useNavigate();
     const cartItems = useSelector((state) => state.cartItems);
+    const loginSession = useSelector((state) => state.loginSession);
     const dispatch = useDispatch();
     
     useEffect(() => {
@@ -119,21 +120,26 @@ const CartPage = (props) => {
                                                 type="button" 
                                                 className="btn btn-success p-3 w-100" 
                                                 onClick={() => {
-                                                    payment.initiatePayment (
-                                                        AppData.appname, 
-                                                        "Amount to be paid", 
-                                                        null,
-                                                        itemData.map(bill => bill.itemnewprice).reduce((acc, amount) => amount + acc, 0),
-                                                        function(response) {
-                                                            if(response.razorpay_payment_id.length > 0) {
-                                                                setPaymentSuccessDialog(true);
-                                                                setTransactionID(response.razorpay_payment_id);
-                                                                setItemData([]);
-                                                                dispatch(removeAllCartItems());
-                                                                // localStorage.setItem('cartData', JSON.stringify([]));
+                                                    console.log(loginSession);
+                                                    if(loginSession.isLoggedIn) {
+                                                        payment.initiatePayment (
+                                                            AppData.appname, 
+                                                            "Amount to be paid", 
+                                                            null,
+                                                            itemData.map(bill => bill.itemnewprice).reduce((acc, amount) => amount + acc, 0),
+                                                            function(response) {
+                                                                if(response.razorpay_payment_id.length > 0) {
+                                                                    setPaymentSuccessDialog(true);
+                                                                    setTransactionID(response.razorpay_payment_id);
+                                                                    setItemData([]);
+                                                                    dispatch(removeAllCartItems());
+                                                                    // localStorage.setItem('cartData', JSON.stringify([]));
+                                                                }
                                                             }
-                                                        }
-                                                    ) 
+                                                        ) 
+                                                    } else {
+                                                        history('/login');
+                                                    }
                                                 }}>
                                                     <i class="bi bi-credit-card-fill me-2"></i>
                                                     <span>Proceed to  Checkout</span>

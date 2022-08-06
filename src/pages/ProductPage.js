@@ -6,7 +6,7 @@ import Footer from './component/Footer';
 import AppData from '../data/appdata.json';
 import Carousel from 'react-bootstrap/Carousel';
 import payment from '../utils/Payment';
-import { addItemToCart } from "../actions/index";
+import { addItemToCart } from "../actions/cartActions";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams, useNavigate } from 'react-router-dom';
 
@@ -14,6 +14,7 @@ const ProductPage = (props) => {
     const [ DATA, setDATA ] = useState(AppData);
     const params  = useParams();
     const cartItems = useSelector((state) => state.cartItems);
+    const loginSession = useSelector((state) => state.loginSession);
     const dispatch = useDispatch();
     const history = useNavigate();
 
@@ -75,15 +76,19 @@ const ProductPage = (props) => {
                                                     )
                                                 }
                                                 <button className="btn btn-outline-dark flex-shrink-0" type="button" onClick={() => {
-                                                    payment.initiatePayment (
-                                                        item.itemname, 
-                                                        item.itemdescshort,
-                                                        item.itemimages[0].imageurl, 
-                                                        item.itemnewprice,
-                                                        function(response) {
-                                                            alert(response.razorpay_payment_id);
-                                                        }
-                                                    ) 
+                                                    if(loginSession.isLoggedIn) {
+                                                        payment.initiatePayment (
+                                                            item.itemname, 
+                                                            item.itemdescshort,
+                                                            item.itemimages[0].imageurl, 
+                                                            item.itemnewprice,
+                                                            function(response) {
+                                                                alert(response.razorpay_payment_id);
+                                                            }
+                                                        ) 
+                                                    } else {
+                                                        history('/login');
+                                                    }
                                                 }}>
                                                     <i className="bi-bag-fill me-1"></i>
                                                     <span>Buy now</span>

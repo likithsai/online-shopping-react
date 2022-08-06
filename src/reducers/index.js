@@ -1,5 +1,5 @@
 //  index.js
-import cartItems from './reducers';
+import cartItems from './cartReducers';
 import loginSession from './loginReducers';
 import { combineReducers } from "redux";
 
