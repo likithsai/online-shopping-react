@@ -9,7 +9,7 @@ import payment from '../utils/Payment';
 import { addItemToCart } from "../actions/cartActions";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams, useNavigate } from 'react-router-dom';
-import LoginOffcanvas from "./component/LoginOffcanvas";
+import LoginModal from "./component/LoginModal";
 
 const ProductPage = (props) => {
     const [ DATA, setDATA ] = useState(AppData);
@@ -30,7 +30,7 @@ const ProductPage = (props) => {
 
     return (
         <div className="productpage">
-            <LoginOffcanvas placement="bottom" show={showLoginModal} onHide={() => setShowLoginModal(false)} />
+            <LoginModal show={showLoginModal} onHide={() => setShowLoginModal(false)} size="lg" />
             <Header headerTitle={AppData.appname} logoURL="/" cartURL="/cart" />
             {
                 DATA.products.filter(item => item.itemid === params.productname).map((item, index) => {

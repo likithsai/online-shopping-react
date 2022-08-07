@@ -11,7 +11,7 @@ import Modal from 'react-bootstrap/Modal';
 import MD5 from "crypto-js/md5";
 import { removeItemToCart, removeAllCartItems } from "../actions/cartActions.js";
 import { useSelector, useDispatch } from "react-redux";
-import LoginOffcanvas from "./component/LoginOffcanvas";
+import LoginModal from "./component/LoginModal";
 
 const CartPage = (props) => {
     const [ itemData, setItemData ] = useState([]);
@@ -38,7 +38,7 @@ const CartPage = (props) => {
 
     return (
         <div className="cartpage">
-            <LoginOffcanvas placement="bottom" show={showLoginModal} onHide={() => setShowLoginModal(false)} />
+            <LoginModal show={showLoginModal} onHide={() => setShowLoginModal(false)} size="lg" />
             <Modal show={paymentSuccessDialog} onHide={() => setPaymentSuccessDialog(false)}>
                 <Modal.Body className="text-center p-0 py-5">
                     <div class="text-center">
@@ -95,7 +95,7 @@ const CartPage = (props) => {
                                                                             <td className="py-4 d-flex align-items-center w-75">
                                                                                 <img src={ item.itemimages[0].imageurl } alt={ item.itemimages[0].imagealt } className="rounded me-3 shadow-sm border" height="100" />
                                                                                 <p className="m-0 d-inline-block align-middle font-16">
-                                                                                    <a className="text-body fw-bold" onClick={() => history("/products/" + item.itemid)}>{ item.itemname }</a>
+                                                                                    <a className="text-body fw-bold cur-pointer" onClick={() => history("/products/" + item.itemid)}>{ item.itemname }</a>
                                                                                     <br />
                                                                                     <span className="my-0 mb-1 text-truncation">{ item.itemdescshort }</span>
                                                                                     <button className="btn btn-link px-0" onClick={(e) => removeItems(item) }>Remove</button>

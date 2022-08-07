@@ -1,7 +1,6 @@
 //  content.js
 
 import React, { useState } from 'react';
-import Toast from 'react-bootstrap/Toast';
 import AppData from '../../data/appdata.json';
 import { addItemToCart } from '../../actions/cartActions';
 import { useSelector, useDispatch } from "react-redux";
@@ -13,7 +12,6 @@ const Content = (props) => {
     const cartItems = useSelector((state) => state.cartItems);
     const [ itemData, setItemData ] = useState(props.items);
     const [ selectedCategories, setSelectedCategories ] = useState('All');
-    const [ toast, setToast ] = useState(false);
     
     const handleCategoriesClick = (value) => {
         if(value.toLowerCase() !== 'all') {
@@ -27,22 +25,12 @@ const Content = (props) => {
 
     const addToCart = (item) => {
         dispatch(addItemToCart(item));
-        setToast(true);
     }
 
     return (
         <section className="py-5 bg-light">
             <div className="container px-4 px-lg-5">
                 <div className="row mb-5">
-                    <Toast className="fixed-bottom end-0 m-3" onClose={() => setToast(false)} show={toast} delay={3000} autohide>
-                        <Toast.Header>
-                            <strong className="me-auto">Info</strong>
-                        </Toast.Header>
-                        <Toast.Body>
-                            <i class="bi bi-check-circle-fill me-2 text-success"></i>
-                            <span>Product added to cart</span>
-                        </Toast.Body>
-                    </Toast>
                     <ul className="nav justify-content-center">
                     {
                         props.categories.map((item, index) => {
