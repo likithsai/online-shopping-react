@@ -23,9 +23,13 @@ const CartPage = (props) => {
     const loginSession = useSelector((state) => state.loginSession);
     const dispatch = useDispatch();
     const [showLoginModal, setShowLoginModal] = useState(false);
+    const [ totalAmt, setTotalAmt ] = useState(0);
+    const [ actualAmt, setActualAmt ] = useState(0);
 
     useEffect(() => {
         setItemData(cartItems.items);
+        setActualAmt(cartItems.items.map(bill => bill.itemoldprice).reduce((acc, amount) => amount + acc, 0));
+        setTotalAmt(cartItems.items.map(bill => bill.itemnewprice).reduce((acc, amount) => amount + acc, 0));
     }, []);
 
     const removeItems = (item) => {
@@ -38,7 +42,7 @@ const CartPage = (props) => {
 
     return (
         <div className="cartpage">
-            <LoginModal show={showLoginModal} onHide={() => setShowLoginModal(false)} />
+            <LoginModal show={showLoginModal} onHide={() => setShowLoginModal(false)} onSuccessCallback={() => setShowLoginModal(false)} />
             <Modal show={paymentSuccessDialog} onHide={() => setPaymentSuccessDialog(false)}>
                 <Modal.Body className="text-center p-0 py-5">
                     <div className="text-center">
@@ -71,7 +75,7 @@ const CartPage = (props) => {
             {
                 (itemData.length > 0) ?
                     <>
-                        <CartJumboltron amt={ itemData.map(bill => bill.itemnewprice).reduce((acc, amount) => amount + acc, 0) } amtOld={ itemData.map(bill => bill.itemoldprice).reduce((acc, amount) => amount + acc, 0) } />
+                        <CartJumboltron amt={ totalAmt } amtOld={ actualAmt } />
                         <div className="container my-5">
                             <div className="row px-lg-5">
                                 <div className="col-12">
@@ -134,17 +138,27 @@ const CartPage = (props) => {
                                                                     setTransactionID(response.razorpay_payment_id);
                                                                     setItemData([]);
                                                                     dispatch(removeAllCartItems());
-                                                                    // localStorage.setItem('cartData', JSON.stringify([]));
                                                                 }
                                                             }
                                                         ) 
                                                     } else {
-                                                        // history('/login');
                                                         setShowLoginModal(true);
                                                     }
                                                 }}>
-                                                    <i className="bi bi-credit-card-fill me-2"></i>
-                                                    <span>Proceed to  Checkout</span>
+                                                    {
+                                                        (loginSession.isLoggedIn) ?
+                                                            <> 
+                                                                <i class="bi bi-wallet-fill me-2"></i>
+                                                                <span>{ "Pay " + AppData.currency[0].baseCurrencySymbol + totalAmt }</span>
+                                                            </>
+                                                        : 
+                                                            <>
+                                                                <i class="bi bi-box-arrow-in-right me-2"></i>
+                                                                <span>Login to proceed payment</span>
+                                                            </>
+                                                        
+                                                    }
+                                                    
                                                 </button>  
                                         </div>
                                     </div>

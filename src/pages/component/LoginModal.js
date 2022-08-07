@@ -23,6 +23,8 @@ const LoginModal = (props) => {
                 }]
             })
         );
+
+        props.onSuccessCallback();
     }
 
     return (
