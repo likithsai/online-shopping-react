@@ -38,31 +38,31 @@ const CartPage = (props) => {
 
     return (
         <div className="cartpage">
-            <LoginModal show={showLoginModal} onHide={() => setShowLoginModal(false)} size="lg" />
+            <LoginModal show={showLoginModal} onHide={() => setShowLoginModal(false)} />
             <Modal show={paymentSuccessDialog} onHide={() => setPaymentSuccessDialog(false)}>
                 <Modal.Body className="text-center p-0 py-5">
-                    <div class="text-center">
-                        <div class="pt-3">
-                            <i class="display-1 bi bi-check-circle-fill text-success"></i>
+                    <div className="text-center">
+                        <div className="pt-3">
+                            <i className="display-1 bi bi-check-circle-fill text-success"></i>
                         </div>
-                        <div class="my-3">
+                        <div className="my-3">
                             <h4>Great!</h4>	
-                            <p class="mb-4 mx-5">Your order have been processed. You will recieve download link in your mail or in your inbox within 2hrs.</p>
+                            <p className="mb-4 mx-5">Your order have been processed. You will recieve download link in your mail or in your inbox within 2hrs.</p>
 
-                            <div class="card m-5">
-                                <div class="card-header">
+                            <div className="card m-5">
+                                <div className="card-header">
                                     <strong>Order ID</strong>
                                 </div>
-                                <div class="card-body">
+                                <div className="card-body">
                                     <p className="h4 text-muted">{ transactionID }</p>
                                 </div>
                             </div>
                         </div>
-                        <div class="mt-4">
-                            <button class="btn btn-success me-2" data-dismiss="modal" onClick={() => {
+                        <div className="mt-4">
+                            <button className="btn btn-success me-2" data-dismiss="modal" onClick={() => {
                                 setPaymentSuccessDialog(false)
                                 history('/')
-                            }}><span class="me-2">Continue shopping</span> <i class="bi bi-arrow-right-circle-fill"></i></button>
+                            }}><span className="me-2">Continue shopping</span> <i className="bi bi-arrow-right-circle-fill"></i></button>
                         </div>
                     </div>
                 </Modal.Body>
@@ -143,7 +143,7 @@ const CartPage = (props) => {
                                                         setShowLoginModal(true);
                                                     }
                                                 }}>
-                                                    <i class="bi bi-credit-card-fill me-2"></i>
+                                                    <i className="bi bi-credit-card-fill me-2"></i>
                                                     <span>Proceed to  Checkout</span>
                                                 </button>  
                                         </div>

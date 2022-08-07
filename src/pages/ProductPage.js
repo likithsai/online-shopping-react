@@ -30,7 +30,7 @@ const ProductPage = (props) => {
 
     return (
         <div className="productpage">
-            <LoginModal show={showLoginModal} onHide={() => setShowLoginModal(false)} size="lg" />
+            <LoginModal show={showLoginModal} onHide={() => setShowLoginModal(false)} />
             <Header headerTitle={AppData.appname} logoURL="/" cartURL="/cart" />
             {
                 DATA.products.filter(item => item.itemid === params.productname).map((item, index) => {
