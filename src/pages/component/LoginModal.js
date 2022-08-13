@@ -18,7 +18,7 @@ const LoginModal = (props) => {
             login({
                 isLoggedIn: true, 
                 user: [{ 
-                    userName: email, 
+                    userName: 'likith sai', 
                     userEmail: email 
                 }]
             })
