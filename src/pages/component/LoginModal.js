@@ -1,9 +1,7 @@
 //  loginOffcanvas.js
 
 import React, { useState } from 'react';
-import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import Nav from 'react-bootstrap/Nav';
 import { useSelector, useDispatch } from "react-redux";
 import { login } from "../../actions/loginActions.js";
 
@@ -65,33 +63,33 @@ const LoginModal = (props) => {
             <Modal show={showRegisterModal} onHide={() => setShowRegisterModal(false)} onSuccessCallback={() => setShowRegisterModal(false)}>
                 <Modal.Body className="p-0">
                     <div className="modal-content">
-                        <div class="modal-header p-5 pb-4 border-bottom-0">
-                            <h2 class="fw-bold mb-0">Sign Up</h2>
+                        <div className="modal-header p-5 pb-4 border-bottom-0">
+                            <h2 className="fw-bold mb-0">Sign Up</h2>
                         </div>
 
-                        <div class="modal-body p-5 pt-0">
+                        <div className="modal-body p-5 pt-0">
                             <form>
-                                <div class="form-floating mb-3">
-                                    <input type="email" class="form-control rounded-3" id="floatingInput" placeholder="name" />
+                                <div className="form-floating mb-3">
+                                    <input type="email" className="form-control rounded-3" id="floatingInput" placeholder="name" />
                                     <label for="floatingInput">Name</label>
                                 </div>
-                                <div class="form-floating mb-3">
-                                    <input type="email" class="form-control rounded-3" id="floatingInput" placeholder="name@example.com" />
+                                <div className="form-floating mb-3">
+                                    <input type="email" className="form-control rounded-3" id="floatingInput" placeholder="name@example.com" />
                                     <label for="floatingInput">Email address</label>
                                 </div>
-                                <div class="form-floating mb-3">
-                                    <input type="password" class="form-control rounded-3" id="floatingPassword" placeholder="Password" />
+                                <div className="form-floating mb-3">
+                                    <input type="password" className="form-control rounded-3" id="floatingPassword" placeholder="Password" />
                                     <label for="floatingPassword">Password</label>
                                 </div>
-                                <div class="form-floating mb-3">
-                                    <input type="password" class="form-control rounded-3" id="floatingPassword" placeholder="Confirm Password" />
+                                <div className="form-floating mb-3">
+                                    <input type="password" className="form-control rounded-3" id="floatingPassword" placeholder="Confirm Password" />
                                     <label for="floatingPassword">Confirm Password</label>
                                 </div>
-                                <div class="mt-3 mb-4 text-center">
-                                    <small class="text-muted">By clicking Sign up, you agree to the terms of use.</small>
+                                <div className="mt-3 mb-4 text-center">
+                                    <small className="text-muted">By clicking Sign up, you agree to the terms of use.</small>
                                 </div>
-                                <button class="w-100 mb-2 btn btn-lg rounded-3 btn-dark" type="submit">
-                                    <i class="bi bi-check-circle-fill me-2"></i>
+                                <button className="w-100 mb-2 btn btn-lg rounded-3 btn-dark" type="submit">
+                                    <i className="bi bi-check-circle-fill me-2"></i>
                                     <span>Sign up</span>
                                 </button>
                                 <button className="w-100 py-2 mb-2 btn rounded-3" onClick={(e) => {
