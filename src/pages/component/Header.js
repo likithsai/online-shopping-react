@@ -12,7 +12,7 @@ const Header = (props) => {
     const dispatch = useDispatch();
     const history = useNavigate();
     const [ cartCount, setCartCount ] = useState(cartItems.items.length);
-    const [showLoginModal, setShowLoginModal] = useState(false);
+    const [ showLoginModal, setShowLoginModal ] = useState(false);
 
     useEffect(() => {
         setCartCount(cartItems.items.length);
