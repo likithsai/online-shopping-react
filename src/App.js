@@ -8,6 +8,7 @@ import ErrorPage from './pages/ErrorPage';
 import CartPage from './pages/CartPage';
 import DownloadPage from './pages/DownloadPage';
 import RegisterPage from './pages/RegisterPage';
+import AdminPage from './pages/AdminPage';
 
 function App() {
   useEffect(() => {
@@ -27,6 +28,7 @@ function App() {
               <Route path='/products/:productname' element={<ProductPage />} />
               <Route exact path="/cart" element={<CartPage />} />
               <Route path="/download/:fileid" element={<DownloadPage />} />
+              <Route path="/admin" element={<AdminPage />} />
           </Routes>
        </Router>
     </div>
