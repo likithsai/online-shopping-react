@@ -94,7 +94,10 @@ const LoginModal = (props) => {
                                     <i class="bi bi-check-circle-fill me-2"></i>
                                     <span>Sign up</span>
                                 </button>
-                                <button className="w-100 py-2 mb-2 btn rounded-3">Existing user, Login</button>
+                                <button className="w-100 py-2 mb-2 btn rounded-3" onClick={(e) => {
+                                    e.preventDefault();
+                                    setShowRegisterModal(false);
+                                }}>Existing user, Login</button>
                             </form>
                         </div>
                     </div>
