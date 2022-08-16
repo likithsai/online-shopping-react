@@ -9,11 +9,9 @@ import payment from '../utils/Payment';
 import { addItemToCart } from "../actions/cartActions";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams, useNavigate } from 'react-router-dom';
-import LoginModal from "./component/LoginModal";
 
 const ProductPage = (props) => {
     const [ DATA, setDATA ] = useState(AppData);
-    const [showLoginModal, setShowLoginModal] = useState(false);
     const params  = useParams();
     const cartItems = useSelector((state) => state.cartItems);
     const loginSession = useSelector((state) => state.loginSession);
@@ -30,7 +28,6 @@ const ProductPage = (props) => {
 
     return (
         <div className="productpage">
-            <LoginModal show={showLoginModal} onHide={() => setShowLoginModal(false)} />
             <Header headerTitle={AppData.appname} logoURL="/" cartURL="/cart" />
             {
                 DATA.products.filter(item => item.itemid === params.productname).map((item, index) => {
@@ -79,20 +76,15 @@ const ProductPage = (props) => {
                                                     )
                                                 }
                                                 <button className="btn btn-outline-dark flex-shrink-0" type="button" onClick={() => {
-                                                    if(loginSession.isLoggedIn) {
-                                                        payment.initiatePayment (
-                                                            item.itemname, 
-                                                            item.itemdescshort,
-                                                            item.itemimages[0].imageurl, 
-                                                            item.itemnewprice,
-                                                            function(response) {
-                                                                alert(response.razorpay_payment_id);
-                                                            }
-                                                        ) 
-                                                    } else {
-                                                        // history('/login');
-                                                        setShowLoginModal(true);
-                                                    }
+                                                    payment.initiatePayment (
+                                                        item.itemname, 
+                                                        item.itemdescshort,
+                                                        item.itemimages[0].imageurl, 
+                                                        item.itemnewprice,
+                                                        function(response) {
+                                                            alert(response.razorpay_payment_id);
+                                                        }
+                                                    ) 
                                                 }}>
                                                     <i className="bi-bag-fill me-1"></i>
                                                     <span>Buy now</span>
