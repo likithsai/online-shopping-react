@@ -1,11 +1,12 @@
 {
     "appname" : "Shopping App",
     "version" : "1.0",
+    "apiKey": "rzp_test_nPSGNPWFlRCMci",
+    "serverAddress": "",
     "categories" : [
         { "catname": "All", "caticon": "bi bi-grid-3x3-gap-fill" },
         { "catname": "Music", "caticon": "bi bi-music-note-list" }
     ],
-    "apiKey": "rzp_test_nPSGNPWFlRCMci",
     "currency" : [{
         "baseCurrency": "INR",
         "baseCurrencySymbol": "₹"
