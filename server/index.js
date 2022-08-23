@@ -8,8 +8,12 @@ const app = express();
 app.use(logger('dev'));
 app.use(cors());
 
+app.get("/", (req, res) => {
+  res.json({ status: '200', message: "Success" });
+});
+
 app.get("/api", (req, res) => {
-  res.json({ message: "Hello from server!" });
+  res.json({ status: '200', message: "Hello from server!" });
 });
 
 app.listen(PORT, () => {
