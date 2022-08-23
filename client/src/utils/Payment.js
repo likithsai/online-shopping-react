@@ -1,7 +1,6 @@
 //  Utils.js
 
 import AppData from '../data/appdata.json';
-import MD5 from "crypto-js/md5";
 
 const initiatePayment = (name, desc, img, amt, sucessHandler) => {
     let options = {
