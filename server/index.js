@@ -2,19 +2,18 @@
 const express = require("express");
 const cors = require("cors");
 const mysql = require("mysql");
+const fs = require('fs');
 const DBQuery = require('./data/DBQuery.json');
-const DATABASE = "shoppingcart";
 const PORT = process.env.PORT || 3001;
 const app = express();
 
 var db = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: '',
-    database : DATABASE,
+    host: DBQuery.server,
+    user: DBQuery.user,
+    password: DBQuery.pass,
+    database : DBQuery.database,
 });
 
-//  connect to database
 db.connect(function(err) {
     if (err) throw err;
 
@@ -24,15 +23,19 @@ db.connect(function(err) {
     })
 
     app.use(cors());
+    app.use(express.json())
+    app.use(express.urlencoded({ extended: true }))
 
     app.get("/", (req, res) => {
-        res.json({ status: '200', message: "Success" });
+        fs.readFile(__dirname + '/view/index.html', 'utf8', (err, text) => {
+            res.send(text);
+        });
     });
         
-    app.get("/api", (req, res) => {
+    app.get("/login", (req, res) => {
         res.json({ status: '200', message: "Hello from server!" });
     });
-        
+
     app.listen(PORT, () => {
         console.log(
           '\n\x1b[32m%s\x1b[0m', 'API Server V 1.0', 
