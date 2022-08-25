@@ -31,12 +31,24 @@ db.connect(function(err) {
         });
     });
 
-    app.post('/register', (req, res) => {
+    app.post('/registeruser', (req, res) => {
         db.query(`
             INSERT INTO tbl_users(user_name, user_email, user_password) VALUES(
-                '${req.body.user}', 
-                '${req.body.email}', 
-                '${req.body.pass}'
+                '${req.body.username}', 
+                '${req.body.useremail}', 
+                '${req.body.userpass}'
+            )`, function(err, res) {
+            if (err) throw err;
+        });
+        res.json({ status: '200', message: "success" });
+    });
+
+    app.post('/registerorder', (req, res) => {
+        db.query(`
+            INSERT INTO tbl_orders(order_name, order_cusid, order_price) VALUES(
+                '${req.body.ordername}', 
+                ${req.body.ordercusid}, 
+                ${req.body.orderprice}
             )`, function(err, res) {
             if (err) throw err;
         });
