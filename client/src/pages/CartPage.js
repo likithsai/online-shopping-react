@@ -11,6 +11,7 @@ import Modal from 'react-bootstrap/Modal';
 import MD5 from "crypto-js/md5";
 import { removeItemToCart, removeAllCartItems } from "../actions/cartActions.js";
 import { useSelector, useDispatch } from "react-redux";
+import LoginModal from "./component/LoginModal";
 
 const CartPage = (props) => {
     const [ itemData, setItemData ] = useState([]);
@@ -20,6 +21,7 @@ const CartPage = (props) => {
     const history = useNavigate();
     const cartItems = useSelector((state) => state.cartItems);
     const loginSession = useSelector((state) => state.loginSession);
+    const [showLoginModal, setShowLoginModal] = useState(false);
     const dispatch = useDispatch();
     const [ totalAmt, setTotalAmt ] = useState(0);
     const [ actualAmt, setActualAmt ] = useState(0);
@@ -40,6 +42,7 @@ const CartPage = (props) => {
 
     return (
         <div className="cartpage">
+            <LoginModal show={showLoginModal} onHide={() => setShowLoginModal(false)} onSuccessCallback={() => setShowLoginModal(false)} />
             <Modal show={paymentSuccessDialog} onHide={() => setPaymentSuccessDialog(false)}>
                 <Modal.Body className="text-center p-0 py-5">
                     <div className="text-center">
@@ -123,24 +126,38 @@ const CartPage = (props) => {
                                                 type="button" 
                                                 className="btn btn-success p-3 w-100" 
                                                 onClick={() => {
-                                                    payment.initiatePayment (
-                                                        AppData.appname, 
-                                                        "Amount to be paid", 
-                                                        null,
-                                                        itemData.map(bill => bill.itemnewprice).reduce((acc, amount) => amount + acc, 0),
-                                                        function(response) {
-                                                            if(response.razorpay_payment_id.length > 0) {
-                                                                setPaymentSuccessDialog(true);
-                                                                setTransactionID(response.razorpay_payment_id);
-                                                                setItemData([]);
-                                                                dispatch(removeAllCartItems());
+                                                    if(loginSession.isLoggedIn) {
+                                                        payment.initiatePayment (
+                                                            AppData.appname, 
+                                                            "Amount to be paid", 
+                                                            null,
+                                                            itemData.map(bill => bill.itemnewprice).reduce((acc, amount) => amount + acc, 0),
+                                                            function(response) {
+                                                                if(response.razorpay_payment_id.length > 0) {
+                                                                    setPaymentSuccessDialog(true);
+                                                                    setTransactionID(response.razorpay_payment_id);
+                                                                    setItemData([]);
+                                                                    dispatch(removeAllCartItems());
+                                                                }
                                                             }
-                                                        }
-                                                    ) 
+                                                        ) 
+                                                    } else {
+                                                        setShowLoginModal(true);
+                                                    } 
                                                 }}>
-                                                    <i class="bi bi-wallet-fill me-2"></i>
-                                                    <span>{ "Pay " + AppData.currency[0].baseCurrencySymbol + totalAmt }</span>
-                                                </button>  
+                                                {
+                                                     (loginSession.isLoggedIn) ?
+                                                         <> 
+                                                             <i class="bi bi-wallet-fill me-2"></i>
+                                                             <span>{ "Pay " + AppData.currency[0].baseCurrencySymbol + totalAmt }</span>
+                                                         </>
+                                                     : 
+                                                         <>
+                                                             <i class="bi bi-box-arrow-in-right me-2"></i>
+                                                             <span>Login to proceed payment</span>
+                                                         </>
+                                                }
+                                            </button>  
                                         </div>
                                     </div>
                                 </div>

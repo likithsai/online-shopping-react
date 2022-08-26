@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
+import LoginModal from "./LoginModal";
 import Dropdown from 'react-bootstrap/Dropdown';
 import { logout } from "../../actions/loginActions.js";
 
@@ -19,6 +20,7 @@ const Header = (props) => {
 
     return (
         <nav className="header">
+            <LoginModal show={showLoginModal} onHide={() => setShowLoginModal(false)} onSuccessCallback={() => setShowLoginModal(false)} />
             <div className="collapse bg-dark" id="navbarHeader">
                 <div className="container">
                     <div className="row p-0">
@@ -56,6 +58,38 @@ const Header = (props) => {
                                 <span>{ cartCount }</span>
                             </span>
                         </button>
+                        {
+                            (loginSession.isLoggedIn) ? (
+                                <>
+                                    <Dropdown className="btn d-none d-lg-block m-0">
+                                        <Dropdown.Toggle variant="dark" id="dropdown-basic">{ loginSession.user[0].userName }</Dropdown.Toggle>
+                                        <Dropdown.Menu>
+                                            <Dropdown.Item href="#/action-1">
+                                                <i className="bi bi-list me-3"></i>
+                                                <span>Orders</span>
+                                            </Dropdown.Item>
+                                            <Dropdown.Divider />
+                                            <Dropdown.Item onClick={() =>  { 
+                                                dispatch(logout([]))
+                                            }}>
+                                                <i className="bi bi-box-arrow-in-right me-3"></i>
+                                                <span className="text-danger fw-bold">Logout</span>
+                                            </Dropdown.Item>
+                                        </Dropdown.Menu>
+                                    </Dropdown>
+                                    <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+                                        <span className="navbar-toggler-icon"></span>
+                                    </button>
+                                </>
+                            ) : (
+                                <>
+                                    <button className="btn btn-dark d-none d-lg-block" onClick={() => setShowLoginModal(true)}>
+                                        <span>Login</span>
+                                    </button>
+                                    <button className="btn d-block d-lg-none btn-dark px-2" onClick={() => setShowLoginModal(true)}>Login</button>
+                                </>
+                            )
+                        }
                     </div>
                 </div>
             </div>

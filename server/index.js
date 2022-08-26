@@ -31,6 +31,7 @@ db.connect(function(err) {
         });
     });
 
+    //  add users into database
     app.post('/registeruser', (req, res) => {
         db.query(`
             INSERT INTO tbl_users(user_name, user_email, user_password) VALUES(
@@ -43,6 +44,7 @@ db.connect(function(err) {
         res.json({ status: '200', message: "success" });
     });
 
+    //  add purchase order into database
     app.post('/registerorder', (req, res) => {
         db.query(`
             INSERT INTO tbl_orders(order_name, order_cusid, order_price) VALUES(
