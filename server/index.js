@@ -44,6 +44,30 @@ db.connect(function(err) {
         res.json({ status: '200', message: "success" });
     });
 
+    //  get user details from database
+    app.get('/user/:id', (req, res) => {
+        let temp = [], id = req.params.id;
+        db.query(`SELECT DISTINCT user_id, user_name, user_email, user_createddate FROM tbl_users WHERE user_id=${id}`, function(err, res) {
+            if (err) throw err;
+            for (var i in res) {
+                temp.push({
+                    "userid": res[i].user_id,
+                    "username": res[i].user_name,
+                    "useremail": res[i].user_email,
+                    "usercreateddate": res[i].user_createddate
+                });
+            }
+        });
+        
+        setTimeout(() => {
+            if(temp.length != 0) {
+                res.json({ status: '200', message: temp });
+            } else {
+                res.json({ status: '400', message: [] });
+            }
+        }, 2);
+    });
+
     //  add purchase order into database
     app.post('/registerorder', (req, res) => {
         db.query(`
@@ -55,6 +79,30 @@ db.connect(function(err) {
             if (err) throw err;
         });
         res.json({ status: '200', message: "success" });
+    });
+
+    //  get order details based on userid
+    app.get('/orders/:id', (req, res) => {
+        let temp = [], id = req.params.id;
+        db.query(`SELECT order_id, order_name, order_price, order_createddate FROM tbl_orders WHERE order_cusid=${id}`, function(err, res) {
+            if (err) throw err;
+            for (var i in res) {
+                temp.push({
+                    "orderid": res[i].order_id,
+                    "ordername": res[i].order_name,
+                    "orderprice": res[i].order_price,
+                    "ordercreateddate": res[i].order_createddate
+                });
+            }
+        });
+        
+        setTimeout(() => {
+            if(temp.length != 0) {
+                res.json({ status: '200', message: temp });
+            } else {
+                res.json({ status: '400', message: [] });
+            }
+        }, 2);
     });
 
     app.listen(PORT, () => {
