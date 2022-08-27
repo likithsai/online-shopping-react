@@ -1,7 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const mysql = require("mysql");
-const bodyParser = require('body-parser');
+// const bodyParser = require('body-parser');
 const fs = require('fs');
 const DBQuery = require('./data/DBQuery.json');
 const PORT = process.env.PORT || 3001;
@@ -22,8 +22,8 @@ db.connect(function(err) {
     })
 
     app.use(cors());
-    app.use(bodyParser.urlencoded({ extended: true }));
-    app.use(bodyParser.json());
+    app.use(express.urlencoded({ extended: true }));
+    app.use(express.json());
 
     app.get("/", (req, res) => {
         fs.readFile(__dirname + '/view/index.html', 'utf8', (err, text) => {
@@ -49,7 +49,7 @@ db.connect(function(err) {
         let temp = [], id = req.params.id;
         db.query(`SELECT DISTINCT user_id, user_name, user_email, user_createddate FROM tbl_users WHERE user_id=${id}`, function(err, res) {
             if (err) throw err;
-            for (var i in res) {
+            for (let i in res) {
                 temp.push({
                     "userid": res[i].user_id,
                     "username": res[i].user_name,
@@ -86,7 +86,7 @@ db.connect(function(err) {
         let temp = [], id = req.params.id;
         db.query(`SELECT order_id, order_name, order_price, order_createddate FROM tbl_orders WHERE order_cusid=${id}`, function(err, res) {
             if (err) throw err;
-            for (var i in res) {
+            for (let i in res) {
                 temp.push({
                     "orderid": res[i].order_id,
                     "ordername": res[i].order_name,
