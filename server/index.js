@@ -1,11 +1,14 @@
-const express = require("express");
-const cors = require("cors");
-const mysql = require("mysql");
-// const bodyParser = require('body-parser');
-const fs = require('fs');
-const DBQuery = require('./data/DBQuery.json');
-const PORT = process.env.PORT || 3001;
-const app = express();
+const express = require("express"),
+    cors = require("cors"),
+    mysql = require("mysql"),
+    fs = require('fs'),
+    morgan = require('morgan'),
+    path = require('path'),
+    session = require('express-session'),
+    DBQuery = require('./data/DBQuery.json'),
+    PORT = process.env.PORT || 3001,
+    morganLogString = `\n:date \n[:method - :status, HTTP Version :http-version] \n:remote-ip :url - :response-time ms \n:user-agent`;
+    app = express();
 
 var db = mysql.createConnection({
     host: DBQuery.server,
@@ -19,11 +22,19 @@ db.connect(function(err) {
 
     DBQuery.queries.map((itm,ind) => {
         db.query(itm.query);
-    })
+    });
 
     app.use(cors());
-    app.use(express.urlencoded({ extended: true }));
+    app.use(express.urlencoded({ extended: false }));
     app.use(express.json());
+    app.use(morgan(morganLogString));
+    app.use(morgan(morganLogString, { stream: fs.createWriteStream(path.join(__dirname, './access.log'), {flags: 'a'}) }));
+    app.use(session({ secret: 'conduit', cookie: { maxAge: 60000 }, resave: false, saveUninitialized: false  }));
+
+    morgan.token('remote-ip', (req, res) => { 
+        let ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+        return ip.toString().replace('::ffff:', '');
+    });
 
     app.get("/", (req, res) => {
         fs.readFile(__dirname + '/view/index.html', 'utf8', (err, text) => {
@@ -39,8 +50,10 @@ db.connect(function(err) {
                 '${req.body.useremail}', 
                 '${req.body.userpass}'
             )`, function(err, res) {
-            if (err) throw err;
-        });
+                if (err) throw err;
+            }
+        );
+        res.status(200);
         res.json({ status: '200', message: "success" });
     });
 
@@ -61,11 +74,13 @@ db.connect(function(err) {
         
         setTimeout(() => {
             if(temp.length != 0) {
+                res.status(200);
                 res.json({ status: '200', message: temp });
             } else {
+                res.status(400);
                 res.json({ status: '400', message: [] });
             }
-        }, 2);
+        }, 5);
     });
 
     //  add purchase order into database
@@ -76,8 +91,10 @@ db.connect(function(err) {
                 ${req.body.ordercusid}, 
                 ${req.body.orderprice}
             )`, function(err, res) {
-            if (err) throw err;
-        });
+                if (err) throw err;
+            }
+        );
+        res.status(200);
         res.json({ status: '200', message: "success" });
     });
 
@@ -98,18 +115,20 @@ db.connect(function(err) {
         
         setTimeout(() => {
             if(temp.length != 0) {
+                res.status(200);
                 res.json({ status: '200', message: temp });
             } else {
+                res.status(400);
                 res.json({ status: '400', message: [] });
             }
-        }, 2);
+        }, 5);
     });
 
     app.listen(PORT, () => {
         console.log(
           '\n\x1b[42m%s\x1b[0m', 'API SERVER V1.0.0', 
           '\nAPI server for managing database for shopping cart application',
-          '\n\n\x1b[32mURL:\x1b[0m', `http://localhost:${PORT}`, 
+          '\n\x1b[32mApp listening on PORT\x1b[0m', `${PORT}`, 
         );
         console.log('\n\x1b[36m%s\x1b[0m', 'Press CNTRL+C to stop ...');
     });

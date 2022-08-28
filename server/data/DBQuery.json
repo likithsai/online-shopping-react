@@ -5,6 +5,6 @@
     "database": "shoppingcart",
     "queries": [ 
         { "query" : "CREATE TABLE IF NOT EXISTS tbl_users(user_id int(11) NOT NULL AUTO_INCREMENT, user_name varchar(200) DEFAULT NULL, user_email varchar(200) DEFAULT NULL, user_password varchar(200) NOT NULL, user_createddate timestamp NOT NULL DEFAULT current_timestamp(), PRIMARY KEY (user_id))" } , 
-        { "query" : "CREATE TABLE IF NOT EXISTS tbl_orders(order_id int(11) NOT NULL AUTO_INCREMENT, order_name varchar(200) DEFAULT NULL, order_item varchar(200) DEFAULT NULL, order_cusid int(11) DEFAULT NULL, order_price float DEFAULT NULL, order_createddate timestamp NOT NULL DEFAULT current_timestamp(), PRIMARY KEY (order_id), KEY talk_cusid (order_cusid), CONSTRAINT talk_cusid FOREIGN KEY (order_cusid) REFERENCES tbl_users(user_id) ON DELETE SET NULL ON UPDATE SET NULL)" } 
+        { "query" : "CREATE TABLE IF NOT EXISTS tbl_orders(order_id int(11) NOT NULL AUTO_INCREMENT, order_name varchar(200) DEFAULT NULL, order_item varchar(200) DEFAULT NULL, order_cusid int(11) DEFAULT NULL, order_price float DEFAULT NULL, order_useragent varchar(1000) NOT NULL, order_createddate timestamp NOT NULL DEFAULT current_timestamp(), PRIMARY KEY (order_id), KEY talk_cusid (order_cusid), CONSTRAINT talk_cusid FOREIGN KEY (order_cusid) REFERENCES tbl_users(user_id) ON DELETE SET NULL ON UPDATE SET NULL)" }
     ]
 }
