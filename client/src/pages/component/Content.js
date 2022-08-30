@@ -1,6 +1,6 @@
 //  content.js
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import AppData from '../../data/appdata.json';
 import { addItemToCart } from '../../actions/cartActions';
 import { useSelector, useDispatch } from "react-redux";
@@ -12,7 +12,18 @@ const Content = (props) => {
     const cartItems = useSelector((state) => state.cartItems);
     const [ itemData, setItemData ] = useState(props.items);
     const [ selectedCategories, setSelectedCategories ] = useState('All');
-    
+    const LIMITAMOUNT = 8;
+    const [ maxLimit, setMaxLimit ] = useState(LIMITAMOUNT);
+
+    useEffect(() => {
+        window.addEventListener('scroll', function () {
+            console.log(Math.round(window.innerHeight + window.scrollY), document.body.offsetHeight, maxLimit);
+            if (Math.round(window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+                setMaxLimit(maxLimit + LIMITAMOUNT);
+            }
+        });
+    }, [maxLimit]);
+
     const handleCategoriesClick = (value) => {
         if(value.toLowerCase() !== 'all') {
             setItemData(props.items.filter(item => item.catname === value.toLowerCase()));
@@ -51,7 +62,7 @@ const Content = (props) => {
                 </div>
                 <div className="row gx-4 gx-lg-5 row-cols-1 row-cols-md-2 row-cols-xl-4 justify-content-center">
                 {
-                    itemData.map((item, index) => {
+                    itemData.slice(0, maxLimit).map((item, index) => {
                         return (
                             <div className="col mb-5 px-2" key={index}>
                                 <div className="card shadow-sm h-100">
