@@ -17,7 +17,6 @@ const Content = (props) => {
 
     useEffect(() => {
         window.addEventListener('scroll', function () {
-            console.log(Math.round(window.innerHeight + window.scrollY), document.body.offsetHeight, maxLimit);
             if (Math.round(window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
                 setMaxLimit(maxLimit + LIMITAMOUNT);
             }
