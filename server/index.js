@@ -1,13 +1,14 @@
 const express = require("express"),
     cors = require("cors"),
     mysql = require("mysql"),
-    fs = require('fs'),
+    fs = require('./include/fs'),
     morgan = require('morgan'),
     path = require('path'),
     session = require('express-session'),
     mailer = require('./include/email'),
     DBQuery = require('./data/DBQuery.json'),
     PORT = process.env.PORT || 3001,
+    logFolder = './log',
     morganLogString = `\n:date \n[:method - :status, HTTP Version :http-version] \n:remote-ip :url - :response-time ms \n:user-agent`;
     app = express();
 
@@ -25,19 +26,26 @@ db.connect(function(err) {
         db.query(itm.query);
     });
 
-    //    Added mail service
-    mailer.sendMail({
-        from: 'likith sai',
-        to: '15mca01.likith@sjec.ac.in',
-        subject: 'Sending Email using Node.js',
-        html: '<h1>Welcome</h1><p>That was easy!</p>'
-    });
+    ////    Added mail service
+    // mailer.sendMail({
+    //     from: 'likith sai',
+    //     to: '15mca01.likith@sjec.ac.in',
+    //     subject: 'Sending Email using Node.js',
+    //     html: '<h1>Welcome</h1><p>That was easy!</p>'
+    // });
 
     app.use(cors());
     app.use(express.urlencoded({ extended: false }));
     app.use(express.json());
     app.use(morgan(morganLogString));
-    app.use(morgan(morganLogString, { stream: fs.createWriteStream(path.join(__dirname, './access.log'), {flags: 'a'}) }));
+
+    //  check if log folder exist or not,
+    //  if no, create folder
+    if(!fs.existFolder(logFolder)) {
+        fs.createFolder(logFolder)
+    }
+
+    app.use(morgan(morganLogString, { stream: fs.appendTextToFiles(path.join(__dirname, './log/access.log'), {flags: 'a'}) }));
     app.use(session({ secret: 'conduit', cookie: { maxAge: 60000 }, resave: false, saveUninitialized: false  }));
 
     morgan.token('remote-ip', (req, res) => { 
@@ -46,7 +54,7 @@ db.connect(function(err) {
     });
 
     app.get("/", (req, res) => {
-        fs.readFile(__dirname + '/view/index.html', 'utf8', (err, text) => {
+        fs.readFiles(__dirname + '/view/index.html', (err, text) => {
             res.send(text);
         });
     });
