@@ -45,6 +45,10 @@ db.connect(function(err) {
         });
     });
 
+    app.get('/status', (req, res, next) => {
+        res.sendStatus(200);
+    });
+
     //  add users into database
     app.post('/registeruser', (req, res) => {
         db.query(`
