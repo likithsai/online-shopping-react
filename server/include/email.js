@@ -11,7 +11,15 @@ var transporter = nodemailer.createTransport({
 });
 
 module.exports = {
-    sendMail: function(mailOptions) {
+    sendMail: function(fromAddress, toAddress, subjectLine, contentInHTML) {
+        ////    Added mail service
+        let mailOptions = mailer.sendMail({
+            from: fromAddress,
+            to: toAddress,
+            subject: subjectLine,
+            html: contentInHTML
+        });
+
         transporter.sendMail(mailOptions, function(err, info) {
             if(err) {
                 console.log('Error sending mail: %s', err);
