@@ -2,7 +2,7 @@ const express = require("express"),
     cors = require("cors"),
     mysql = require("mysql"),
     fs = require('./include/fs'),
-    morgan = require('morgan'),
+    morgan = require('./include/logging'),
     path = require('path'),
     session = require('express-session'),
     mailer = require('./include/email'),
@@ -37,7 +37,7 @@ db.connect(function(err) {
     app.use(cors());
     app.use(express.urlencoded({ extended: false }));
     app.use(express.json());
-    app.use(morgan(morganLogString));
+    app.use(morgan.logging(morganLogString));
 
     //  check if log folder exist or not,
     //  if no, create folder
@@ -45,10 +45,10 @@ db.connect(function(err) {
         fs.createFolder(logFolder)
     }
 
-    app.use(morgan(morganLogString, { stream: fs.appendTextToFiles(path.join(__dirname, './log/access.log'), {flags: 'a'}) }));
+    app.use(morgan.logging(morganLogString, { stream: fs.appendTextToFiles(path.join(__dirname, './log/access.log'), {flags: 'a'}) }));
     app.use(session({ secret: 'conduit', cookie: { maxAge: 60000 }, resave: false, saveUninitialized: false  }));
 
-    morgan.token('remote-ip', (req, res) => { 
+    morgan.loggingToken('remote-ip', (req, res) => { 
         let ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
         return ip.toString().replace('::ffff:', '');
     });
