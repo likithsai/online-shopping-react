@@ -14,7 +14,13 @@ module.exports = {
     logging: function() {
         return morgan(morganLogString);
     },
-    appendLoggingToFile: function(filepath) {
+    appendLogToFile: function(filepath) {
         return morgan(morganLogString, { stream: fs.appendTextToFiles(filepath, {flags: 'a'}) });
+    },
+    appendErrorLogToFile: function(filepath) {
+        return morgan('combined', {
+            skip: function (req, res) { return res.statusCode < 400 },
+            stream: fs.appendTextToFiles(filepath, {flags: 'a'})
+        })
     }
 }

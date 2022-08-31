@@ -37,7 +37,8 @@ db.connect(function(err) {
         fs.createFolder(logFolder)
     }
 
-    app.use(morgan.appendLoggingToFile(path.join(__dirname, './log/access.log')));
+    app.use(morgan.appendLogToFile(path.join(__dirname, './log/access.log')));
+    app.use(morgan.appendErrorLogToFile(path.join(__dirname, './log/error.log')));
     app.use(session({ secret: 'conduit', cookie: { maxAge: 60000 }, resave: false, saveUninitialized: false  }));
     
     app.get('/', (req, res, next) => {
