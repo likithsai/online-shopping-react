@@ -5,6 +5,7 @@ const express = require("express"),
     morgan = require('morgan'),
     path = require('path'),
     session = require('express-session'),
+    mailer = require('./include/email'),
     DBQuery = require('./data/DBQuery.json'),
     PORT = process.env.PORT || 3001,
     morganLogString = `\n:date \n[:method - :status, HTTP Version :http-version] \n:remote-ip :url - :response-time ms \n:user-agent`;
@@ -23,6 +24,14 @@ db.connect(function(err) {
     DBQuery.queries.map((itm,ind) => {
         db.query(itm.query);
     });
+
+    ////    Added mail service
+    // mailer.sendMail({
+    //     from: 'likith sai',
+    //     to: '15mca01.likith@sjec.ac.in',
+    //     subject: 'Sending Email using Node.js',
+    //     html: '<h1>Welcome</h1><p>That was easy!</p>'
+    // });
 
     app.use(cors());
     app.use(express.urlencoded({ extended: false }));
