@@ -2,10 +2,7 @@
     "appname" : "Shopping App",
     "version" : "1.0",
     "apiKey": "rzp_test_nPSGNPWFlRCMci",
-    "database": [{
-        "server": "localhost",
-        "port": 3001
-    }],
+    "apiserver" : "http://localhost:3001",
     "categories" : [
         { "catname": "All", "caticon": "bi bi-grid-3x3-gap-fill" },
         { "catname": "Music", "caticon": "bi bi-music-note-list" }

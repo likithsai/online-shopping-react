@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route , useParams } from 'react-router-dom';  
 import './assets/sass/App.scss';
 import './assets/js/Script.js';
@@ -9,8 +9,11 @@ import CartPage from './pages/CartPage';
 import DownloadPage from './pages/DownloadPage';
 import RegisterPage from './pages/RegisterPage';
 import AdminPage from './pages/AdminPage';
+import AppData from './data/appdata.json';
 
 function App() {
+  const [nodeJSServerStatus, setNodeJSServerStatus] = useState(false);
+
   useEffect(() => {
       const URL = "https://checkout.razorpay.com/v1/checkout.js"
       const script = document.createElement("script");
@@ -18,21 +21,40 @@ function App() {
       script.src = URL;
       script.async = true;
       document.body.appendChild(script);
-  }, []);
 
-  return (
-    <div className="App">
-      <Router>
-          <Routes>
-              <Route exact path='/' element={<HomePage />} />
-              <Route path='/products/:productname' element={<ProductPage />} />
-              <Route exact path="/cart" element={<CartPage />} />
-              <Route path="/download/:fileid" element={<DownloadPage />} />
-              <Route path="/admin" element={<AdminPage />} />
-          </Routes>
-       </Router>
-    </div>
-  );
+      //  check if nodejs server is active or not?
+      //  if not, then print error message
+      const APISERVER = AppData.apiserver;
+      fetch(APISERVER)
+      .then((res) => {
+          if(res.ok) {
+              setNodeJSServerStatus(true);
+          } else {
+            setNodeJSServerStatus(false);
+          }
+      })
+      
+  }, []);
+ 
+  if (nodeJSServerStatus) {
+    return (
+      <div className="App">
+        <Router>
+            <Routes>
+                <Route exact path='/' element={<HomePage />} />
+                <Route path='/products/:productname' element={<ProductPage />} />
+                <Route exact path="/cart" element={<CartPage />} />
+                <Route path="/download/:fileid" element={<DownloadPage />} />
+                <Route path="/admin" element={<AdminPage />} />
+            </Routes>
+        </Router>
+      </div>
+    );
+  } else {
+    return (
+      <p>Server offline!</p>
+    );
+  }
 }
 
 export default App;

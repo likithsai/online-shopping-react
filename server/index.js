@@ -39,16 +39,10 @@ db.connect(function(err) {
     app.use(morgan.appendLoggingToFile(path.join(__dirname, './log/access.log')));
     app.use(session({ secret: 'conduit', cookie: { maxAge: 60000 }, resave: false, saveUninitialized: false  }));
 
-    app.get("/", (req, res) => {
-        fs.readFiles(__dirname + '/view/index.html', (err, text) => {
-            res.send(text);
-        });
-    });
-
-    app.get('/status', (req, res, next) => {
+    app.get('/', (req, res, next) => {
         res.sendStatus(200);
     });
-
+    
     //  add users into database
     app.post('/registeruser', (req, res) => {
         db.query(`
