@@ -24,16 +24,27 @@ function App() {
 
       //  check if nodejs server is active or not?
       //  if not, then print error message
-      const APISERVER = AppData.apiserver;
-      fetch(APISERVER)
+      fetch(AppData.apiserver)
       .then((res) => {
           if(res.ok) {
               setNodeJSServerStatus(true);
           } else {
             setNodeJSServerStatus(false);
           }
-      })
-      
+      });
+
+      // fetch(AppData.apiserver + '/registerorder', {
+      //   method: 'POST',
+      //   headers: {
+      //     'Accept': 'application/json',
+      //     'Content-Type': 'application/json',
+      //   },
+      //   body: JSON.stringify({
+      //     ordername: 'dvdfvfd',
+      //     ordercusid: 5,
+      //     orderprice: 10.76
+      //   })
+      // })
   }, []);
  
   if (nodeJSServerStatus) {

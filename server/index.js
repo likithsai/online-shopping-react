@@ -8,6 +8,7 @@ const express = require("express"),
     mailer = require('./include/email'),
     DBQuery = require('./data/DBQuery.json'),
     PORT = process.env.PORT || 3001,
+    bodyParser = require('body-parser'),
     logFolder = './log',
     app = express();
 
@@ -26,7 +27,7 @@ db.connect(function(err) {
     });
 
     app.use(cors());
-    app.use(express.urlencoded({ extended: false }));
+    app.use(express.urlencoded({ extended: true }));
     app.use(express.json());
     app.use(morgan.logging());
 
@@ -42,7 +43,7 @@ db.connect(function(err) {
     app.get('/', (req, res, next) => {
         res.sendStatus(200);
     });
-    
+
     //  add users into database
     app.post('/registeruser', (req, res) => {
         db.query(`
@@ -59,8 +60,8 @@ db.connect(function(err) {
     });
 
     //  get user details from database
-    app.get('/user/:id', (req, res) => {
-        let temp = [], id = req.params.id;
+    app.post('/users', (req, res) => {
+        let temp = [], id = req.body.id;
         db.query(`SELECT DISTINCT user_id, user_name, user_email, user_createddate FROM tbl_users WHERE user_id=${id}`, function(err, res) {
             if (err) throw err;
             for (let i in res) {
@@ -100,8 +101,8 @@ db.connect(function(err) {
     });
 
     //  get order details based on userid
-    app.get('/orders/:id', (req, res) => {
-        let temp = [], id = req.params.id;
+    app.post('/orders', (req, res) => {
+        let temp = [], id = req.body.id;
         db.query(`SELECT order_id, order_name, order_price, order_createddate FROM tbl_orders WHERE order_cusid=${id}`, function(err, res) {
             if (err) throw err;
             for (let i in res) {
