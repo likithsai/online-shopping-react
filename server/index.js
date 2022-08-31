@@ -9,7 +9,6 @@ const express = require("express"),
     DBQuery = require('./data/DBQuery.json'),
     PORT = process.env.PORT || 3001,
     logFolder = './log',
-    morganLogString = `\n:date \n[:method - :status, HTTP Version :http-version] \n:remote-ip :url - :response-time ms \n:user-agent`;
     app = express();
 
 var db = mysql.createConnection({
@@ -37,7 +36,7 @@ db.connect(function(err) {
     app.use(cors());
     app.use(express.urlencoded({ extended: false }));
     app.use(express.json());
-    app.use(morgan.logging(morganLogString));
+    app.use(morgan.logging());
 
     //  check if log folder exist or not,
     //  if no, create folder
@@ -45,13 +44,8 @@ db.connect(function(err) {
         fs.createFolder(logFolder)
     }
 
-    app.use(morgan.logging(morganLogString, { stream: fs.appendTextToFiles(path.join(__dirname, './log/access.log'), {flags: 'a'}) }));
+    app.use(morgan.appendLoggingToFile(path.join(__dirname, './log/access.log')));
     app.use(session({ secret: 'conduit', cookie: { maxAge: 60000 }, resave: false, saveUninitialized: false  }));
-
-    morgan.loggingToken('remote-ip', (req, res) => { 
-        let ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
-        return ip.toString().replace('::ffff:', '');
-    });
 
     app.get("/", (req, res) => {
         fs.readFiles(__dirname + '/view/index.html', (err, text) => {
