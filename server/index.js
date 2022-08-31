@@ -25,13 +25,13 @@ db.connect(function(err) {
         db.query(itm.query);
     });
 
-    ////    Added mail service
-    // mailer.sendMail({
-    //     from: 'likith sai',
-    //     to: '15mca01.likith@sjec.ac.in',
-    //     subject: 'Sending Email using Node.js',
-    //     html: '<h1>Welcome</h1><p>That was easy!</p>'
-    // });
+    //    Added mail service
+    mailer.sendMail({
+        from: 'likith sai',
+        to: '15mca01.likith@sjec.ac.in',
+        subject: 'Sending Email using Node.js',
+        html: '<h1>Welcome</h1><p>That was easy!</p>'
+    });
 
     app.use(cors());
     app.use(express.urlencoded({ extended: false }));

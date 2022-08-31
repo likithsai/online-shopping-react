@@ -1,11 +1,12 @@
 //  email.js
-var nodemailer = require('nodemailer');
+var nodemailer = require('nodemailer'),
+    email = require('../data/DBQuery');
 
 var transporter = nodemailer.createTransport({ 
-    service: 'gmail',
+    service: email.emailService[0].service,
     auth: {
-      user: 'likithsai13@gmail.com',
-      pass: 'Htikilias@1234567'
+      user: email.emailService[0].auth[0].username,
+      pass: email.emailService[0].auth[0].password
     }
 });
 
