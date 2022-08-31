@@ -3,7 +3,7 @@
 
 const morgan = require('morgan'),
     fs = require('./fs'),
-    morganLogString = `\n:date \n[:method - :status, HTTP Version :http-version] \n:remote-ip :url - :response-time ms \n:user-agent`;
+    morganLogString = `\n[:remote-ip, :method - :status] :date[web] :url - :response-time ms \n:user-agent`;
 
 morgan.token('remote-ip', (req, res) => { 
     let ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;

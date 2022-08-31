@@ -39,7 +39,7 @@ db.connect(function(err) {
 
     app.use(morgan.appendLoggingToFile(path.join(__dirname, './log/access.log')));
     app.use(session({ secret: 'conduit', cookie: { maxAge: 60000 }, resave: false, saveUninitialized: false  }));
-
+    
     app.get('/', (req, res, next) => {
         res.sendStatus(200);
     });
