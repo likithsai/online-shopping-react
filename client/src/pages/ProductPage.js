@@ -10,10 +10,12 @@ import { addItemToCart } from "../actions/cartActions";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams, useNavigate } from 'react-router-dom';
 import LoginModal from "./component/LoginModal";
+import Toast from 'react-bootstrap/Toast';
 
 const ProductPage = (props) => {
     const [ DATA, setDATA ] = useState(AppData);
     const [showLoginModal, setShowLoginModal] = useState(false);
+    const [showToast, setShowToast] = useState(true);
     const params  = useParams();
     const cartItems = useSelector((state) => state.cartItems);
     const loginSession = useSelector((state) => state.loginSession);
@@ -26,10 +28,14 @@ const ProductPage = (props) => {
 
     const addToCart = (item) => {
         dispatch(addItemToCart(item));
+        setShowToast(true);
     }
 
     return (
         <div className="productpage">
+            <Toast className="position-absolute m-3 bottom-0 end-0 bg-success" onClose={() => setShowToast(false)} show={showToast} delay={3000} autohide>
+                <Toast.Body className="p-3 text-white">Item added to cart!</Toast.Body>
+            </Toast>
             <LoginModal show={showLoginModal} onHide={() => setShowLoginModal(false)} />
             <Header headerTitle={AppData.appname} logoURL="/" cartURL="/cart" />
             {
