@@ -15,7 +15,7 @@ import Toast from 'react-bootstrap/Toast';
 const ProductPage = (props) => {
     const [ DATA, setDATA ] = useState(AppData);
     const [showLoginModal, setShowLoginModal] = useState(false);
-    const [showToast, setShowToast] = useState(true);
+    const [showToast, setShowToast] = useState(false);
     const params  = useParams();
     const cartItems = useSelector((state) => state.cartItems);
     const loginSession = useSelector((state) => state.loginSession);
@@ -33,7 +33,7 @@ const ProductPage = (props) => {
 
     return (
         <div className="productpage">
-            <Toast className="position-absolute m-3 bottom-0 end-0 bg-success" onClose={() => setShowToast(false)} show={showToast} delay={3000} autohide>
+            <Toast className="position-fixed m-3 bottom-0 end-0 bg-success" onClose={() => setShowToast(false)} show={showToast} delay={3000} autohide>
                 <Toast.Body className="p-3 text-white">Item added to cart!</Toast.Body>
             </Toast>
             <LoginModal show={showLoginModal} onHide={() => setShowLoginModal(false)} />

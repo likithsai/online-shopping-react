@@ -26,7 +26,7 @@ const Header = (props) => {
                     <div className="row p-0">
                         <ul className="list-group list-group-flush w-100 p-0">
                             <li className="list-group-item bg-light d-flex align-items-center justify-content-between px-4">
-                                <div>
+                                <div onClick={() => history('/orders')}>
                                     <i className="bi bi-list me-3"></i>
                                     <span>Orders</span>
                                 </div>
@@ -64,7 +64,7 @@ const Header = (props) => {
                                     <Dropdown className="btn d-none d-lg-block m-0">
                                         <Dropdown.Toggle variant="dark" id="dropdown-basic">{ loginSession.user[0].userName }</Dropdown.Toggle>
                                         <Dropdown.Menu>
-                                            <Dropdown.Item href="#/action-1">
+                                            <Dropdown.Item onClick={() => history('/orders')}>
                                                 <i className="bi bi-list me-3"></i>
                                                 <span>Orders</span>
                                             </Dropdown.Item>

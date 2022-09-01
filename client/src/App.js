@@ -9,6 +9,7 @@ import CartPage from './pages/CartPage';
 import DownloadPage from './pages/DownloadPage';
 import RegisterPage from './pages/RegisterPage';
 import AdminPage from './pages/AdminPage';
+import OrderPage from './pages/OrderPage';
 import AppData from './data/appdata.json';
 
 function App() {
@@ -24,8 +25,7 @@ function App() {
 
       //  check if nodejs server is active or not?
       //  if not, then print error message
-      fetch(AppData.apiserver)
-      .then((res) => {
+      fetch(AppData.apiserver).then((res) => {
           if(res.ok) {
               setNodeJSServerStatus(true);
           } else {
@@ -57,6 +57,7 @@ function App() {
                 <Route exact path="/cart" element={<CartPage />} />
                 <Route path="/download/:fileid" element={<DownloadPage />} />
                 <Route path="/admin" element={<AdminPage />} />
+                <Route path="/orders" element={<OrderPage />} />
             </Routes>
         </Router>
       </div>
