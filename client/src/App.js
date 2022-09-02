@@ -67,9 +67,13 @@ function App() {
     return (
       <div class="d-flex align-items-center justify-content-center vh-100">
           <div class="text-center">
-              <h1 class="display-1 fw-bold">404</h1>
-              <p class="fs-3"> <span class="text-danger">Opps!</span> Server Offline.</p>
+              <h1 class="display-1 fw-bold"><i class="bi bi-wifi-off"></i></h1>
+              <p class="fs-3 fw-bold text-danger m-0">Server Offline.</p>
               <p class="lead">Please try again after sometime</p>
+              <button type="button" class="btn btn-primary mt-2" onClick={() => { window.location.reload(); }}>
+                <i class="bi bi-arrow-clockwise me-2"></i>
+                <span className="text-uppercase">Refresh</span>
+              </button>
           </div>
       </div>
     );
