@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import { useSelector, useDispatch } from "react-redux";
 import { login } from "../../actions/loginActions.js";
+import AppData from '../../data/appdata.json';
 
 const LoginModal = (props) => {
     const [ email, setEmail ] = useState();
@@ -11,18 +12,36 @@ const LoginModal = (props) => {
     const dispatch = useDispatch();
     const [ showRegisterModal, setShowRegisterModal ] = useState(false);
 
-    const submitForm = (event) => {
+    const submitForm = async(event) => {
         event.preventDefault();
-        dispatch(
-            login({
-                isLoggedIn: true, 
-                user: [{ 
-                    userName: 'likith sai', 
-                    userEmail: email 
-                }]
+        const settings = {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                'useremail': email,
+                'userpass': pass
             })
-        );
+        };
 
+        const response = await fetch(AppData.apiserver + '/users', settings);
+        const data = await response.json();
+
+        if(data.message.length > 0) {
+            dispatch(
+                login({
+                    isLoggedIn: true, 
+                    user: [{ 
+                        userId: data.message[0].user_id,
+                        userName: data.message[0].user_name, 
+                        userEmail: data.message[0].user_email
+                    }]
+                    // user: data.message
+                })
+            );
+        }
         props.onSuccessCallback();
     }
 
@@ -36,7 +55,7 @@ const LoginModal = (props) => {
                         </div>
 
                         <div className="modal-body p-5 pt-0">
-                            <form className="">
+                            <form onSubmit={submitForm}>
                                 <div className="form-floating mb-3">
                                     <input type="email" className="form-control rounded-3" id="floatingInput" placeholder="name@example.com" onChange={(e) => setEmail(e.target.value)} />
                                     <label htmlFor="floatingInput">Email address</label>
@@ -45,7 +64,7 @@ const LoginModal = (props) => {
                                     <input type="password" className="form-control rounded-3" id="floatingPassword" placeholder="Password" onChange={(e) => setPass(e.target.value)} />
                                     <label htmlFor="floatingPassword">Password</label>
                                 </div>
-                                <button className="w-100 mb-2 btn btn-lg rounded-3 btn-dark" onClick={(e) => submitForm(e)}>
+                                <button className="w-100 mb-2 btn btn-lg rounded-3 btn-dark" type="submit">
                                     <i className="bi bi-arrow-right-circle-fill me-2"></i>
                                     <span>Sign In</span>
                                 </button>
@@ -60,7 +79,7 @@ const LoginModal = (props) => {
                 </Modal.Body>
             </Modal>
 
-            <Modal show={showRegisterModal} onHide={() => setShowRegisterModal(false)} onSuccessCallback={() => setShowRegisterModal(false)}>
+            <Modal show={showRegisterModal} onHide={() => setShowRegisterModal(false)}>
                 <Modal.Body className="p-0">
                     <div className="modal-content">
                         <div className="modal-header p-5 pb-4 border-bottom-0">

@@ -32,19 +32,6 @@ function App() {
             setNodeJSServerStatus(false);
           }
       });
-
-      // fetch(AppData.apiserver + '/registerorder', {
-      //   method: 'POST',
-      //   headers: {
-      //     'Accept': 'application/json',
-      //     'Content-Type': 'application/json',
-      //   },
-      //   body: JSON.stringify({
-      //     ordername: 'dvdfvfd',
-      //     ordercusid: 5,
-      //     orderprice: 10.76
-      //   })
-      // })
   }, []);
  
   if (nodeJSServerStatus) {
@@ -65,13 +52,13 @@ function App() {
   } else {
     //  error page
     return (
-      <div class="d-flex align-items-center justify-content-center vh-100">
-          <div class="text-center">
-              <h1 class="display-1 fw-bold"><i class="bi bi-wifi-off"></i></h1>
-              <p class="fs-3 fw-bold text-danger m-0">Server Offline.</p>
-              <p class="lead">Please try again after sometime</p>
-              <button type="button" class="btn btn-primary mt-2" onClick={() => { window.location.reload(); }}>
-                <i class="bi bi-arrow-clockwise me-2"></i>
+      <div className="d-flex align-items-center justify-content-center vh-100">
+          <div className="text-center">
+              <h1 className="display-1 fw-bold"><i className="bi bi-wifi-off"></i></h1>
+              <p className="fs-3 fw-bold text-danger m-0">Server Offline.</p>
+              <p className="lead">Please try again after sometime</p>
+              <button type="button" className="btn btn-primary mt-2" onClick={() => { window.location.reload(); }}>
+                <i className="bi bi-arrow-clockwise me-2"></i>
                 <span className="text-uppercase">Refresh</span>
               </button>
           </div>

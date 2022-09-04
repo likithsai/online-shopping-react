@@ -13,11 +13,11 @@ const AdminPage = (props) => {
             <div className="container">
                 <div className="d-flex align-items-center justify-content-between">
                     <Button variant="primary" className="my-3 shadow-sm me-2">
-                        <i class="bi bi-plus-circle-fill me-2"></i>
+                        <i className="bi bi-plus-circle-fill me-2"></i>
                         <span>Add Product</span>
                     </Button>
                     <Button variant="primary" className="my-3 shadow-sm">
-                        <i class="bi bi-code-slash me-2"></i>
+                        <i className="bi bi-code-slash me-2"></i>
                         <span>Show JSON</span>
                     </Button>
                 </div>
@@ -39,7 +39,7 @@ const AdminPage = (props) => {
                                             <p className="text-muted m-0">Category: { item.catname }</p>
                                         </div>
                                         <Button variant="danger" className="my-3 shadow-sm me-3">
-                                            <i class="bi bi-x-circle-fill"></i>
+                                            <i className="bi bi-x-circle-fill"></i>
                                         </Button>
                                     </Accordion.Header>
                                     <Accordion.Body className="py-5">

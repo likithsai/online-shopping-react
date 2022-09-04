@@ -148,12 +148,12 @@ const CartPage = (props) => {
                                                 {
                                                      (loginSession.isLoggedIn) ?
                                                          <> 
-                                                             <i class="bi bi-wallet-fill me-2"></i>
+                                                             <i className="bi bi-wallet-fill me-2"></i>
                                                              <span>{ "Pay " + AppData.currency[0].baseCurrencySymbol + totalAmt }</span>
                                                          </>
                                                      : 
                                                          <>
-                                                             <i class="bi bi-box-arrow-in-right me-2"></i>
+                                                             <i className="bi bi-box-arrow-in-right me-2"></i>
                                                              <span>Login to proceed payment</span>
                                                          </>
                                                 }

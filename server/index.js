@@ -61,29 +61,41 @@ db.connect(function(err) {
     });
 
     //  get user details from database
-    app.post('/users', (req, res) => {
-        let temp = [], id = req.body.id;
-        db.query(`SELECT DISTINCT user_id, user_name, user_email, user_createddate FROM tbl_users WHERE user_id=${id}`, function(err, res) {
-            if (err) throw err;
-            for (let i in res) {
-                temp.push({
-                    "userid": res[i].user_id,
-                    "username": res[i].user_name,
-                    "useremail": res[i].user_email,
-                    "usercreateddate": res[i].user_createddate
-                });
-            }
+    app.post('/users', async(req, res) => {
+        let status = 200;
+        const result = await new Promise((resolve, reject) => {
+            db.query(`SELECT DISTINCT user_id, user_name, user_email, user_createddate FROM tbl_users WHERE user_email='${req.body.useremail}' AND user_password='${req.body.userpass}'`, function(err, res) {
+                if (err) return reject(err);
+                resolve(res);
+            });
         });
-        
-        setTimeout(() => {
-            if(temp.length != 0) {
-                res.status(200);
-                res.json({ status: '200', message: temp });
-            } else {
-                res.status(400);
-                res.json({ status: '400', message: [] });
-            }
-        }, 5);
+
+        if(result.length !== 0) {
+            status = 200;
+        } else {
+            status = 400;
+        }
+
+        res.status(status);
+        res.json({ status: status, message: result });
+
+        // if(result.length !== 0) {
+        //     let temp = [];
+        //     for (let i in result) {
+        //         temp.push({
+        //             "userid": result[i].user_id,
+        //             "username": result[i].user_name,
+        //             "useremail": result[i].user_email,
+        //             "usercreateddate": result[i].user_createddate
+        //         });
+        //     }
+
+        //     res.status(200);
+        //     res.json({ status: '200', message: temp });
+        // } else {
+        //     res.status(400);
+        //     res.json({ status: '400', message: [] });
+        // }
     });
 
     //  add purchase order into database
