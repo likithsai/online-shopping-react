@@ -28,9 +28,9 @@ const Header = (props) => {
                             {
                                 (loginSession.isLoggedIn) ? (
                                     <li className="list-group-item bg-light d-flex align-items-center justify-content-between px-4 border-0">
-                                        <div className="display-6 my-2">
-                                            <i className="bi bi-person-circle me-3"></i>
+                                        <div className="fs-5 my-2 mb-3 d-flex align-items-center justify-content-between w-100">
                                             <span className="fw-bold">{ loginSession.user[0].userName }</span>
+                                            <i className="bi bi-person-circle"></i>
                                         </div>
                                     </li>
                                 ) : ''

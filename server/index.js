@@ -46,18 +46,22 @@ db.connect(function(err) {
     });
 
     //  add users into database
-    app.post('/registeruser', (req, res) => {
-        db.query(`
-            INSERT INTO tbl_users(user_name, user_email, user_password) VALUES(
+    app.post('/registeruser', async(req, res) => {
+        let status = 200;
+
+        const result = await new Promise((resolve, reject) => {
+            db.query(`INSERT INTO tbl_users(user_name, user_email, user_password) VALUES(
                 '${req.body.username}', 
                 '${req.body.useremail}', 
                 '${req.body.userpass}'
             )`, function(err, res) {
-                if (err) throw err;
-            }
-        );
-        res.status(200);
-        res.json({ status: '200', message: "success" });
+                if (err) return reject(err);
+                resolve(res);
+            });
+        });
+        
+        res.status(status);
+        res.json({ status: status, message: result });
     });
 
     //  get user details from database
@@ -78,24 +82,6 @@ db.connect(function(err) {
 
         res.status(status);
         res.json({ status: status, message: result });
-
-        // if(result.length !== 0) {
-        //     let temp = [];
-        //     for (let i in result) {
-        //         temp.push({
-        //             "userid": result[i].user_id,
-        //             "username": result[i].user_name,
-        //             "useremail": result[i].user_email,
-        //             "usercreateddate": result[i].user_createddate
-        //         });
-        //     }
-
-        //     res.status(200);
-        //     res.json({ status: '200', message: temp });
-        // } else {
-        //     res.status(400);
-        //     res.json({ status: '400', message: [] });
-        // }
     });
 
     //  add purchase order into database

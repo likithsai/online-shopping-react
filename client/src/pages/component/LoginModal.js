@@ -9,39 +9,54 @@ import AppData from '../../data/appdata.json';
 const LoginModal = (props) => {
     const [ email, setEmail ] = useState();
     const [ pass, setPass ] = useState();
+    const [ registerUsername, setRegisterUsername ] = useState();
+    const [ registerEmail, setRegisterEmail ] = useState();
+    const [ registerPassword, setRegisterPassword ] = useState(); 
+    const [ registerConfirmPassword, setRegisterConfirmPassword ] = useState();
     const dispatch = useDispatch();
     const [ showRegisterModal, setShowRegisterModal ] = useState(false);
 
-    const submitForm = async(event) => {
-        event.preventDefault();
+    const fetchData = async(url, params, callback) => {
         const settings = {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({
-                'useremail': email,
-                'userpass': pass
-            })
+            body: JSON.stringify(params)
         };
 
-        const response = await fetch(AppData.apiserver + '/users', settings);
+        const response = await fetch(url, settings);
         const data = await response.json();
+        callback(data);
+    }
 
-        if(data.message.length > 0) {
-            dispatch(
-                login({
-                    isLoggedIn: true, 
-                    user: [{ 
-                        userId: data.message[0].user_id,
-                        userName: data.message[0].user_name, 
-                        userEmail: data.message[0].user_email
-                    }]
-                    // user: data.message
-                })
-            );
-        }
+    const submitRegisterForm = async(event) => {
+        event.preventDefault();
+        await fetchData(`${AppData.apiserver}/registeruser`, { 'username': registerUsername, 'useremail': registerEmail, 'userpass': registerPassword }, (data) => {
+            console.log(data);
+            setShowRegisterModal(false);
+        });
+        props.onSuccessCallback();
+    }
+
+    const submitLoginForm = async(event) => {
+        event.preventDefault();
+
+        await fetchData(`${AppData.apiserver}/users`, { 'useremail': email, 'userpass': pass }, (data) => {
+            if(data.message.length > 0) {
+                dispatch(
+                    login({
+                        isLoggedIn: true, 
+                        user: [{ 
+                            userId: data.message[0].user_id,
+                            userName: data.message[0].user_name, 
+                            userEmail: data.message[0].user_email
+                        }]
+                    })
+                );
+            }
+        });
         props.onSuccessCallback();
     }
 
@@ -55,7 +70,7 @@ const LoginModal = (props) => {
                         </div>
 
                         <div className="modal-body p-5 pt-0">
-                            <form onSubmit={submitForm}>
+                            <form onSubmit={submitLoginForm}>
                                 <div className="form-floating mb-3">
                                     <input type="email" className="form-control rounded-3" id="floatingInput" placeholder="name@example.com" onChange={(e) => setEmail(e.target.value)} />
                                     <label htmlFor="floatingInput">Email address</label>
@@ -87,22 +102,22 @@ const LoginModal = (props) => {
                         </div>
 
                         <div className="modal-body p-5 pt-0">
-                            <form>
+                            <form onSubmit={submitRegisterForm}>
                                 <div className="form-floating mb-3">
-                                    <input type="email" className="form-control rounded-3" id="floatingInput" placeholder="name" />
-                                    <label for="floatingInput">Name</label>
+                                    <input type="text" className="form-control rounded-3" id="floatingName" placeholder="name" onChange={(e) => setRegisterUsername(e.target.value)} />
+                                    <label htmlFor="floatingName">Name</label>
                                 </div>
                                 <div className="form-floating mb-3">
-                                    <input type="email" className="form-control rounded-3" id="floatingInput" placeholder="name@example.com" />
-                                    <label for="floatingInput">Email address</label>
+                                    <input type="email" className="form-control rounded-3" id="floatingEmail" placeholder="name@example.com" onChange={(e) => setRegisterEmail(e.target.value)} />
+                                    <label htmlFor="floatingEmail">Email address</label>
                                 </div>
                                 <div className="form-floating mb-3">
-                                    <input type="password" className="form-control rounded-3" id="floatingPassword" placeholder="Password" />
-                                    <label for="floatingPassword">Password</label>
+                                    <input type="password" className="form-control rounded-3" id="floatingPassword" placeholder="Password" onChange={(e) => setRegisterPassword(e.target.value)}/>
+                                    <label htmlFor="floatingPassword">Password</label>
                                 </div>
                                 <div className="form-floating mb-3">
-                                    <input type="password" className="form-control rounded-3" id="floatingPassword" placeholder="Confirm Password" />
-                                    <label for="floatingPassword">Confirm Password</label>
+                                    <input type="password" className="form-control rounded-3" id="floatingConfirmPassword" placeholder="Confirm Password" onChange={(e) => setRegisterConfirmPassword(e.target.value)} />
+                                    <label htmlFor="floatingConfirmPassword">Confirm Password</label>
                                 </div>
                                 <div className="mt-3 mb-4 text-center">
                                     <small className="text-muted">By clicking Sign up, you agree to the terms of use.</small>
