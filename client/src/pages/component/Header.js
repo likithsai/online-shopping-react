@@ -25,6 +25,16 @@ const Header = (props) => {
                 <div className="container">
                     <div className="row p-0">
                         <ul className="list-group list-group-flush w-100 p-0">
+                            {
+                                (loginSession.isLoggedIn) ? (
+                                    <li className="list-group-item bg-light d-flex align-items-center justify-content-between px-4 border-0">
+                                        <div className="display-6 my-2">
+                                            <i className="bi bi-person-circle me-3"></i>
+                                            <span className="fw-bold">{ loginSession.user[0].userName }</span>
+                                        </div>
+                                    </li>
+                                ) : ''
+                            }
                             <li className="list-group-item bg-light d-flex align-items-center justify-content-between px-4">
                                 <div onClick={() => history('/orders')}>
                                     <i className="bi bi-list me-3"></i>
