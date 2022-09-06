@@ -31,6 +31,21 @@ const ProductPage = (props) => {
         setShowToast(true);
     }
 
+    const fetchData = async(url, params, callback) => {
+        const settings = {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(params)
+        };
+
+        const response = await fetch(url, settings);
+        const data = await response.json();
+        callback(data);
+    }
+
     return (
         <div className="productpage">
             <Toast className="position-fixed m-3 bottom-0 end-0 bg-success" onClose={() => setShowToast(false)} show={showToast} delay={3000} autohide>
@@ -86,13 +101,17 @@ const ProductPage = (props) => {
                                                 }
                                                 <button className="btn btn-outline-dark flex-shrink-0" type="button" onClick={() => {
                                                     if(loginSession.isLoggedIn) {
+                                                        console.log(loginSession.user[0].userId);
                                                         payment.initiatePayment (
                                                             item.itemname, 
                                                             item.itemdescshort,
                                                             item.itemimages[0].imageurl, 
                                                             item.itemnewprice,
                                                             function(response) {
-                                                                alert(response.razorpay_payment_id);
+                                                                // alert(response.razorpay_payment_id);
+                                                                fetchData(`${AppData.apiserver}/registerorder`, { 'ordername': item.itemname, 'ordercusid': loginSession.user[0].userId, 'orderprice': item.itemnewprice }, (data) => {
+                                                                    console.log(data);
+                                                                });
                                                             }
                                                         ) 
                                                     } else {

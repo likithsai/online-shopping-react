@@ -8,7 +8,6 @@ const express = require("express"),
     mailer = require('./include/email'),
     DBQuery = require('./data/DBQuery.json'),
     PORT = process.env.PORT || 3001,
-    bodyParser = require('body-parser'),
     logFolder = './log',
     app = express();
 
@@ -67,7 +66,7 @@ db.connect(function(err) {
     //  get user details from database
     app.post('/users', async(req, res) => {
         let status = 200;
-        const result = await new Promise((resolve, reject) => {
+        const result = await new Promise((resolve,reject) => {
             db.query(`SELECT DISTINCT user_id, user_name, user_email, user_createddate FROM tbl_users WHERE user_email='${req.body.useremail}' AND user_password='${req.body.userpass}'`, function(err, res) {
                 if (err) return reject(err);
                 resolve(res);
@@ -85,18 +84,23 @@ db.connect(function(err) {
     });
 
     //  add purchase order into database
-    app.post('/registerorder', (req, res) => {
-        db.query(`
-            INSERT INTO tbl_orders(order_name, order_cusid, order_price) VALUES(
-                '${req.body.ordername}', 
-                ${req.body.ordercusid}, 
-                ${req.body.orderprice}
-            )`, function(err, res) {
-                if (err) throw err;
-            }
-        );
-        res.status(200);
-        res.json({ status: '200', message: "success" });
+    app.post('/registerorder', async(req, res) => {
+        let status = 200;
+        const result = await new Promise((resolve,reject) => {
+            db.query(`
+                INSERT INTO tbl_orders(order_name, order_cusid, order_price) VALUES(
+                    '${req.body.ordername}', 
+                    ${req.body.ordercusid}, 
+                    ${req.body.orderprice}
+                )`, function(err, res) {
+                    if (err) return reject(err);
+                    resolve(res);
+                }
+            );
+        });
+
+        res.status(status);
+        res.json({ status: status, message: result });
     });
 
     //  get order details based on userid

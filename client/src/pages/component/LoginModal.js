@@ -34,7 +34,6 @@ const LoginModal = (props) => {
     const submitRegisterForm = async(event) => {
         event.preventDefault();
         await fetchData(`${AppData.apiserver}/registeruser`, { 'username': registerUsername, 'useremail': registerEmail, 'userpass': registerPassword }, (data) => {
-            console.log(data);
             setShowRegisterModal(false);
         });
         props.onSuccessCallback();
