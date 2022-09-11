@@ -7,9 +7,9 @@ import Footer from "../component/Footer";
 export default function Home() {
   const [ serverStatus, setServerStatus ] = useState(true);
   useEffect(() => {
-    // fetch("/api")
-    //   .then((response) => response.json())
-    //   .then((data) => setServerStatus(data.status));
+    fetch("/api/products")
+      .then((response) => response.json())
+      .then((data) => console.log(data.message[0].products));
   }, []);
 
   return (

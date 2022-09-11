@@ -1,5 +1,5 @@
 import DB from "./includes/db";
-import settings from "../../data/settings";
+import settings from "../../data/config";
 
 export default function dbConfig(req, res) {
   DB.connect((err) => {
