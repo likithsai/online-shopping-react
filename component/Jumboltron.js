@@ -11,11 +11,15 @@ const Jumboltron = (props) => {
         </div>
 
         <div class="container">
-          <div class="row height d-flex justify-content-center align-items-center mt-5">
+          <div class="row height d-flex justify-content-center align-items-center my-5">
             <div class="col-md-10">
               <div class="d-flex align-items-center shadow-sm">
-                <input type="text" class="form-control rounded-0 rounded-start" placeholder="Search for Products ..." />
-                <button class="btn btn-secondary rounded-0 rounded-end"><i class="bi bi-search"></i></button>
+                {/* <input type="text" class="form-control rounded-0 rounded-start" placeholder="Search for Products ..." /> */}
+                <div class="form-floating w-100">
+                  <input type="text" class="form-control rounded-0 rounded-start" id="floatingInput" placeholder="name@example.com" />
+                  <label for="floatingInput">Search for products</label>
+                </div>
+                <button class="btn btn-secondary rounded-0 rounded-end p-3"><i class="bi bi-search"></i></button>
               </div>
             </div>
           </div>
