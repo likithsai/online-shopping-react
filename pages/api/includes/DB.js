@@ -2,7 +2,7 @@
 //  Contains database connection settings
 
 import mysql from "mysql";
-import settings from "../../../data/settings";
+import settings from "../../../data/config";
 
 const DB = mysql.createConnection({
   host: settings.server[0].dbserver,
