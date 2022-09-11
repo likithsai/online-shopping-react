@@ -1,14 +1,15 @@
 import Head from "next/head";
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Header from "../component/Header";
 import Jumboltron from "../component/Jumboltron";
 import Footer from "../component/Footer";
 
 export default function Home() {
+  const [ serverStatus, setServerStatus ] = useState(true);
   useEffect(() => {
-    fetch("/api")
-      .then((response) => response.json())
-      .then((data) => console.log(data));
+    // fetch("/api")
+    //   .then((response) => response.json())
+    //   .then((data) => setServerStatus(data.status));
   }, []);
 
   return (
