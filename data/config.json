@@ -1,8 +1,4 @@
 {
-    "appname": "Shopping",
-    "payment": [{
-        "apikey": ""
-    }],
     "server" : [{
         "dbserver": "localhost",
         "dbuser": "root",
