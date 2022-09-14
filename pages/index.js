@@ -13,8 +13,7 @@ export default function Home() {
       const getProductData = async() => {
           const user = await fetch("/api/products")
             .then(response => response.json())
-            // .then(res => console.log(res.message.products))
-            .then(res => res.message);
+            .then(res => res.message[0]);
           setProducts(user.products);
           setCategories(user.categories);
       }
