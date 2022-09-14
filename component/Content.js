@@ -5,6 +5,7 @@ import React, { useState, useEffect } from 'react';
 const Content = (props) => {
     const [ itemData, setItemData ] = useState([]);
     const [ categories, setCategories ] = useState([]);
+    const [ selectedCategories, setSelectedCategories ] = useState('All');
     const LIMITAMOUNT = 8;
     const [ maxLimit, setMaxLimit ] = useState(LIMITAMOUNT);
 
@@ -21,10 +22,40 @@ const Content = (props) => {
         });
     }, [maxLimit]);
 
+    const handleCategoriesClick = (value) => {
+        if(value.toLowerCase() !== 'all') {
+            setItemData(props.products.filter(item => item.catname === value.toLowerCase()));
+        } else {
+            setItemData(props.products);
+        }
+
+        setMaxLimit(LIMITAMOUNT);
+        setSelectedCategories(value);
+    }
+
     return (
-        <main>
+        <main className="pt-5">
             <div className="container px-4 px-lg-5">
-                <div className={ (itemData.length > 0) ? "row justify-content-center gx-4 gx-lg-5 row-cols-1 row-cols-md-2 row-cols-xl-4 pt-5" : "row justify-content-center" }>
+                <div className="row">
+                    <ul className="nav justify-content-center">
+                    {
+                        categories.map((item, index) => {
+                            return (
+                                <li className="nav-item" key={index} onClick={(e) => handleCategoriesClick(item.catname)}>
+                                    <button className={ (item.catname.toLowerCase() === selectedCategories.toLowerCase()) ? 'text-dark card shadow-sm me-2 my-1 me-2 bg-warning' : 'text-dark card shadow-sm me-2 my-1 me-2'} value={item.catname}>
+                                        <div className="card-body text-center py-2 px-4 d-flex align-items-center">
+                                            <i className={ item.caticon + " me-2"}></i>
+                                            <span className="card-text text-center fw-bold me-2">{ item.catname }</span>
+                                        </div>
+                                    </button>
+                                </li>
+                            )
+                        })
+                    }
+                    </ul>
+                    <p className="my-2 text-muted text-center">{itemData.length} Items found</p>
+                </div>
+                <div className={ (itemData.length > 0) ? "row justify-content-center gx-4 gx-lg-5 row-cols-1 row-cols-md-2 row-cols-xl-4 mt-5" : "row justify-content-center" }>
                 {
                     (itemData.length > 0) ? (
                         itemData.slice(0, maxLimit).map((item, index, length) => {
