@@ -11,14 +11,12 @@ const Content = (props) => {
     useEffect(() => {
         setItemData(props.products);
         setCategories(props.categories);
-        console.log(itemData.length);
     }, [props.products, props.categories]);
 
     useEffect(() => {
         window.addEventListener('scroll', function () {
             if (Math.round(window.innerHeight + window.scrollY) >= document.body.offsetHeight - 300) {
                 setMaxLimit(maxLimit + LIMITAMOUNT);
-                // this.alert('called');
             }
         });
     }, [maxLimit]);
@@ -26,7 +24,7 @@ const Content = (props) => {
     return (
         <main className="pt-5">
             <div className="container px-4 px-lg-5">
-                <div className="row gx-4 gx-lg-5 row-cols-1 row-cols-md-2 row-cols-xl-4 justify-content-center">
+                <div className={ (itemData.length > 0) ? "row justify-content-center gx-4 gx-lg-5 row-cols-1 row-cols-md-2 row-cols-xl-4" : "row justify-content-center" }>
                 {
                     (itemData.length > 0) ? (
                         itemData.slice(0, maxLimit).map((item, index, length) => {
@@ -56,7 +54,20 @@ const Content = (props) => {
                                 </div>
                             )
                         })
-                    ) : (<p>No Items</p>)
+                    ) : (
+                        <>
+                            <div className="container">
+                                <div className="row px-lg-5">
+                                    <div className="col-md-12 text-center my-5 h-100">
+                                        <div className="my-3">
+                                            <h1 className="h1 fw-bolder">No Items</h1>
+                                            <div className="error-details">Your cart is empty. Please add items to cart.</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </>
+                    )
                 }
                 </div>
             </div>
