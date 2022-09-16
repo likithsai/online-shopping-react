@@ -1,8 +1,12 @@
 //  content.js
 import Image from 'next/image';
 import React, { useState, useEffect } from 'react';
+import { addItemToCart } from '../store/actions/cartActions';
+import { useSelector, useDispatch } from "react-redux";
 
 const Content = (props) => {
+    const dispatch = useDispatch();
+    const cartItems = useSelector((state) => state.cartItems);
     const [ itemData, setItemData ] = useState([]);
     const [ categories, setCategories ] = useState([]);
     const [ selectedCategories, setSelectedCategories ] = useState('All');
@@ -34,7 +38,7 @@ const Content = (props) => {
     }
 
     const addToCart = (itm) => {
-        alert("Item : " + JSON.stringify(itm));
+        dispatch(addItemToCart(itm));
     }
 
     return (

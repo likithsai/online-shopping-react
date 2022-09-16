@@ -1,7 +1,6 @@
 import Head from "next/head";
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getSampleData } from "../store/actions/sampleAction";
 import Header from "../component/Header";
 import Jumboltron from "../component/Jumboltron";
 import Content from "../component/Content";
@@ -10,9 +9,7 @@ import Footer from "../component/Footer";
 export default function Home() {
   const [ products, setProducts ] = useState([]);
   const [ categories, setCategories] = useState([]);
-
   const dispatch = useDispatch();
-  const { sample } =  useSelector((state) => state.sampleData);
 
   useEffect(() => {
       const getProductData = async() => {
@@ -25,11 +22,6 @@ export default function Home() {
 
       getProductData();
   }, []);
-
-  useEffect(() => {
-    dispatch(getSampleData());
-    console.log(sample);
-  }, [products, categories]);
 
   return (
     <div>

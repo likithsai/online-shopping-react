@@ -1,9 +1,19 @@
 //  header.js
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
+import { useSelector, useDispatch } from "react-redux";
+
 
 const Header = (props) => {
   const history = useRouter();
+  const cartItems = useSelector((state) => state.cartItems);
+  const dispatch = useDispatch();
+  const [ cartCount, setCartCount ] = useState(cartItems.items.length);
+
+  useEffect(() => {
+      console.log(cartItems.items);
+      setCartCount(cartItems.items.length);
+  }, [cartItems]);
 
   return (
     <nav className="header">
@@ -20,7 +30,7 @@ const Header = (props) => {
             <button className="btn m-0 p-1">
               <span className="badge bg-dark text-white ms-1 px-2 rounded-pill py-2 px-3 d-flex align-items-center">
                 <i className="bi bi-cart me-2 fs-6"></i>
-                <span>10</span>
+                <span>{ cartCount }</span>
               </span>
             </button>
           </div>
