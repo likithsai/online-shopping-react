@@ -6,4 +6,7 @@
     "prettier.useEditorConfig": false,
     "prettier.useTabs": false,
     "prettier.configPath": ".prettierrc.json",
+    "[json]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
 }

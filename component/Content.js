@@ -33,6 +33,10 @@ const Content = (props) => {
         setSelectedCategories(value);
     }
 
+    const addToCart = (itm) => {
+        alert("Item : " + JSON.stringify(itm));
+    }
+
     return (
         <main className="pt-5">
             <div className="container px-4 px-lg-5">
@@ -62,10 +66,10 @@ const Content = (props) => {
                             return (
                                 <div className="col mb-5 px-2" key={index}>
                                     <div className="card shadow-sm h-100">
-                                        <a className="text-decoration-none">
+                                        <a className="text-decoration-none" href={ "/products/" + item.itemid }>
                                             <Image width="100%" height="100%" layout="responsive" objectFit="contain" className="card-img-top" src={item.itemimages[0].imageurl} alt={item.itemimages[0].imagealt} />
                                             <div className="card-body p-4">
-                                                <span className="h5 fw-bolder text-dark text-decoration-none">{item.itemname}</span>
+                                                 <span className="h5 fw-bolder text-dark text-decoration-none">{item.itemname}</span>
                                                 <p className="item-shorttext mb-3 text-dark">{item.itemdescshort}</p>
                                                 <div className="w-100">
                                                     <span className="fw-bold me-2 card_txt_nip text-dark">{ item.currency[0].baseCurrencySymbol + item.itemnewprice }</span>
@@ -76,7 +80,7 @@ const Content = (props) => {
                                         </a>
                                         <div className="card-footer p-4 pt-0 border-top-0 bg-transparent">
                                             <div className="text-center d-flex align-items-center justify-content-between">
-                                                <button className="btn btn-outline-dark mt-auto w-100" onClick={(e) =>alert('clicked')}>
+                                                <button className="btn btn-outline-dark mt-auto w-100" onClick={(e) => addToCart(item)}>
                                                     <span>Add to cart</span>
                                                 </button>
                                             </div>
