@@ -29,7 +29,7 @@ const Header = (props) => {
             </button>
             <button className="btn m-0 p-1">
               <span className="badge bg-dark text-white ms-1 px-2 rounded-pill py-2 px-3 d-flex align-items-center">
-                <i className="bi bi-cart me-2 fs-6"></i>
+                <i className="bi bi-cart-fill me-2 fs-6"></i>
                 <span>{ cartCount }</span>
               </span>
             </button>

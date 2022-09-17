@@ -1,5 +1,5 @@
 //  productsjs
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Head from "next/head";
 import { useRouter } from 'next/router';
 import Header from "../../component/Header";
@@ -7,6 +7,33 @@ import Footer from "../../component/Footer";
 
 export default function Products() {
     const { query: { id } } = useRouter();
+    const [ productData, setProductData ] = useState([]);
+
+    const fetchData = async(url, params, callback) => {
+        const settings = {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(params)
+        };
+
+        const response = await fetch(url, settings);
+        const data = await response.json();
+        
+        callback(data);
+    }
+
+    useEffect(() => {
+        fetchData('/api/getproducts', { 'productid': id }, (data) => {
+            setProductData(data.message);
+        });
+    }, [id]);
+
+    useEffect(() => {
+        console.log(productData[0]);
+    }, [productData]);
 
     return (
         <div className="products">
