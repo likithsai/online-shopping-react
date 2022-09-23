@@ -5,9 +5,14 @@ import { useRouter } from 'next/router';
 import Carousel from 'react-bootstrap/Carousel';
 import Header from "../../component/Header";
 import Footer from "../../component/Footer";
+import { addItemToCart } from '../../store/actions/cartActions';
+import { useSelector, useDispatch } from "react-redux";
+import Link from 'next/link';
 
 export default function Products() {
     const { query: { id } } = useRouter();
+    const dispatch = useDispatch();
+    const cartItems = useSelector((state) => state.cartItems);
     const [ itemId, setItemId ] = useState('');
     const [ itemName, setItemName ] = useState('');
     const [ itemDescShort, setItemDescShort ] = useState('');
@@ -58,6 +63,11 @@ export default function Products() {
         window.scrollTo(0, 0);
     }, [id]);
 
+
+    const addToCart = (itm) => {
+        dispatch(addItemToCart(itm));
+    } 
+
     if(itemId.length > 0) {
         return (
             <div className="products">
@@ -97,10 +107,28 @@ export default function Products() {
                                     </div>
                                     <p className="lead">{itemDescShort}</p>
                                     <div className="d-flex">
-                                        <button className="btn btn-outline-dark flex-shrink-0 me-2" type="button" onClick={() => addToCart(item)}>
-                                            <i className="bi-cart-fill me-1"></i>
-                                            <span>Add to cart</span>
-                                        </button>
+                                        {
+                                            cartItems.items.some(val => val.itemid === itemId) ? (
+                                                <button className="btn btn-outline-dark flex-shrink-0 me-2" type="button" disabled>
+                                                    <i className="bi-cart-fill me-1"></i>
+                                                    <span>Added to cart</span>
+                                                </button>
+                                            ) : (
+                                                <button className="btn btn-outline-dark flex-shrink-0 me-2" type="button" onClick={() => addToCart({ 
+                                                    "itemid": itemId,
+                                                    "itemname": itemName,
+                                                    "itemdescshort": itemDescShort,
+                                                    "itemdesclong": itemDescLong,
+                                                    "itemimages": itemImages,
+                                                    "catname": itemCategory,
+                                                    "itemnewprice": itemNewPrice,
+                                                    "itemoldprice": itemOldPrice
+                                                })}>
+                                                    <i className="bi-cart-fill me-1"></i>
+                                                    <span>Add to cart</span>
+                                                </button>
+                                            )
+                                        }
                                         <button className="btn btn-outline-dark flex-shrink-0" type="button" onClick={() => alert('clicked')}>
                                             <i className="bi-bag-fill me-1"></i>
                                             <span>Buy now</span>
@@ -122,21 +150,23 @@ export default function Products() {
                                     return (
                                         <div className="col mb-5 px-2" key={index}>
                                             <div className="card shadow-sm h-100 text-decoration-none">
-                                                <a href={ '/products/' + item.itemid } className="text-decoration-none">
-                                                    <img loading="lazy" className="card-img-top" src={item.itemimages[0].imageurl} alt={item.itemimages[0].imagealt} />
-                                                    <div className="card-body p-4">
-                                                        <span className="h5 fw-bolder text-dark text-decoration-none">{item.itemname}</span>
-                                                        <p className="item-shorttext mb-3 text-dark">{item.itemdescshort}</p>
-                                                        <div className="w-100">
-                                                            <span className="fw-bold me-2 card_txt_nip text-dark">{ itemCurrency[0].baseCurrencySymbol + item.itemnewprice }</span>
-                                                            <span className="text-muted text-decoration-line-through me-2">{ itemCurrency[0].baseCurrencySymbol + item.itemoldprice }</span>
-                                                            <span className="me-2 text-success">{Math.round((item.itemoldprice - item.itemnewprice)/item.itemnewprice * 100)}% off</span>
+                                                <Link href={ '/products/' + item.itemid } className="text-decoration-none">
+                                                    <div>
+                                                        <img loading="lazy" className="card-img-top" src={item.itemimages[0].imageurl} alt={item.itemimages[0].imagealt} />
+                                                        <div className="card-body p-4">
+                                                            <span className="h5 fw-bolder text-dark text-decoration-none">{item.itemname}</span>
+                                                            <p className="item-shorttext mb-3 text-dark">{item.itemdescshort}</p>
+                                                            <div className="w-100">
+                                                                <span className="fw-bold me-2 card_txt_nip text-dark">{ itemCurrency[0].baseCurrencySymbol + item.itemnewprice }</span>
+                                                                <span className="text-muted text-decoration-line-through me-2">{ itemCurrency[0].baseCurrencySymbol + item.itemoldprice }</span>
+                                                                <span className="me-2 text-success">{Math.round((item.itemoldprice - item.itemnewprice)/item.itemnewprice * 100)}% off</span>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </a>
+                                                </Link>
                                                 <div className="card-footer p-4 pt-0 border-top-0 bg-transparent">
                                                     <div className="text-center d-flex align-items-center justify-content-between">
-                                                        <button className="btn btn-outline-dark mt-auto w-100">
+                                                        <button className="btn btn-outline-dark mt-auto w-100" onClick={() => addToCart(item)}>
                                                             <span>Add to cart</span>
                                                         </button>
                                                     </div>

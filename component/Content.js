@@ -3,6 +3,7 @@ import Image from 'next/image';
 import React, { useState, useEffect } from 'react';
 import { addItemToCart } from '../store/actions/cartActions';
 import { useSelector, useDispatch } from "react-redux";
+import Link from 'next/link';
 
 const Content = (props) => {
     const dispatch = useDispatch();
@@ -70,18 +71,20 @@ const Content = (props) => {
                             return (
                                 <div className="col mb-5 px-2" key={index}>
                                     <div className="card shadow-sm h-100">
-                                        <a className="text-decoration-none" href={ "/products/" + item.itemid }>
-                                            <Image width="100%" height="100%" layout="responsive" objectFit="contain" className="card-img-top" src={item.itemimages[0].imageurl} alt={item.itemimages[0].imagealt} />
-                                            <div className="card-body p-4">
-                                                 <span className="h5 fw-bolder text-dark text-decoration-none">{item.itemname}</span>
-                                                <p className="item-shorttext mb-3 text-dark">{item.itemdescshort}</p>
-                                                <div className="w-100">
-                                                    <span className="fw-bold me-2 card_txt_nip text-dark">{ item.currency[0].baseCurrencySymbol + item.itemnewprice }</span>
-                                                    <span className="text-muted text-decoration-line-through me-2">{ item.currency[0].baseCurrencySymbol + item.itemoldprice }</span>
-                                                    <span className="me-2 text-success">{Math.round((item.itemoldprice - item.itemnewprice)/item.itemnewprice * 100)}% off</span>
+                                        <Link href={ "/products/" + encodeURIComponent(item.itemid) }>
+                                            <div>
+                                                <Image width="100%" height="100%" layout="responsive" objectFit="contain" className="card-img-top" src={item.itemimages[0].imageurl} alt={item.itemimages[0].imagealt} />
+                                                <div className="card-body p-4">
+                                                    <span className="h5 fw-bolder text-dark text-decoration-none">{item.itemname}</span>
+                                                    <p className="item-shorttext mb-3 text-dark">{item.itemdescshort}</p>
+                                                    <div className="w-100">
+                                                        <span className="fw-bold me-2 card_txt_nip text-dark">{ item.currency[0].baseCurrencySymbol + item.itemnewprice }</span>
+                                                        <span className="text-muted text-decoration-line-through me-2">{ item.currency[0].baseCurrencySymbol + item.itemoldprice }</span>
+                                                        <span className="me-2 text-success">{Math.round((item.itemoldprice - item.itemnewprice)/item.itemnewprice * 100)}% off</span>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </a>
+                                        </Link>
                                         <div className="card-footer p-4 pt-0 border-top-0 bg-transparent">
                                             <div className="text-center d-flex align-items-center justify-content-between">
                                             {
