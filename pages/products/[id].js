@@ -8,6 +8,7 @@ import Footer from "../../component/Footer";
 import { addItemToCart } from '../../store/actions/cartActions';
 import { useSelector, useDispatch } from "react-redux";
 import Link from 'next/link';
+import Image from 'next/image'
 
 export default function Products() {
     const { query: { id } } = useRouter();
@@ -87,11 +88,12 @@ export default function Products() {
                                         itemImages.map((img, ind) => {
                                             return(
                                                 <Carousel.Item key={ind}>
-                                                    <img
+                                                    {/* <img
                                                         loading="lazy"
                                                         className="card-img-top mb-5 mb-md-0"
                                                         src={img.imageurl}
-                                                        alt={img.imagealt} />
+                                                        alt={img.imagealt} /> */}
+                                                    <Image className="card-img-top mb-5 mb-md-0" src={img.imageurl} alt={img.imagealt} width="100%" height="100%" layout="responsive" objectFit="contain" />
                                                 </Carousel.Item>
                                             )
                                         })
@@ -152,7 +154,8 @@ export default function Products() {
                                             <div className="card shadow-sm h-100 text-decoration-none">
                                                 <Link href={ '/products/' + item.itemid } className="text-decoration-none">
                                                     <div>
-                                                        <img loading="lazy" className="card-img-top" src={item.itemimages[0].imageurl} alt={item.itemimages[0].imagealt} />
+                                                        <Image className="card-img-top" src={item.itemimages[0].imageurl} alt={item.itemimages[0].imagealt} width="100%" height="100%" layout="responsive" objectFit="contain" />
+                                                        {/* <img loading="lazy" className="card-img-top" src={item.itemimages[0].imageurl} alt={item.itemimages[0].imagealt} /> */}
                                                         <div className="card-body p-4">
                                                             <span className="h5 fw-bolder text-dark text-decoration-none">{item.itemname}</span>
                                                             <p className="item-shorttext mb-3 text-dark">{item.itemdescshort}</p>
