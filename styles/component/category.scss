@@ -1,0 +1,14 @@
+//  content
+@import '../include/responsive';
+
+.nav-scroll {
+    @include xs {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+
+        .nav-item {
+            display: inline-block;
+        }
+    }
+}

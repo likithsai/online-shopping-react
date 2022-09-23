@@ -45,7 +45,7 @@ const Content = (props) => {
         <main className="pt-5">
             <div className="container px-4 px-lg-5">
                 <div className="row">
-                    <ul className="nav justify-content-center">
+                    <ul className="nav justify-content-center nav-scroll">
                     {
                         categories.map((item, index) => {
                             return (
