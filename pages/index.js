@@ -33,7 +33,7 @@ export default function Home() {
       <Header headerTitle="Shopping App" logoURL="/" cartURL="/cart" />
       <Jumboltron title="Shop By Category" subTitle={"Shop with over 10 products listed."} />
       <Content products={products} categories={categories} />
-      <Footer />
+      <Footer copyrightText="© 2022 Company, Inc" />
     </div>
   );
 }

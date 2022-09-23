@@ -183,7 +183,7 @@ export default function Products() {
                         </div>
                     </section>
                 </main>
-                <Footer />
+                <Footer copyrightText="© 2022 Company, Inc" />
             </div>
         )
     } else {
