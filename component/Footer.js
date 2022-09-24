@@ -1,5 +1,6 @@
 //  Footer.js
 import React from "react";
+import Link from "next/link";
 
 const Footer = (props) => {
   return (
@@ -7,14 +8,24 @@ const Footer = (props) => {
       <div className="container">
         <ul className="nav justify-content-center border-bottom pb-3 mb-3">
           <li className="nav-item mx-1">
-            <a href="#" className="nav-link px-2 text-muted">
+            <Link href="/about">
+              <div className="nav-link px-2 text-muted">
+                <span>About</span>  
+              </div>
+            </Link>
+            {/* <a href="#" className="nav-link px-2 text-muted">
               <span>About</span>
-            </a>
+            </a> */}
           </li>
           <li className="nav-item mx-1">
-            <a href="#" className="nav-link px-2 text-muted">
+            <Link href="/track">
+              <div className="nav-link px-2 text-muted">
+                <span>Track your product</span>  
+              </div>
+            </Link>
+            {/* <a href="#" className="nav-link px-2 text-muted">
               <span>Track your product</span>
-            </a>
+            </a> */}
           </li>
         </ul>
         <p className="text-center text-muted">{props.copyrightText}</p>
