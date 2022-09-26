@@ -26,8 +26,7 @@ const LoginModal = (props) => {
 
   const submitRegisterForm = async (event) => {
     event.preventDefault();
-    await fetchData(
-      `/api/registeruser`,
+    await fetchData(`/api/registeruser`,
       {
         username: registerUsername,
         useremail: registerEmail,

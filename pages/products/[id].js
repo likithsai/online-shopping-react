@@ -5,6 +5,8 @@ import { useRouter } from 'next/router';
 import Carousel from 'react-bootstrap/Carousel';
 import Header from "../../component/Header";
 import Footer from "../../component/Footer";
+import LoginModal from "../../component/LoginModal";
+import Utils from "../../utils/utils";
 import { addItemToCart } from '../../store/actions/cartActions';
 import { useSelector, useDispatch } from "react-redux";
 import Link from 'next/link';
@@ -14,6 +16,7 @@ export default function Products() {
     const { query: { id } } = useRouter();
     const dispatch = useDispatch();
     const cartItems = useSelector((state) => state.cartItems);
+    const loginSession = useSelector((state) => state.loginSession);
     const [ itemId, setItemId ] = useState('');
     const [ itemName, setItemName ] = useState('');
     const [ itemDescShort, setItemDescShort ] = useState('');
@@ -24,25 +27,10 @@ export default function Products() {
     const [ itemOldPrice, setItemOldPrice ] = useState(0);
     const [ itemCurrency, setItemCurrency ] = useState([]);
     const [ relatedItems, setRelatedItems ] = useState([]);
-
-    const fetchData = async(url, params, callback) => {
-        const settings = {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(params)
-        };
-
-        const response = await fetch(url, settings);
-        const data = await response.json();
-        
-        callback(data);
-    }
-
+    const [showLoginModal, setShowLoginModal] = useState(false);
+    
     useEffect(() => {
-        fetchData('/api/getproducts', { 'productid': id }, (data) => {
+        Utils.fetchData('/api/getproducts', { 'productid': id }, (data) => {
 
             if (Object.keys(data.message.relateditems).length !== 0){
                 setRelatedItems(data.message.relateditems);
@@ -79,6 +67,7 @@ export default function Products() {
                 </Head>
                 <Header headerTitle="Shopping App" logoURL="/" cartURL="/cart" />
                 <main>
+                    <LoginModal show={showLoginModal} onHide={() => setShowLoginModal(false)} />
                     <section className="pt-sm-5">
                         <div className="container px-4 px-lg-5 my-5">
                             <div className="row gx-4 gx-lg-5 align-items-center">
@@ -88,11 +77,6 @@ export default function Products() {
                                         itemImages.map((img, ind) => {
                                             return(
                                                 <Carousel.Item key={ind}>
-                                                    {/* <img
-                                                        loading="lazy"
-                                                        className="card-img-top mb-5 mb-md-0"
-                                                        src={img.imageurl}
-                                                        alt={img.imagealt} /> */}
                                                     <Image className="card-img-top mb-5 mb-md-0" src={img.imageurl} alt={img.imagealt} width="100%" height="100%" layout="responsive" objectFit="contain" />
                                                 </Carousel.Item>
                                             )
@@ -131,7 +115,13 @@ export default function Products() {
                                                 </button>
                                             )
                                         }
-                                        <button className="btn btn-outline-dark flex-shrink-0" type="button" onClick={() => alert('clicked')}>
+                                        <button className="btn btn-outline-dark flex-shrink-0" type="button" onClick={() => {
+                                            if(loginSession.isLoggedIn) {
+                                                console.log("already logged in !");
+                                            } else {
+                                                setShowLoginModal(true);
+                                            }
+                                        }}>
                                             <i className="bi-bag-fill me-1"></i>
                                             <span>Buy now</span>
                                         </button>
