@@ -1,3 +1,4 @@
-export const ADDTOCART = "ADDTOCART";
-export const REMOVEFROMCART = "REMOVEFROMCART";
-export const REMOVEALLITEMSFROMCART = "REMOVEALLITEMSFROMCART";
+export const ADDTOCART = "addToCart";
+export const REMOVEFROMCART = "removeFromCart";
+export const REMOVEALLITEMSFROMCART = "removeAllItemFromCart";
+export const ADDCURRENCY = 'addCurrency';

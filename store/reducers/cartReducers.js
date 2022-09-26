@@ -1,4 +1,4 @@
-import { ADDTOCART, REMOVEFROMCART, REMOVEALLITEMSFROMCART } from "../types";
+import { ADDTOCART, REMOVEFROMCART, REMOVEALLITEMSFROMCART, ADDCURRENCY } from "../types";
 
 const INITIAL_STATE = {
     items: []
@@ -18,6 +18,9 @@ const cartReducers = (state = INITIAL_STATE, action) => {
 
         case REMOVEALLITEMSFROMCART:
             return { ...state, items: [] };
+
+        case ADDCURRENCY:
+            return { ...state, currency: [action.payload] };
 
         default:
             return state;

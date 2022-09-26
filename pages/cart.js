@@ -23,6 +23,11 @@ const CartPage = (props) => {
         setTotalAmt(cartItems.items.map(bill => bill.itemnewprice).reduce((acc, amount) => amount + acc, 0));
     }, []);
 
+    useEffect(() => {
+        console.log(actualAmt);
+        console.log(totalAmt);
+    }, [actualAmt, totalAmt]);
+
     const removeItems = (item) => {
         const temp = itemData.filter((el) => {
             return el.itemid != item.itemid
@@ -43,7 +48,7 @@ const CartPage = (props) => {
             {
                 (itemData.length > 0) ?
                     <>
-                        <CartJumboltron amt={ totalAmt } amtOld={ actualAmt } />
+                        <CartJumboltron amt={ totalAmt } amtOld={ actualAmt } baseCurrencySymbol="₹" />
                         <div className="container my-5">
                             <div className="row px-lg-5">
                                 <div className="col-12">
@@ -62,6 +67,7 @@ const CartPage = (props) => {
                                                             <tbody>
                                                             {
                                                                 itemData.map((item, index) => {
+                                                                    console.log(item.currency[0].baseCurrencySymbol);
                                                                     return (
                                                                         <tr className="border-bottom d-flex align-items-center justify-content-between w-100" key={index}>
                                                                             <td className="py-4 d-flex align-items-center w-75">
@@ -74,9 +80,9 @@ const CartPage = (props) => {
                                                                                 </p>
                                                                             </td>
                                                                             <td className="py-5 text-end">
-                                                                                <p className="fw-bolder m-0 h4">{ item.itemnewprice }</p>
+                                                                                <p className="fw-bolder m-0 h4">{ item.currency[0].baseCurrencySymbol + '' + item.itemnewprice }</p>
                                                                                 <div className="d-none d-lg-flex m-0 text-end justify-content-end">
-                                                                                    <p className="text-muted text-decoration-line-through m-0 me-2">{ item.itemoldprice }</p>
+                                                                                    <p className="text-muted text-decoration-line-through m-0 me-2">{ item.currency[0].baseCurrencySymbol + '' + item.itemoldprice }</p>
                                                                                     <p className="text-success m-0">({Math.round((item.itemoldprice - item.itemnewprice)/item.itemnewprice * 100)}% off)</p>
                                                                                 </div>
                                                                             </td>
@@ -103,7 +109,6 @@ const CartPage = (props) => {
                         </div>
                     </>
                 :
-                    <>
                         <div className="container my-5">
                             <div className="row px-lg-5">
                                 <div className="col-md-12 text-center my-5 h-100">
@@ -121,7 +126,6 @@ const CartPage = (props) => {
                                 </div>
                             </div>
                         </div>
-                    </>
             }
             </main>
             <Footer copyrightText="© 2022 Company, Inc" />

@@ -1,4 +1,4 @@
-import { ADDTOCART, REMOVEFROMCART, REMOVEALLITEMSFROMCART } from "../types";
+import { ADDTOCART, REMOVEFROMCART, REMOVEALLITEMSFROMCART, ADDCURRENCY } from "../types";
 
 export const addItemToCart = (item) => {
     return {
