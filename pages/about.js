@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Header from "../component/Header";
 import Footer from "../component/Footer";
 
-const about = (props) => {
+const AboutPage = (props) => {
     return (
         <>
             <Header headerTitle="Shopping App" logoURL="/" cartURL="/cart" />
@@ -14,4 +14,4 @@ const about = (props) => {
     )
 }
 
-export default about;
+export default AboutPage;

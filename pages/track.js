@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Header from "../component/Header";
 import Footer from "../component/Footer";
 
-const trackproduct = (props) => {
+const TrackProductPage = (props) => {
     return (
         <>
             <Header headerTitle="Shopping App" logoURL="/" cartURL="/cart" />
@@ -14,4 +14,4 @@ const trackproduct = (props) => {
     )
 }
 
-export default trackproduct;
+export default TrackProductPage;

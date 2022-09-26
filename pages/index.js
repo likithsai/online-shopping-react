@@ -6,7 +6,7 @@ import Jumboltron from "../component/Jumboltron";
 import Content from "../component/Content";
 import Footer from "../component/Footer";
 
-export default function Home() {
+const Homepage = (props) => {
   const [ products, setProducts ] = useState([]);
   const [ categories, setCategories] = useState([]);
   const dispatch = useDispatch();
@@ -37,3 +37,5 @@ export default function Home() {
     </div>
   );
 }
+
+export default Homepage;

@@ -9,7 +9,7 @@ import { useSelector, useDispatch } from "react-redux";
 import Head from "next/head";
 import Link from "next/link";
 
-const cart = (props) => {
+const CartPage = (props) => {
     const dispatch = useDispatch();
     const [ itemData, setItemData ] = useState([]);
     const [ totalAmt, setTotalAmt ] = useState(0);
@@ -129,4 +129,4 @@ const cart = (props) => {
     );
 }
 
-export default cart;
+export default CartPage;
