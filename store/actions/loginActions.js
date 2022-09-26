@@ -1,15 +1,15 @@
 import { LOGIN, LOGOUT } from "../types";
 
-export const login = (msg) => {
+export const login = (item) => {
     return { 
-        type: "LOGIN", 
-        payload: msg 
+        type: LOGIN, 
+        payload: item 
     }
 }     
 
-export const logout = (msg) => {
+export const logout = (item) => {
     return { 
-        type: "LOGOUT", 
-        payload: msg 
+        type: LOGOUT, 
+        payload: item 
     }
 }

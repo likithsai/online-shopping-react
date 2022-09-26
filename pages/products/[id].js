@@ -6,7 +6,7 @@ import Carousel from 'react-bootstrap/Carousel';
 import Header from "../../component/Header";
 import Footer from "../../component/Footer";
 import LoginModal from "../../component/LoginModal";
-import Utils from "../../utils/utils";
+import Utils from "../../utils/util";
 import { addItemToCart } from '../../store/actions/cartActions';
 import { useSelector, useDispatch } from "react-redux";
 import Link from 'next/link';
@@ -67,7 +67,7 @@ export default function Products() {
                 </Head>
                 <Header headerTitle="Shopping App" logoURL="/" cartURL="/cart" />
                 <main>
-                    <LoginModal show={showLoginModal} onHide={() => setShowLoginModal(false)} />
+                    <LoginModal show={showLoginModal} onHide={() => setShowLoginModal(false)} onSuccessCallback={(data) => setShowLoginModal(false)} />
                     <section className="pt-sm-5">
                         <div className="container px-4 px-lg-5 my-5">
                             <div className="row gx-4 gx-lg-5 align-items-center">

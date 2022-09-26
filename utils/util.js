@@ -12,7 +12,7 @@ const fetchData = async(url, params, callback) => {
 
     const response = await fetch(url, settings);
     const data = await response.json();
-    
+
     callback(data);
 }
 
