@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import Header from "../component/Header";
-import Footer from "../component/Footer";
+import Header from '../component/Header';
+import Footer from '../component/Footer';
 
 const AboutPage = (props) => {
     return (
@@ -11,7 +11,7 @@ const AboutPage = (props) => {
             </main>
             <Footer copyrightText="© 2022 Company, Inc" />
         </>
-    )
-}
+    );
+};
 
 export default AboutPage;
