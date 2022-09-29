@@ -31,7 +31,7 @@ const AdminPage = (props) => {
                             variant="primary"
                             onClick={handleClose}
                         >
-                            <i class="bi bi-save-fill me-2"></i>
+                            <i className="bi bi-save-fill me-2"></i>
                             <span>ADD</span>
                         </Button>
                     </div>
@@ -50,7 +50,7 @@ const AdminPage = (props) => {
                                 variant="primary"
                                 onClick={handleShow}
                             >
-                                <i class="bi bi-plus-circle-fill me-2"></i>
+                                <i className="bi bi-plus-circle-fill me-2"></i>
                                 <span>ADD</span>
                             </Button>
                             <Button
@@ -58,7 +58,7 @@ const AdminPage = (props) => {
                                 variant="success"
                                 onClick={handleShow}
                             >
-                                <i class="bi bi-save-fill me-2"></i>
+                                <i className="bi bi-save-fill me-2"></i>
                                 <span>SAVE</span>
                             </Button>
                         </div>

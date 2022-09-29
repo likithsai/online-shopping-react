@@ -78,8 +78,8 @@ const Content = (props) => {
                                                     <span className="h5 fw-bolder text-dark text-decoration-none">{item.itemname}</span>
                                                     <p className="item-shorttext mb-3 text-dark">{item.itemdescshort}</p>
                                                     <div className="w-100">
-                                                        <span className="fw-bold me-2 card_txt_nip text-dark">{ item.currency[0].baseCurrencySymbol + item.itemnewprice }</span>
-                                                        <span className="text-muted text-decoration-line-through me-2">{ item.currency[0].baseCurrencySymbol + item.itemoldprice }</span>
+                                                        <span className="fw-bold me-2 card_txt_nip text-dark">{ process.env.NEXT_PUBLIC_DEFAULTCURRENCYSYMBOL + item.itemnewprice }</span>
+                                                        <span className="text-muted text-decoration-line-through me-2">{ process.env.NEXT_PUBLIC_DEFAULTCURRENCYSYMBOL + item.itemoldprice }</span>
                                                         <span className="me-2 text-success">{Math.round((item.itemoldprice - item.itemnewprice)/item.itemnewprice * 100)}% off</span>
                                                     </div>
                                                 </div>

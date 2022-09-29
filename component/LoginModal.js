@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import { useSelector, useDispatch } from "react-redux";
 import { login } from "../store/actions/loginActions";
-import Util from '../Utils/Util';
+import Util from '../Utils/utility';
 
 const LoginModal = (props) => {
     const [ email, setEmail ] = useState();

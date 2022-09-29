@@ -6,7 +6,7 @@ export default async function products(req, res) {
     res.status(200).json({
         status: '200',
         message: {
-            currency: [product][0].currency,
+            // currency: [product][0].currency,
             filteredProducts: [product][0].products.filter(
                 (o) => o.itemid === id
             ),

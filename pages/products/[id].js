@@ -6,7 +6,7 @@ import Carousel from 'react-bootstrap/Carousel';
 import Header from '../../component/Header';
 import Footer from '../../component/Footer';
 import LoginModal from '../../component/LoginModal';
-import Utils from '../../utils/util';
+import Utils from '../../utils/utility';
 import { addItemToCart } from '../../store/actions/cartActions';
 import { useSelector, useDispatch } from 'react-redux';
 import Link from 'next/link';
@@ -108,13 +108,11 @@ export default function Products() {
                                     </h1>
                                     <div className="w-100 fs-5 mb-5 mt-2">
                                         <span className="fw-bold me-2 h2">
-                                            {itemCurrency[0]
-                                                .baseCurrencySymbol +
-                                                itemNewPrice}
+                                            { process.env.NEXT_PUBLIC_DEFAULTCURRENCYSYMBOL +
+                                                itemNewPrice }
                                         </span>
                                         <span className="text-muted text-decoration-line-through me-2">
-                                            {itemCurrency[0]
-                                                .baseCurrencySymbol +
+                                            { process.env.NEXT_PUBLIC_DEFAULTCURRENCYSYMBOL +
                                                 itemOldPrice}
                                         </span>
                                         <span className="me-2 text-success">
@@ -239,13 +237,11 @@ export default function Products() {
                                                             </p>
                                                             <div className="w-100">
                                                                 <span className="fw-bold me-2 card_txt_nip text-dark">
-                                                                    {itemCurrency[0]
-                                                                        .baseCurrencySymbol +
+                                                                    { process.env.NEXT_PUBLIC_DEFAULTCURRENCYSYMBOL +
                                                                         item.itemnewprice}
                                                                 </span>
                                                                 <span className="text-muted text-decoration-line-through me-2">
-                                                                    {itemCurrency[0]
-                                                                        .baseCurrencySymbol +
+                                                                    { process.env.NEXT_PUBLIC_DEFAULTCURRENCYSYMBOL +
                                                                         item.itemoldprice}
                                                                 </span>
                                                                 <span className="me-2 text-success">

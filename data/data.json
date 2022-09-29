@@ -16,10 +16,6 @@
                 { "imageurl": "/product-images/demo.jpg", "imagealt": "simple image", "title": "simple image title" },
                 { "imageurl": "/product-images/demo.jpg", "imagealt": "simple image", "title": "simple image title" }
             ],
-            "currency" : [{
-                "baseCurrency": "INR",
-                "baseCurrencySymbol": "₹"
-            }],
             "catname": "software",
             "itemnewprice": 18.0,
             "itemoldprice": 20.0
@@ -35,10 +31,6 @@
                 { "imageurl": "/product-images/demo.jpg", "imagealt": "simple image", "title": "simple image title" },
                 { "imageurl": "/product-images/demo.jpg", "imagealt": "simple image", "title": "simple image title" }
             ],
-            "currency" : [{
-                "baseCurrency": "INR",
-                "baseCurrencySymbol": "₹"
-            }],
             "catname": "music",
             "itemnewprice": 18.0,
             "itemoldprice": 20.0
@@ -54,10 +46,6 @@
                 { "imageurl": "/product-images/demo.jpg", "imagealt": "simple image", "title": "simple image title" },
                 { "imageurl": "/product-images/demo.jpg", "imagealt": "simple image", "title": "simple image title" }
             ],
-            "currency" : [{
-                "baseCurrency": "INR",
-                "baseCurrencySymbol": "₹"
-            }],
             "catname": "music",
             "itemnewprice": 18.0,
             "itemoldprice": 20.0
@@ -73,10 +61,6 @@
                 { "imageurl": "/product-images/demo.jpg", "imagealt": "simple image", "title": "simple image title" },
                 { "imageurl": "/product-images/demo.jpg", "imagealt": "simple image", "title": "simple image title" }
             ],
-            "currency" : [{
-                "baseCurrency": "INR",
-                "baseCurrencySymbol": "₹"
-            }],
             "catname": "music",
             "itemnewprice": 18.0,
             "itemoldprice": 20.0
@@ -92,10 +76,6 @@
                 { "imageurl": "/product-images/demo.jpg", "imagealt": "simple image", "title": "simple image title" },
                 { "imageurl": "/product-images/demo.jpg", "imagealt": "simple image", "title": "simple image title" }
             ],
-            "currency" : [{
-                "baseCurrency": "INR",
-                "baseCurrencySymbol": "₹"
-            }],
             "catname": "music",
             "itemnewprice": 18.0,
             "itemoldprice": 20.0
@@ -111,10 +91,6 @@
                 { "imageurl": "/product-images/demo.jpg", "imagealt": "simple image", "title": "simple image title" },
                 { "imageurl": "/product-images/demo.jpg", "imagealt": "simple image", "title": "simple image title" }
             ],
-            "currency" : [{
-                "baseCurrency": "INR",
-                "baseCurrencySymbol": "₹"
-            }],
             "catname": "music",
             "itemnewprice": 18.0,
             "itemoldprice": 20.0
@@ -130,10 +106,6 @@
                 { "imageurl": "/product-images/demo.jpg", "imagealt": "simple image", "title": "simple image title" },
                 { "imageurl": "/product-images/demo.jpg", "imagealt": "simple image", "title": "simple image title" }
             ],
-            "currency" : [{
-                "baseCurrency": "INR",
-                "baseCurrencySymbol": "₹"
-            }],
             "catname": "music",
             "itemnewprice": 18.0,
             "itemoldprice": 20.0
@@ -149,10 +121,6 @@
                 { "imageurl": "/product-images/demo.jpg", "imagealt": "simple image", "title": "simple image title" },
                 { "imageurl": "/product-images/demo.jpg", "imagealt": "simple image", "title": "simple image title" }
             ],
-            "currency" : [{
-                "baseCurrency": "INR",
-                "baseCurrencySymbol": "₹"
-            }],
             "catname": "music",
             "itemnewprice": 18.0,
             "itemoldprice": 20.0
@@ -168,10 +136,6 @@
                 { "imageurl": "/product-images/demo.jpg", "imagealt": "simple image", "title": "simple image title" },
                 { "imageurl": "/product-images/demo.jpg", "imagealt": "simple image", "title": "simple image title" }
             ],
-            "currency" : [{
-                "baseCurrency": "INR",
-                "baseCurrencySymbol": "₹"
-            }],
             "catname": "music",
             "itemnewprice": 18.0,
             "itemoldprice": 20.0
@@ -187,10 +151,6 @@
                 { "imageurl": "/product-images/demo.jpg", "imagealt": "simple image", "title": "simple image title" },
                 { "imageurl": "/product-images/demo.jpg", "imagealt": "simple image", "title": "simple image title" }
             ],
-            "currency" : [{
-                "baseCurrency": "INR",
-                "baseCurrencySymbol": "₹"
-            }],
             "catname": "music",
             "itemnewprice": 18.0,
             "itemoldprice": 20.0
@@ -206,10 +166,6 @@
                 { "imageurl": "/product-images/demo.jpg", "imagealt": "simple image", "title": "simple image title" },
                 { "imageurl": "/product-images/demo.jpg", "imagealt": "simple image", "title": "simple image title" }
             ],
-            "currency" : [{
-                "baseCurrency": "INR",
-                "baseCurrencySymbol": "₹"
-            }],
             "catname": "music",
             "itemnewprice": 18.0,
             "itemoldprice": 20.0
@@ -225,10 +181,6 @@
                 { "imageurl": "/product-images/demo.jpg", "imagealt": "simple image", "title": "simple image title" },
                 { "imageurl": "/product-images/demo.jpg", "imagealt": "simple image", "title": "simple image title" }
             ],
-            "currency" : [{
-                "baseCurrency": "INR",
-                "baseCurrencySymbol": "₹"
-            }],
             "catname": "music",
             "itemnewprice": 18.0,
             "itemoldprice": 20.0
@@ -244,10 +196,6 @@
                 { "imageurl": "/product-images/demo.jpg", "imagealt": "simple image", "title": "simple image title" },
                 { "imageurl": "/product-images/demo.jpg", "imagealt": "simple image", "title": "simple image title" }
             ],
-            "currency" : [{
-                "baseCurrency": "INR",
-                "baseCurrencySymbol": "₹"
-            }],
             "catname": "music",
             "itemnewprice": 18.0,
             "itemoldprice": 20.0
@@ -263,10 +211,6 @@
                 { "imageurl": "/product-images/demo.jpg", "imagealt": "simple image", "title": "simple image title" },
                 { "imageurl": "/product-images/demo.jpg", "imagealt": "simple image", "title": "simple image title" }
             ],
-            "currency" : [{
-                "baseCurrency": "INR",
-                "baseCurrencySymbol": "₹"
-            }],
             "catname": "music",
             "itemnewprice": 18.0,
             "itemoldprice": 20.0
@@ -282,10 +226,6 @@
                 { "imageurl": "/product-images/demo.jpg", "imagealt": "simple image", "title": "simple image title" },
                 { "imageurl": "/product-images/demo.jpg", "imagealt": "simple image", "title": "simple image title" }
             ],
-            "currency" : [{
-                "baseCurrency": "INR",
-                "baseCurrencySymbol": "₹"
-            }],
             "catname": "music",
             "itemnewprice": 18.0,
             "itemoldprice": 20.0
@@ -301,10 +241,6 @@
                 { "imageurl": "/product-images/demo.jpg", "imagealt": "simple image", "title": "simple image title" },
                 { "imageurl": "/product-images/demo.jpg", "imagealt": "simple image", "title": "simple image title" }
             ],
-            "currency" : [{
-                "baseCurrency": "INR",
-                "baseCurrencySymbol": "₹"
-            }],
             "catname": "music",
             "itemnewprice": 18.0,
             "itemoldprice": 20.0
@@ -320,10 +256,6 @@
                 { "imageurl": "/product-images/demo.jpg", "imagealt": "simple image", "title": "simple image title" },
                 { "imageurl": "/product-images/demo.jpg", "imagealt": "simple image", "title": "simple image title" }
             ],
-            "currency" : [{
-                "baseCurrency": "INR",
-                "baseCurrencySymbol": "₹"
-            }],
             "catname": "music",
             "itemnewprice": 18.0,
             "itemoldprice": 20.0
@@ -339,10 +271,6 @@
                 { "imageurl": "/product-images/demo.jpg", "imagealt": "simple image", "title": "simple image title" },
                 { "imageurl": "/product-images/demo.jpg", "imagealt": "simple image", "title": "simple image title" }
             ],
-            "currency" : [{
-                "baseCurrency": "INR",
-                "baseCurrencySymbol": "₹"
-            }],
             "catname": "music",
             "itemnewprice": 18.0,
             "itemoldprice": 20.0

@@ -76,7 +76,7 @@ const Header = (props) => {
                     </Link>
                     <div className="d-flex align-items-center">
                         <Link href={props.cartURL}>
-                            <button class="btn d-none d-lg-block d-flex align-items-center me-1">
+                            <button className="btn d-none d-lg-block d-flex align-items-center me-1">
                                 <i className="bi bi-cart-fill me-2 fs-6"></i>
                                 <span>{cartCount}</span>
                             </button>

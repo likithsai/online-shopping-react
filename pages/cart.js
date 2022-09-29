@@ -1,16 +1,16 @@
 //  Cart page
 
-import React, { useState, useEffect } from 'react';
-import Header from '../component/Header';
-import Footer from '../component/Footer';
-import CartJumboltron from '../component/CartJumboltron';
+import React, { useState, useEffect } from "react";
+import Header from "../component/Header";
+import Footer from "../component/Footer";
+import CartJumboltron from "../component/CartJumboltron";
 import {
     removeItemToCart,
     removeAllCartItems
-} from '../store/actions/cartActions.js';
-import { useSelector, useDispatch } from 'react-redux';
-import Head from 'next/head';
-import Link from 'next/link';
+} from "../store/actions/cartActions.js";
+import { useSelector, useDispatch } from "react-redux";
+import Head from "next/head";
+import Link from "next/link";
 
 const CartPage = (props) => {
     const dispatch = useDispatch();
@@ -61,7 +61,9 @@ const CartPage = (props) => {
                         <CartJumboltron
                             amt={totalAmt}
                             amtOld={actualAmt}
-                            baseCurrencySymbol="₹"
+                            baseCurrencySymbol={
+                                process.env.NEXT_PUBLIC_DEFAULTCURRENCYSYMBOL
+                            }
                         />
                         <div className="container my-5">
                             <div className="row px-lg-5">
@@ -95,11 +97,6 @@ const CartPage = (props) => {
                                                                     item,
                                                                     index
                                                                 ) => {
-                                                                    console.log(
-                                                                        item
-                                                                            .currency[0]
-                                                                            .baseCurrencySymbol
-                                                                    );
                                                                     return (
                                                                         <tr
                                                                             className="border-bottom d-flex align-items-center justify-content-between w-100"
@@ -123,19 +120,11 @@ const CartPage = (props) => {
                                                                                     height="100"
                                                                                 />
                                                                                 <p className="m-0 d-inline-block align-middle font-16">
-                                                                                    <a
-                                                                                        className="text-body fw-bold cur-pointer"
-                                                                                        onClick={() =>
-                                                                                            history(
-                                                                                                '/products/' +
-                                                                                                    item.itemid
-                                                                                            )
-                                                                                        }
-                                                                                    >
-                                                                                        {
-                                                                                            item.itemname
-                                                                                        }
-                                                                                    </a>
+                                                                                    <Link href={ "/products/" + item.itemid }>
+                                                                                        <a className="text-body fw-bold cur-pointer">
+                                                                                            { item.itemname }
+                                                                                        </a>
+                                                                                    </Link>
                                                                                     <br />
                                                                                     <span className="my-0 mb-1 text-truncation">
                                                                                         {
@@ -158,18 +147,18 @@ const CartPage = (props) => {
                                                                             </td>
                                                                             <td className="py-5 text-end">
                                                                                 <p className="fw-bolder m-0 h4">
-                                                                                    {item
-                                                                                        .currency[0]
-                                                                                        .baseCurrencySymbol +
-                                                                                        '' +
+                                                                                    {process
+                                                                                        .env
+                                                                                        .NEXT_PUBLIC_DEFAULTCURRENCYSYMBOL +
+                                                                                        "" +
                                                                                         item.itemnewprice}
                                                                                 </p>
                                                                                 <div className="d-none d-lg-flex m-0 text-end justify-content-end">
                                                                                     <p className="text-muted text-decoration-line-through m-0 me-2">
-                                                                                        {item
-                                                                                            .currency[0]
-                                                                                            .baseCurrencySymbol +
-                                                                                            '' +
+                                                                                        {process
+                                                                                            .env
+                                                                                            .NEXT_PUBLIC_DEFAULTCURRENCYSYMBOL +
+                                                                                            "" +
                                                                                             item.itemoldprice}
                                                                                     </p>
                                                                                     <p className="text-success m-0">
@@ -201,7 +190,12 @@ const CartPage = (props) => {
                                                 className="btn btn-success p-3 w-100"
                                             >
                                                 <i className="bi bi-wallet-fill me-2"></i>
-                                                <span>{'Pay ' + process.env.NEXT_PUBLIC_DEFAULTCURRENCYSYMBOL + totalAmt}</span>
+                                                <span>
+                                                    {"Pay " +
+                                                        process.env
+                                                            .NEXT_PUBLIC_DEFAULTCURRENCYSYMBOL +
+                                                        totalAmt}
+                                                </span>
                                             </button>
                                         </div>
                                     </div>
