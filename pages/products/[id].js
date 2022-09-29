@@ -11,6 +11,7 @@ import { addItemToCart } from '../../store/actions/cartActions';
 import { useSelector, useDispatch } from 'react-redux';
 import Link from 'next/link';
 import Image from 'next/image';
+import payment from '../../utils/payment';
 
 export default function Products() {
     const {
@@ -168,9 +169,17 @@ export default function Products() {
                                             type="button"
                                             onClick={() => {
                                                 if (loginSession.isLoggedIn) {
-                                                    console.log(
-                                                        'already logged in !'
-                                                    );
+                                                    payment.initiatePayment (
+                                                        itemName, 
+                                                        loginSession.user[0].userName,
+                                                        loginSession.user[0].userEmail,
+                                                        itemDescShort,
+                                                        itemImages[0].imageurl, 
+                                                        itemNewPrice,
+                                                        function(response) {
+                                                            alert(response.razorpay_payment_id);
+                                                        }
+                                                    ) 
                                                 } else {
                                                     setShowLoginModal(true);
                                                 }
@@ -211,16 +220,8 @@ export default function Products() {
                                                     <div>
                                                         <Image
                                                             className="card-img-top"
-                                                            src={
-                                                                item
-                                                                    .itemimages[0]
-                                                                    .imageurl
-                                                            }
-                                                            alt={
-                                                                item
-                                                                    .itemimages[0]
-                                                                    .imagealt
-                                                            }
+                                                            src={ item.itemimages[0].imageurl }
+                                                            alt={ item.itemimages[0].imagealt }
                                                             width="100%"
                                                             height="100%"
                                                             layout="responsive"

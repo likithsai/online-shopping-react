@@ -12,7 +12,6 @@
     "bootstrap": "^5.2.1",
     "bootstrap-icons": "^1.9.1",
     "jquery": "^3.6.1",
-    "localStorage": "^1.0.4",
     "mysql": "^2.18.1",
     "next": "12.3.0",
     "next-redux-wrapper": "^8.0.0",

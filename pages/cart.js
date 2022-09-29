@@ -201,7 +201,7 @@ const CartPage = (props) => {
                                                 className="btn btn-success p-3 w-100"
                                             >
                                                 <i className="bi bi-wallet-fill me-2"></i>
-                                                <span>{'Pay ' + totalAmt}</span>
+                                                <span>{'Pay ' + process.env.NEXT_PUBLIC_DEFAULTCURRENCYSYMBOL + totalAmt}</span>
                                             </button>
                                         </div>
                                     </div>
