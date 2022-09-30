@@ -84,10 +84,7 @@ const Header = (props) => {
                         {loginSession.isLoggedIn ? (
                             <>
                                 <Dropdown className="btn d-none d-lg-block m-0">
-                                    <Dropdown.Toggle
-                                        variant="dark"
-                                        id="dropdown-basic"
-                                    >
+                                    <Dropdown.Toggle variant="dark" id="dropdown-basic">
                                         <i className="bi bi-person me-2"></i>
                                         <span>
                                             {loginSession.user[0].userName}
@@ -99,43 +96,23 @@ const Header = (props) => {
                                             <span>Orders</span>
                                         </Dropdown.Item>
                                         <Dropdown.Divider />
-                                        <Dropdown.Item
-                                            onClick={() => {
-                                                dispatch(logout([]));
-                                            }}
-                                        >
+                                        <Dropdown.Item onClick={() => { dispatch(logout([])); }}>
                                             <i className="bi bi-box-arrow-in-right me-3"></i>
-                                            <span className="text-danger fw-bold">
-                                                Logout
-                                            </span>
+                                            <span className="text-danger fw-bold">Logout</span>
                                         </Dropdown.Item>
                                     </Dropdown.Menu>
                                 </Dropdown>
-                                <button
-                                    className="navbar-toggler"
-                                    type="button"
-                                    data-bs-toggle="collapse"
-                                    data-bs-target="#navbarHeader"
-                                    aria-controls="navbarHeader"
-                                    aria-expanded="false"
-                                    aria-label="Toggle navigation"
-                                >
+                                <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
                                     <span className="navbar-toggler-icon"></span>
                                 </button>
                             </>
                         ) : (
                             <>
-                                <button
-                                    className="btn btn-dark d-none d-lg-block"
-                                    onClick={() => setShowLoginModal(true)}
-                                >
+                                <button className="btn btn-dark d-none d-lg-block" onClick={() => setShowLoginModal(true)}>
                                     <i className="bi bi-person me-2"></i>
                                     <span>Login</span>
                                 </button>
-                                <button
-                                    className="btn d-block d-lg-none btn-dark px-2"
-                                    onClick={() => setShowLoginModal(true)}
-                                >
+                                <button className="btn d-block d-lg-none btn-dark px-2" onClick={() => setShowLoginModal(true)}>
                                     <i className="bi bi-person me-2"></i>
                                     <span>Login</span>
                                 </button>
