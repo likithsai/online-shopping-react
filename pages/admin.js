@@ -7,10 +7,9 @@ import Footer from '../component/Footer';
 import Accordion from 'react-bootstrap/Accordion';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-
+import Nav from 'react-bootstrap/Nav';
 const AdminPage = (props) => {
     const [show, setShow] = useState(false);
-
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
@@ -43,7 +42,6 @@ const AdminPage = (props) => {
             <main>
                 <section className="py-3 border-bottom shadow-sm">
                     <div className="container d-flex align-items-center justify-content-between">
-                        <div></div>
                         <div>
                             <Button
                                 className="rounded-1 shadow-sm me-1"
@@ -62,6 +60,14 @@ const AdminPage = (props) => {
                                 <span>SAVE</span>
                             </Button>
                         </div>
+                        <Nav variant="pills" defaultActiveKey="/home">
+                            <Nav.Item>
+                                <Nav.Link eventKey="link-1">UI</Nav.Link>
+                            </Nav.Item>
+                            <Nav.Item>
+                                <Nav.Link eventKey="link-2">JSON</Nav.Link>
+                            </Nav.Item>
+                        </Nav>
                     </div>
                 </section>
                 <section className="container my-4 mh-100">

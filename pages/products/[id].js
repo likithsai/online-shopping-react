@@ -197,7 +197,7 @@ export default function Products() {
                             dangerouslySetInnerHTML={{ __html: itemDescLong }}
                         ></div>
                     </section>
-                    <section className="py-5 bg-light">
+                    <section className="pb-0">
                         <div className="container px-4 px-lg-5 mt-5">
                             <h2 className="fw-bolder mb-4">Related products</h2>
                             <div className="row row-cols-1 row-cols-md-2 row-cols-xl-4 justify-content-center g-2">

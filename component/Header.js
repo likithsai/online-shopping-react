@@ -66,8 +66,35 @@ const Header = (props) => {
                     </div>
                 </div>
             </div>
+
+            {/* canvas */}
+            <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="offcanvasExampleLabel">Offcanvas</h5>
+                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <div>
+                    Some text as placeholder. In real life you can have the elements you have chosen. Like, text, images, lists, etc.
+                    </div>
+                    <div class="dropdown mt-3">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown">
+                        Dropdown button
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <li><a class="dropdown-item" href="#">Action</a></li>
+                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    </ul>
+                    </div>
+                </div>
+            </div>
+
             <nav className="navbar navbar-expand-lg navbar-light bg-light shadow-sm position-sticky fixed-top w-100 z-index border-bottom">
-                <div className="container px-4 px-lg-5 d-flex align-items-center justify-content-between">
+                <div className="container px-0 px-lg-5 d-flex align-items-center justify-content-between">
+                    <a class="btn d-lg-none" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
+                        <i class="bi bi-list fs-3"></i>
+                    </a>
                     <Link href="/" className="text-decoration-none">
                         <div className="navbar-brand fw-bold">
                             <i className="bi bi-box-seam-fill me-3"></i>
@@ -76,10 +103,15 @@ const Header = (props) => {
                     </Link>
                     <div className="d-flex align-items-center">
                         <Link href={props.cartURL}>
-                            <button className="btn d-none d-lg-block d-flex align-items-center me-1">
-                                <i className="bi bi-cart-fill me-2 fs-6"></i>
+                            {/* <button className="btn d-none d-lg-block d-flex align-items-center me-1">
+                                <i className="bi bi-cart me-2"></i>
                                 <span>{cartCount}</span>
-                            </button>
+                            </button> */}
+
+                            <a class="nav-icon position-relative text-decoration-none mx-4" href="#">
+                                <i class="bi bi-cart4 fs-5 text-dark mr-1"></i>
+                                <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-dark text-white">{cartCount}</span>
+                            </a>
                         </Link>
                         {loginSession.isLoggedIn ? (
                             <>
@@ -109,10 +141,6 @@ const Header = (props) => {
                         ) : (
                             <>
                                 <button className="btn btn-dark d-none d-lg-block" onClick={() => setShowLoginModal(true)}>
-                                    <i className="bi bi-person me-2"></i>
-                                    <span>Login</span>
-                                </button>
-                                <button className="btn d-block d-lg-none btn-dark px-2" onClick={() => setShowLoginModal(true)}>
                                     <i className="bi bi-person me-2"></i>
                                     <span>Login</span>
                                 </button>
