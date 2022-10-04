@@ -30,7 +30,7 @@ const Header = (props) => {
                 <div className="container">
                     <div className="row p-0">
                         <ul className="list-group list-group-flush w-100 p-0">
-                            {loginSession.isLoggedIn ? (
+                            {/* {loginSession.isLoggedIn ? (
                                 <li className="list-group-item bg-light d-flex align-items-center justify-content-between px-4 border-0">
                                     <div className="fs-5 my-2 d-flex align-items-center justify-content-between w-100">
                                         <span className="fw-bold">
@@ -38,7 +38,10 @@ const Header = (props) => {
                                         </span>
                                     </div>
                                 </li>
-                            ) : null}
+                            ) : null} */}
+                            <li className="list-group-item p-3 bg-light d-flex align-items-center justify-content-between border-bottom-0">
+                                <div class="alert alert-primary w-100 m-0" role="alert">A simple primary alert—check it out!</div>
+                            </li>
                             <Link href="/orders">
                                 <li className="list-group-item bg-light d-flex align-items-center justify-content-between px-4">
                                     <div>
@@ -67,32 +70,9 @@ const Header = (props) => {
                 </div>
             </div>
 
-            {/* canvas */}
-            <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
-                <div class="offcanvas-header">
-                    <h5 class="offcanvas-title" id="offcanvasExampleLabel">Offcanvas</h5>
-                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                </div>
-                <div class="offcanvas-body">
-                    <div>
-                    Some text as placeholder. In real life you can have the elements you have chosen. Like, text, images, lists, etc.
-                    </div>
-                    <div class="dropdown mt-3">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown">
-                        Dropdown button
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <li><a class="dropdown-item" href="#">Action</a></li>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
-                    </ul>
-                    </div>
-                </div>
-            </div>
-
             <nav className="navbar navbar-expand-lg navbar-light bg-light shadow-sm position-sticky fixed-top w-100 z-index border-bottom">
                 <div className="container px-0 px-lg-5 d-flex align-items-center justify-content-between">
-                    <a class="btn d-lg-none" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
+                    <a class="btn d-lg-none" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation" role="button">
                         <i class="bi bi-list fs-3"></i>
                     </a>
                     <Link href="/" className="text-decoration-none">
