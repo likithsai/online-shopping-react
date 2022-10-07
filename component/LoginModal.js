@@ -7,18 +7,18 @@ import { login } from "../store/actions/loginActions";
 import Util from '../Utils/utility';
 
 const LoginModal = (props) => {
+    const dispatch = useDispatch();
     const [ email, setEmail ] = useState();
     const [ pass, setPass ] = useState();
     const [ registerUsername, setRegisterUsername ] = useState();
     const [ registerEmail, setRegisterEmail ] = useState();
     const [ registerPassword, setRegisterPassword ] = useState(); 
     const [ registerConfirmPassword, setRegisterConfirmPassword ] = useState();
-    const dispatch = useDispatch();
     const [ showRegisterModal, setShowRegisterModal ] = useState(false);
 
     const submitRegisterForm = async(event) => {
         event.preventDefault();
-        await Util.fetchData(`${AppData.apiserver}/registeruser`, { 'username': registerUsername, 'useremail': registerEmail, 'userpass': registerPassword }, (data) => {
+        await Util.fetchData(`/api/registeruser`, { 'username': registerUsername, 'useremail': registerEmail, 'userpass': registerPassword }, (data) => {
             setShowRegisterModal(false);
         });
         props.onSuccessCallback();

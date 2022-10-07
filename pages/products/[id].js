@@ -200,7 +200,7 @@ export default function Products() {
                     <section className="pb-0">
                         <div className="container px-4 px-lg-5 mt-5">
                             <h2 className="fw-bolder mb-4">Related products</h2>
-                            <div className="row row-cols-1 row-cols-md-2 row-cols-xl-4 justify-content-center g-2">
+                            <div className="row row-cols-2 row-cols-md-2 row-cols-xl-4 justify-content-center g-2">
                                 {relatedItems.map((item, index) => {
                                     return (
                                         <div
@@ -259,16 +259,17 @@ export default function Products() {
                                                 </Link>
                                                 <div className="card-footer p-4 pt-0 border-top-0 bg-transparent">
                                                     <div className="text-center d-flex align-items-center justify-content-between">
-                                                        <button
-                                                            className="btn btn-outline-dark mt-auto w-100"
-                                                            onClick={() =>
-                                                                addToCart(item)
-                                                            }
-                                                        >
-                                                            <span>
-                                                                Add to cart
-                                                            </span>
-                                                        </button>
+                                                    {
+                                                        cartItems.items.some(val => val.itemid === item.itemid) ? (
+                                                            <button className="btn btn-outline-dark mt-auto w-100" disabled>
+                                                                <span>Added to cart</span>
+                                                            </button>
+                                                        ) : (
+                                                            <button className="btn btn-outline-dark mt-auto w-100" onClick={(e) => addToCart(item)}>
+                                                                <span>Add to cart</span>
+                                                            </button>
+                                                        )
+                                                    }
                                                     </div>
                                                 </div>
                                             </div>

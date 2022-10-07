@@ -9,9 +9,9 @@ import Link from "next/link";
 
 const Header = (props) => {
     const history = useRouter();
+    const dispatch = useDispatch();
     const cartItems = useSelector((state) => state.cartItems);
     const loginSession = useSelector((state) => state.loginSession);
-    const dispatch = useDispatch();
     const [cartCount, setCartCount] = useState(cartItems.items.length);
     const [showLoginModal, setShowLoginModal] = useState(false);
 
@@ -33,7 +33,7 @@ const Header = (props) => {
                         loginSession.isLoggedIn ? (
                             <ul className="list-group list-group-flush w-100 p-0">
                                 <li className="list-group-item p-3 bg-light d-flex align-items-center justify-content-between border-bottom-0">
-                                    <div class="alert alert-primary w-100 m-0" role="alert">A simple primary alert—check it out!</div>
+                                    <div class="alert alert-primary w-100 m-0" role="alert">Welcome {loginSession.user[0].userName}</div>
                                 </li>
                                 <Link href="/orders">
                                     <li className="list-group-item bg-light d-flex align-items-center justify-content-between px-4">
@@ -61,11 +61,9 @@ const Header = (props) => {
                             </ul>
                         ) : (
                             <ul className="list-group list-group-flush w-100 p-0">
-                                <Link href="/orders">
-                                    <li className="list-group-item bg-light d-flex align-items-center justify-content-between px-4 text-center">
-                                        <span>Login</span>
-                                    </li>
-                                </Link>
+                                <li className="list-group-item bg-light d-flex align-items-center justify-content-between px-4 text-center" onClick={() => setShowLoginModal(true)}>
+                                    <span>Login</span>
+                                </li>
                             </ul>
                         )
                     }
@@ -78,19 +76,14 @@ const Header = (props) => {
                     <a class="btn d-lg-none" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation" role="button">
                         <i class="bi bi-list fs-3"></i>
                     </a>
-                    <Link href="/" className="text-decoration-none">
+                    <Link href="/" className="text-decoration-none align-items-center">
                         <div className="navbar-brand fw-bold">
-                            <i className="bi bi-box-seam-fill me-3"></i>
+                            <i className="bi bi-box-seam-fill me-2"></i>
                             <span>{props.headerTitle}</span>
                         </div>
                     </Link>
                     <div className="d-flex align-items-center">
                         <Link href={props.cartURL}>
-                            {/* <button className="btn d-none d-lg-block d-flex align-items-center me-1">
-                                <i className="bi bi-cart me-2"></i>
-                                <span>{cartCount}</span>
-                            </button> */}
-
                             <a class="nav-icon position-relative text-decoration-none mx-4" href="#">
                                 <i class="bi bi-cart4 fs-5 text-dark mr-1"></i>
                                 <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-dark text-white">{cartCount}</span>
@@ -117,9 +110,6 @@ const Header = (props) => {
                                         </Dropdown.Item>
                                     </Dropdown.Menu>
                                 </Dropdown>
-                                <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
-                                    <span className="navbar-toggler-icon"></span>
-                                </button>
                             </>
                         ) : (
                             <>
