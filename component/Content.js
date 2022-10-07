@@ -64,7 +64,7 @@ const Content = (props) => {
                     </ul>
                     <p className="my-2 text-muted text-center">{itemData.length} Items found</p>
                 </div>
-                <div className={ (itemData.length > 0) ? "row justify-content-center gx-4 gx-lg-5 row-cols-1 row-cols-md-2 row-cols-xl-4 mt-5" : "row justify-content-center" }>
+                <div className={ (itemData.length > 0) ? "row justify-content-center gx-4 gx-lg-5 row-cols-2 row-cols-md-2 row-cols-xl-4 mt-5" : "row justify-content-center" }>
                 {
                     (itemData.length > 0) ? (
                         itemData.slice(0, maxLimit).map((item, index, length) => {

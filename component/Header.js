@@ -29,43 +29,46 @@ const Header = (props) => {
             <div className="collapse bg-dark" id="navbarHeader">
                 <div className="container">
                     <div className="row p-0">
-                        <ul className="list-group list-group-flush w-100 p-0">
-                            {/* {loginSession.isLoggedIn ? (
-                                <li className="list-group-item bg-light d-flex align-items-center justify-content-between px-4 border-0">
-                                    <div className="fs-5 my-2 d-flex align-items-center justify-content-between w-100">
-                                        <span className="fw-bold">
-                                            Hi {loginSession.user[0].userName}!
-                                        </span>
-                                    </div>
+                    { 
+                        loginSession.isLoggedIn ? (
+                            <ul className="list-group list-group-flush w-100 p-0">
+                                <li className="list-group-item p-3 bg-light d-flex align-items-center justify-content-between border-bottom-0">
+                                    <div class="alert alert-primary w-100 m-0" role="alert">A simple primary alert—check it out!</div>
                                 </li>
-                            ) : null} */}
-                            <li className="list-group-item p-3 bg-light d-flex align-items-center justify-content-between border-bottom-0">
-                                <div class="alert alert-primary w-100 m-0" role="alert">A simple primary alert—check it out!</div>
-                            </li>
-                            <Link href="/orders">
-                                <li className="list-group-item bg-light d-flex align-items-center justify-content-between px-4">
-                                    <div>
-                                        <i className="bi bi-list me-3"></i>
-                                        <span>Orders</span>
-                                    </div>
-                                    <span className="badge bg-dark text-white ms-1 px-2 rounded-pill">
-                                        <span>{cartCount}</span>
+                                <Link href="/orders">
+                                    <li className="list-group-item bg-light d-flex align-items-center justify-content-between px-4">
+                                        <div>
+                                            <i className="bi bi-list me-3"></i>
+                                            <span>Orders</span>
+                                        </div>
+                                        <span className="badge bg-dark text-white ms-1 px-2 rounded-pill">
+                                            <span>{cartCount}</span>
+                                        </span>
+                                    </li>
+                                </Link>
+                                <li
+                                    className="list-group-item bg-light px-4"
+                                    onClick={() => {
+                                        dispatch(logout([]));
+                                        window.location.reload();
+                                    }}
+                                >
+                                    <i className="bi bi-box-arrow-right me-3"></i>
+                                    <span className="text-danger fw-bold">
+                                        Logout
                                     </span>
                                 </li>
-                            </Link>
-                            <li
-                                className="list-group-item bg-light px-4"
-                                onClick={() => {
-                                    dispatch(logout([]));
-                                    window.location.reload();
-                                }}
-                            >
-                                <i className="bi bi-box-arrow-right me-3"></i>
-                                <span className="text-danger fw-bold">
-                                    Logout
-                                </span>
-                            </li>
-                        </ul>
+                            </ul>
+                        ) : (
+                            <ul className="list-group list-group-flush w-100 p-0">
+                                <Link href="/orders">
+                                    <li className="list-group-item bg-light d-flex align-items-center justify-content-between px-4 text-center">
+                                        <span>Login</span>
+                                    </li>
+                                </Link>
+                            </ul>
+                        )
+                    }
                     </div>
                 </div>
             </div>
