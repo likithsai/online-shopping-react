@@ -5,6 +5,7 @@ import Modal from 'react-bootstrap/Modal';
 import { useSelector, useDispatch } from "react-redux";
 import { login } from "../store/actions/loginActions";
 import Util from '../Utils/utility';
+import Alert from 'react-bootstrap/Alert';
 
 const LoginModal = (props) => {
     const dispatch = useDispatch();
@@ -15,6 +16,7 @@ const LoginModal = (props) => {
     const [ registerPassword, setRegisterPassword ] = useState(); 
     const [ registerConfirmPassword, setRegisterConfirmPassword ] = useState();
     const [ showRegisterModal, setShowRegisterModal ] = useState(false);
+    const [ isError, setIsError ] = useState(false);
 
     const submitRegisterForm = async(event) => {
         event.preventDefault();
@@ -40,10 +42,11 @@ const LoginModal = (props) => {
                         }]
                     })
                 );
+                props.onSuccessCallback();
+            } else {
+                setIsError(true);
             }
         });
-
-        props.onSuccessCallback();
     }
 
     return (
@@ -56,6 +59,13 @@ const LoginModal = (props) => {
                         </div>
 
                         <div className="modal-body p-5 pt-0">
+
+                            {
+                                (isError) ? (
+                                    <Alert key="danger" variant="danger" className="mb-3">Username and password doesnt match!</Alert>
+                                ) : null
+                            }
+                            
                             <form onSubmit={submitLoginForm}>
                                 <div className="form-floating mb-3">
                                     <input type="email" className="form-control rounded-3" id="floatingInput" placeholder="name@example.com" onChange={(e) => setEmail(e.target.value)} />

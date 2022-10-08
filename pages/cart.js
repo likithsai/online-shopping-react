@@ -55,7 +55,7 @@ const CartPage = (props) => {
                 <LoginModal show={showLoginModal} onHide={() => setShowLoginModal(false)} onSuccessCallback={(data) => setShowLoginModal(false)} />
                 {itemData.length > 0 ? (
                     <>
-                        <CartJumboltron amt={totalAmt} amtOld={actualAmt} baseCurrencySymbol={ process.env.NEXT_PUBLIC_DEFAULTCURRENCYSYMBOL } />
+                        <CartJumboltron jumboltronTitle="Total bill payable" amt={totalAmt} amtOld={actualAmt} baseCurrencySymbol={ process.env.NEXT_PUBLIC_DEFAULTCURRENCYSYMBOL } />
                         <div className="container my-5">
                             <div className="row px-lg-5">
                                 <div className="col-12">
