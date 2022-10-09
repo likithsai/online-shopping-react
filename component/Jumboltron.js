@@ -10,7 +10,7 @@ const Jumboltron = (props) => {
           <p className="lead fw-normal text-white-50 mb-0">{props.subTitle}</p>
         </div>
 
-        <div className="container">
+        {/* <div className="container">
           <div className="row d-flex justify-content-center align-items-center my-3 my-md-5">
             <div className="col-md-8">
               <div className="d-flex align-items-center shadow-sm">
@@ -22,7 +22,7 @@ const Jumboltron = (props) => {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </section>
   );

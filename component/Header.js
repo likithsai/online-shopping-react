@@ -5,6 +5,7 @@ import Dropdown from "react-bootstrap/Dropdown";
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../store/actions/loginActions.js";
 import LoginModal from "../component/LoginModal";
+import searchModal from "../component/searchModal";
 import Link from "next/link";
 
 const Header = (props) => {
@@ -12,8 +13,9 @@ const Header = (props) => {
     const dispatch = useDispatch();
     const cartItems = useSelector((state) => state.cartItems);
     const loginSession = useSelector((state) => state.loginSession);
-    const [cartCount, setCartCount] = useState(cartItems.items.length);
-    const [showLoginModal, setShowLoginModal] = useState(false);
+    const [ cartCount, setCartCount ] = useState(cartItems.items.length);
+    const [ showLoginModal, setShowLoginModal ] = useState(false);
+    const [ searchModal, setSearchModal ] = useState(false);
 
     useEffect(() => {
         setCartCount(cartItems.items.length);
@@ -26,6 +28,8 @@ const Header = (props) => {
                 onHide={() => setShowLoginModal(false)}
                 onSuccessCallback={(data) => setShowLoginModal(false)}
             />
+            
+            <LoginModal show={searchModal} onHide={() => setShowLoginModal(false)} onSuccessCallback={(data) => setShowLoginModal(false)} />
             <div className="collapse bg-dark" id="navbarHeader">
                 <div className="container">
                     <div className="row p-0">
@@ -33,7 +37,7 @@ const Header = (props) => {
                         loginSession.isLoggedIn ? (
                             <ul className="list-group list-group-flush w-100 p-0">
                                 <li className="list-group-item p-3 bg-light d-flex align-items-center justify-content-between border-bottom-0">
-                                    <div class="alert alert-primary w-100 m-0" role="alert">Welcome {loginSession.user[0].userName}</div>
+                                    <div className="alert alert-primary w-100 m-0" role="alert">Welcome {loginSession.user[0].userName}</div>
                                 </li>
                                 <Link href="/orders">
                                     <li className="list-group-item bg-light d-flex align-items-center justify-content-between px-4">
@@ -73,8 +77,8 @@ const Header = (props) => {
 
             <nav className="navbar navbar-expand-lg navbar-light bg-light shadow-sm position-sticky fixed-top w-100 z-index border-bottom">
                 <div className="container px-0 px-lg-5 d-flex align-items-center justify-content-between">
-                    <a class="btn d-lg-none" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation" role="button">
-                        <i class="bi bi-list fs-3"></i>
+                    <a className="btn d-lg-none" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation" role="button">
+                        <i className="bi bi-list fs-3"></i>
                     </a>
                     <Link href="/" className="text-decoration-none align-items-center">
                         <div className="navbar-brand fw-bold">
@@ -83,10 +87,13 @@ const Header = (props) => {
                         </div>
                     </Link>
                     <div className="d-flex align-items-center">
+                        {/* <div className="nav-icon position-relative text-decoration-none" onClick={() => setSearchModal(true)}>
+                            <i className="bi bi-search fs-5 text-dark mr-1"></i>
+                        </div> */}
                         <Link href={props.cartURL}>
-                            <a class="nav-icon position-relative text-decoration-none mx-4" href="#">
-                                <i class="bi bi-cart4 fs-5 text-dark mr-1"></i>
-                                <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-dark text-white">{cartCount}</span>
+                            <a className="nav-icon position-relative text-decoration-none mx-4 mt-2" href="#">
+                                <i className="bi bi-cart4 fs-5 text-dark mr-1"></i>
+                                <span className="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-dark text-white">{cartCount}</span>
                             </a>
                         </Link>
                         {loginSession.isLoggedIn ? (
