@@ -5,7 +5,6 @@ import Dropdown from "react-bootstrap/Dropdown";
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../store/actions/loginActions.js";
 import LoginModal from "../component/LoginModal";
-import searchModal from "../component/searchModal";
 import Link from "next/link";
 
 const Header = (props) => {
@@ -29,7 +28,6 @@ const Header = (props) => {
                 onSuccessCallback={(data) => setShowLoginModal(false)}
             />
             
-            <LoginModal show={searchModal} onHide={() => setShowLoginModal(false)} onSuccessCallback={(data) => setShowLoginModal(false)} />
             <div className="collapse bg-dark" id="navbarHeader">
                 <div className="container">
                     <div className="row p-0">

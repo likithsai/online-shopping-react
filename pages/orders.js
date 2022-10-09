@@ -1,14 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import Header from '../component/Header';
 import Footer from '../component/Footer';
-import CartJumboltron from "../component/CartJumboltron";
+import OrderJumboltron from "../component/OrderJumboltron";
 
 const Orders = (props) => {
+
+    useEffect(() => {
+    });
+
     return (
         <>
             <Header headerTitle="Shopping App" logoURL="/" cartURL="/cart" />
             <main>
-                <CartJumboltron jumboltronTitle="Total Items Ordered" jumboltronSubtitle={"10"} />
+                <OrderJumboltron jumboltronTitle="Total Items Ordered" jumboltronSubtitle={"10"} />
             </main>
             <Footer copyrightText="© 2022 Company, Inc" />
         </>
