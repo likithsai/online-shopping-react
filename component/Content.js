@@ -64,13 +64,13 @@ const Content = (props) => {
                     </ul>
                     <p className="my-2 text-muted text-center">{itemData.length} Items found</p>
                 </div>
-                <div className={ (itemData.length > 0) ? "row justify-content-center gx-4 gx-lg-5 row-cols-2 row-cols-md-2 row-cols-xl-4 mt-5" : "row justify-content-center" }>
+                <div className={ (itemData.length > 0) ? "row justify-content-center gx-4 gx-lg-5 row-cols-1 row-cols-md-3 row-cols-xl-4 mt-5" : "row justify-content-center" }>
                 {
                     (itemData.length > 0) ? (
                         itemData.slice(0, maxLimit).map((item, index, length) => {
                             return (
                                 <div className="col mb-5 px-2" key={index}>
-                                    <div className="card shadow-sm h-100">
+                                    <div className="card">
                                         <Link href={ "/products/" + encodeURIComponent(item.itemid) }>
                                             <div>
                                                 <Image width="100%" height="100%" layout="responsive" objectFit="contain" className="card-img-top" src={item.itemimages[0].imageurl} alt={item.itemimages[0].imagealt} />

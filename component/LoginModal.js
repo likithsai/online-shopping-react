@@ -51,7 +51,7 @@ const LoginModal = (props) => {
 
     return (
         <>
-            <Modal {...props}>
+            <Modal {...props} centered fullscreen='sm-down'>
                 <Modal.Body className="p-0">
                     <div className="modal-content">
                         <div className="modal-header p-5 pb-4 border-bottom-0">
@@ -90,7 +90,7 @@ const LoginModal = (props) => {
                 </Modal.Body>
             </Modal>
 
-            <Modal show={showRegisterModal} onHide={() => setShowRegisterModal(false)}>
+            <Modal show={showRegisterModal} onHide={() => setShowRegisterModal(false)} centered fullscreen='sm-down'>
                 <Modal.Body className="p-0">
                     <div className="modal-content">
                         <div className="modal-header p-5 pb-4 border-bottom-0">

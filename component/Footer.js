@@ -13,19 +13,6 @@ const Footer = (props) => {
                 <span>About</span>  
               </div>
             </Link>
-            {/* <a href="#" className="nav-link px-2 text-muted">
-              <span>About</span>
-            </a> */}
-          </li>
-          <li className="nav-item mx-1">
-            <Link href="/track">
-              <div className="nav-link px-2 text-muted">
-                <span>Track your product</span>  
-              </div>
-            </Link>
-            {/* <a href="#" className="nav-link px-2 text-muted">
-              <span>Track your product</span>
-            </a> */}
           </li>
         </ul>
         <p className="text-center text-muted">{props.copyrightText}</p>

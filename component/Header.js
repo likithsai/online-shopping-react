@@ -63,7 +63,8 @@ const Header = (props) => {
                             </ul>
                         ) : (
                             <ul className="list-group list-group-flush w-100 p-0">
-                                <li className="list-group-item bg-light d-flex align-items-center justify-content-between px-4 text-center" onClick={() => setShowLoginModal(true)}>
+                                <li className="list-group-item bg-light px-3 border-bottom" onClick={() => setShowLoginModal(true)}>
+                                    <i className="bi bi-person-fill me-2"></i>
                                     <span>Login</span>
                                 </li>
                             </ul>
@@ -79,15 +80,12 @@ const Header = (props) => {
                         <i className="bi bi-list fs-3"></i>
                     </a>
                     <Link href="/" className="text-decoration-none align-items-center">
-                        <div className="navbar-brand fw-bold">
+                        <div className="navbar-brand fw-bold m-0">
                             <i className="bi bi-box-seam-fill me-2"></i>
                             <span>{props.headerTitle}</span>
                         </div>
                     </Link>
                     <div className="d-flex align-items-center">
-                        {/* <div className="nav-icon position-relative text-decoration-none" onClick={() => setSearchModal(true)}>
-                            <i className="bi bi-search fs-5 text-dark mr-1"></i>
-                        </div> */}
                         <Link href={props.cartURL}>
                             <a className="nav-icon position-relative text-decoration-none mx-4 mt-2" href="#">
                                 <i className="bi bi-cart4 fs-5 text-dark mr-1"></i>
