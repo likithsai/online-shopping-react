@@ -110,17 +110,31 @@ const CartPage = (props) => {
                                             loginSession.isLoggedIn ? (
                                                 <button type="button" className="btn btn-success p-3 w-100" onClick={() => {
                                                     if (loginSession.isLoggedIn) {
-                                                        payment.initiatePayment (
-                                                            "Cart Items", 
+                                                        // payment.initiatePayment (
+                                                        //     "Cart Items", 
+                                                        //     loginSession.user[0].userName,
+                                                        //     loginSession.user[0].userEmail,
+                                                        //     "collection of cart items",
+                                                        //     null, 
+                                                        //     totalAmt,
+                                                        //     function(response) {
+                                                        //         alert(response.razorpay_payment_id);
+                                                        //     }
+                                                        // ) 
+
+                                                        payment.payItems(
+                                                            "Cart Items",
                                                             loginSession.user[0].userName,
+                                                            loginSession.user[0].userId,
                                                             loginSession.user[0].userEmail,
                                                             "collection of cart items",
-                                                            null, 
+                                                            null,
                                                             totalAmt,
-                                                            function(response) {
-                                                                alert(response.razorpay_payment_id);
+                                                            (res) => {
+                                                                alert(JSON.stringify(res));
+                                                                dispatch(removeAllCartItems());   
                                                             }
-                                                        ) 
+                                                        );
                                                     } else {
                                                         setShowLoginModal(true);
                                                     }

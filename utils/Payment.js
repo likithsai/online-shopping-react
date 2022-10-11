@@ -1,4 +1,5 @@
 //  razorpay payment 
+import Utils from "./utility";
 
 const initiatePayment = (name, personName, personEmail, desc, img, amt, sucessHandler) => {
     let options = {
@@ -28,4 +29,12 @@ const initiatePayment = (name, personName, personEmail, desc, img, amt, sucessHa
     rzp.open();
 }
 
-export default { initiatePayment };
+const payItems = (name, personName, personID, personEmail, desc, img, amt, sucessHandler) => {
+    initiatePayment(name, personName, personEmail, desc, img, amt, function(res) {
+        Utils.fetchData(`/api/registerorder`, { 'ordername': res.razorpay_payment_id, 'ordercusid': personID, 'orderprice': amt }, (data) => {
+            sucessHandler(data);
+        });
+    });
+}
+
+export default { initiatePayment, payItems };

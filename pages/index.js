@@ -5,6 +5,7 @@ import Header from '../component/Header';
 import Jumboltron from '../component/Jumboltron';
 import Content from '../component/Content';
 import Footer from '../component/Footer';
+import Util from '../Utils/utility';
 
 const Homepage = (props) => {
     const [products, setProducts] = useState([]);
@@ -14,11 +15,17 @@ const Homepage = (props) => {
 
     useEffect(() => {
         const getProductData = async () => {
-            const user = await fetch('/api/products')
-                .then((response) => response.json())
-                .then((res) => res.message[0]);
-            setProducts(user.products);
-            setCategories(user.categories);
+            // const user = await fetch('/api/products')
+            //     .then((response) => response.json())
+            //     .then((res) => res.message[0]);
+            // setProducts(user.products);
+            // setCategories(user.categories);
+
+            await Util.fetchDataFromServer('/api/products', (res) => {
+                setProducts(res.message[0].products);
+                setCategories(res.message[0].categories);
+            });
+            
         };
 
         getProductData();

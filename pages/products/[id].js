@@ -167,17 +167,31 @@ export default function Products() {
                                             type="button"
                                             onClick={() => {
                                                 if (loginSession.isLoggedIn) {
-                                                    payment.initiatePayment (
-                                                        itemName, 
+                                                    // payment.initiatePayment (
+                                                    //     itemName, 
+                                                    //     loginSession.user[0].userName,
+                                                    //     loginSession.user[0].userEmail,
+                                                    //     itemDescShort,
+                                                    //     itemImages[0].imageurl, 
+                                                    //     itemNewPrice,
+                                                    //     function(response) {
+                                                    //         alert(response.razorpay_payment_id);
+                                                    //     }
+                                                    // ) 
+
+                                                    payment.payItems(
+                                                        itemName,
                                                         loginSession.user[0].userName,
+                                                        loginSession.user[0].userId,
                                                         loginSession.user[0].userEmail,
                                                         itemDescShort,
-                                                        itemImages[0].imageurl, 
+                                                        itemImages[0].imageurl,
                                                         itemNewPrice,
-                                                        function(response) {
-                                                            alert(response.razorpay_payment_id);
+                                                        (res) => {
+                                                            alert(JSON.stringify(res));
+                                                            dispatch(removeAllCartItems());   
                                                         }
-                                                    ) 
+                                                    );
                                                 } else {
                                                     setShowLoginModal(true);
                                                 }
