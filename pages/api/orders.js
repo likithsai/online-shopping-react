@@ -3,8 +3,7 @@
 import DB from './includes/DB';
 
 export default async function orders(req, res) {
-    let temp = [],
-        id = req.body.id;
+    let temp = [], id = req.body.id;
 
     DB.query(
         `SELECT order_id, order_name, order_price, order_createddate FROM tbl_orders WHERE order_cusid=${id}`,
