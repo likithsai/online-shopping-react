@@ -6,20 +6,16 @@ import Carousel from 'react-bootstrap/Carousel';
 import Header from '../../component/Header';
 import Footer from '../../component/Footer';
 import LoginModal from '../../component/LoginModal';
+import PaymentSuccessModal from '../../component/PaymentSuccessModal';
 import Utils from '../../utils/utility';
 import { addItemToCart } from '../../store/actions/cartActions';
 import { useSelector, useDispatch } from 'react-redux';
 import Link from 'next/link';
 import Image from 'next/image';
 import payment from '../../utils/payment';
-import Modal from 'react-bootstrap/Modal';
-import Button from 'react-bootstrap/Button';
 
 export default function Products() {
-    const {
-        query: { id }
-    } = useRouter();
-
+    const { query: { id } } = useRouter();
     const dispatch = useDispatch();
     const cartItems = useSelector((state) => state.cartItems);
     const loginSession = useSelector((state) => state.loginSession);
@@ -64,10 +60,6 @@ export default function Products() {
         dispatch(addItemToCart(itm));
     };
 
-    const hidePaymentConfirmModal = () => {
-        setShowPaymentModal(false);
-    }
-
     if (itemId.length > 0) {
         return (
             <div className="products">
@@ -82,22 +74,7 @@ export default function Products() {
                     cartURL="/cart"
                 />
                 <main>
-                    <Modal show={showPaymentModal} onHide={hidePaymentConfirmModal} centered>
-                        <Modal.Header>
-                            <Modal.Title className="text-center w-100">
-                                <span>Payment Complete</span>
-                            </Modal.Title>
-                        </Modal.Header>
-                        <Modal.Body className="p-5 text-center">
-                            <i class="bi bi-check-circle-fill me-2 display-1 text-success"></i>
-                            <p class="mt-3">Thank you, your payment has been successful. A confirmation email has been sent to your email.</p>
-                        </Modal.Body>
-                        <Modal.Footer className="d-flex justify-content-center align-items-center">
-                            <Button variant="success" onClick={hidePaymentConfirmModal}>
-                                <span>Close</span>
-                            </Button>
-                        </Modal.Footer>
-                    </Modal>
+                    <PaymentSuccessModal showPaymentModal={showPaymentModal} onCloseButtonClick={() => setShowPaymentModal(false)} />
                     <LoginModal
                         show={showLoginModal}
                         onHide={() => setShowLoginModal(false)}
@@ -190,18 +167,6 @@ export default function Products() {
                                             type="button"
                                             onClick={() => {
                                                 if (loginSession.isLoggedIn) {
-                                                    // payment.initiatePayment (
-                                                    //     itemName, 
-                                                    //     loginSession.user[0].userName,
-                                                    //     loginSession.user[0].userEmail,
-                                                    //     itemDescShort,
-                                                    //     itemImages[0].imageurl, 
-                                                    //     itemNewPrice,
-                                                    //     function(response) {
-                                                    //         alert(response.razorpay_payment_id);
-                                                    //     }
-                                                    // ) 
-
                                                     payment.payItems(
                                                         itemName,
                                                         loginSession.user[0].userName,

@@ -5,6 +5,7 @@ import Header from "../component/Header";
 import Footer from "../component/Footer";
 import CartJumboltron from "../component/CartJumboltron";
 import LoginModal from '../component/LoginModal';
+import PaymentSuccessModal from '../component/PaymentSuccessModal';
 import { removeItemToCart, removeAllCartItems } from "../store/actions/cartActions.js";
 import { useSelector, useDispatch } from "react-redux";
 import Head from "next/head";
@@ -20,6 +21,7 @@ const CartPage = (props) => {
     const cartItems = useSelector((state) => state.cartItems);
     const loginSession = useSelector((state) => state.loginSession);
     const [showLoginModal, setShowLoginModal] = useState(false);
+    const [showPaymentModal, setShowPaymentModal] = useState(false);
 
     useEffect(() => {
         setItemData(cartItems.items);
@@ -52,6 +54,7 @@ const CartPage = (props) => {
             </Head>
             <Header headerTitle="Shopping App" logoURL="/" cartURL="/cart" />
             <main>
+                <PaymentSuccessModal showPaymentModal={showPaymentModal} onCloseButtonClick={() => setShowPaymentModal(false)} />
                 <LoginModal show={showLoginModal} onHide={() => setShowLoginModal(false)} onSuccessCallback={(data) => setShowLoginModal(false)} />
                 {itemData.length > 0 ? (
                     <>
@@ -110,18 +113,6 @@ const CartPage = (props) => {
                                             loginSession.isLoggedIn ? (
                                                 <button type="button" className="btn btn-success p-3 w-100" onClick={() => {
                                                     if (loginSession.isLoggedIn) {
-                                                        // payment.initiatePayment (
-                                                        //     "Cart Items", 
-                                                        //     loginSession.user[0].userName,
-                                                        //     loginSession.user[0].userEmail,
-                                                        //     "collection of cart items",
-                                                        //     null, 
-                                                        //     totalAmt,
-                                                        //     function(response) {
-                                                        //         alert(response.razorpay_payment_id);
-                                                        //     }
-                                                        // ) 
-
                                                         payment.payItems(
                                                             "Cart Items",
                                                             loginSession.user[0].userName,
@@ -131,7 +122,7 @@ const CartPage = (props) => {
                                                             null,
                                                             totalAmt,
                                                             (res) => {
-                                                                alert(JSON.stringify(res));
+                                                                setShowPaymentModal(true);
                                                                 dispatch(removeAllCartItems());   
                                                             }
                                                         );

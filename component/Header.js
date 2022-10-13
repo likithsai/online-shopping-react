@@ -103,8 +103,12 @@ const Header = (props) => {
                                     </Dropdown.Toggle>
                                     <Dropdown.Menu>
                                         <Dropdown.Item>
-                                            <i className="bi bi-list me-3"></i>
-                                            <span>Orders</span>
+                                            <Link href="/orders">
+                                                <div>
+                                                    <i className="bi bi-list me-3"></i>
+                                                    <span>Orders</span>
+                                                </div>
+                                            </Link>
                                         </Dropdown.Item>
                                         <Dropdown.Divider />
                                         <Dropdown.Item onClick={() => { dispatch(logout([])); }}>
