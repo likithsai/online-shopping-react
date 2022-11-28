@@ -37,10 +37,21 @@ const Header = (props) => {
                                 <li className="list-group-item p-3 bg-light d-flex align-items-center justify-content-between border-bottom-0">
                                     <div className="alert alert-primary w-100 m-0" role="alert">Welcome {loginSession.user[0].userName}</div>
                                 </li>
+                                <Link href="/favorates">
+                                    <li className="list-group-item bg-light d-flex align-items-center justify-content-between px-4">
+                                        <div>
+                                            <i className="bi bi-star me-3"></i>
+                                            <span>Favorates</span>
+                                        </div>
+                                        <span className="badge bg-dark text-white ms-1 px-2 rounded-pill">
+                                            <span>{cartCount}</span>
+                                        </span>
+                                    </li>
+                                </Link>
                                 <Link href="/orders">
                                     <li className="list-group-item bg-light d-flex align-items-center justify-content-between px-4">
                                         <div>
-                                            <i className="bi bi-list me-3"></i>
+                                            <i className="bi bi-bag-plus me-3"></i>
                                             <span>Orders</span>
                                         </div>
                                         <span className="badge bg-dark text-white ms-1 px-2 rounded-pill">
@@ -103,9 +114,18 @@ const Header = (props) => {
                                     </Dropdown.Toggle>
                                     <Dropdown.Menu>
                                         <Dropdown.Item>
+                                            <Link href="/favorates">
+                                                <div>
+                                                    <i className="bi bi-star me-3"></i>
+                                                    <span>Favorates</span>
+                                                </div>
+                                            </Link>
+                                        </Dropdown.Item>
+                                        <Dropdown.Divider />
+                                        <Dropdown.Item>
                                             <Link href="/orders">
                                                 <div>
-                                                    <i className="bi bi-list me-3"></i>
+                                                    <i className="bi bi-bag-plus me-3"></i>
                                                     <span>Orders</span>
                                                 </div>
                                             </Link>
