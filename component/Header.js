@@ -1,5 +1,5 @@
 //  header.js
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, memo } from "react";
 import { useRouter } from "next/router";
 import Dropdown from "react-bootstrap/Dropdown";
 import { useSelector, useDispatch } from "react-redux";
@@ -133,4 +133,4 @@ const Header = (props) => {
     );
 };
 
-export default Header;
+export default memo(Header);

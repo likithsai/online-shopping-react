@@ -1,6 +1,6 @@
 //  loginOffcanvas.js
 
-import React, { useState } from 'react';
+import React, { useState, memo } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import { useSelector, useDispatch } from "react-redux";
 import { login } from "../store/actions/loginActions";
@@ -135,4 +135,4 @@ const LoginModal = (props) => {
     );
 }
 
-export default LoginModal; 
+export default memo(LoginModal); 

@@ -1,6 +1,6 @@
 //  content.js
 import Image from 'next/image';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, memo } from 'react';
 import { addItemToCart } from '../store/actions/cartActions';
 import { useSelector, useDispatch } from "react-redux";
 import Link from 'next/link';
@@ -121,4 +121,4 @@ const Content = (props) => {
     );
 }
 
-export default Content;
+export default memo(Content);

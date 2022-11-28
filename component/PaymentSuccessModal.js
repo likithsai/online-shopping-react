@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 
@@ -24,4 +24,4 @@ const PaymentSuccessModal = (props) => {
     )
 }
 
-export default PaymentSuccessModal;
+export default memo(PaymentSuccessModal);

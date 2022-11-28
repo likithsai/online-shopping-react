@@ -1,5 +1,5 @@
 //  Jumboltron
-import React from "react";
+import React, { memo } from "react";
 
 const Jumboltron = (props) => {
   return (
@@ -14,4 +14,4 @@ const Jumboltron = (props) => {
   );
 };
 
-export default Jumboltron;
+export default memo(Jumboltron);

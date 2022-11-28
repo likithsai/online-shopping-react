@@ -1,5 +1,5 @@
 //  Footer.js
-import React from "react";
+import React, { memo } from "react";
 import Link from "next/link";
 
 const Footer = (props) => {
@@ -21,4 +21,4 @@ const Footer = (props) => {
   );
 };
 
-export default Footer;
+export default memo(Footer);

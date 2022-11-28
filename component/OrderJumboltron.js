@@ -1,6 +1,6 @@
 //  cart Jumboltron
 
-import React from 'react';
+import React, { memo } from 'react';
 
 const OrderJumboltron = (props) => {
     return (
@@ -15,4 +15,4 @@ const OrderJumboltron = (props) => {
     )
 }
 
-export default OrderJumboltron;
+export default memo(OrderJumboltron);
