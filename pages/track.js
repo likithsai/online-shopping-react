@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import Header from '../component/Header';
+import React from 'react';
 import Footer from '../component/Footer';
+import Header from '../component/Header';
 
 const TrackProductPage = (props) => {
     return (

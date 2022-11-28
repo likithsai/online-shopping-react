@@ -1,16 +1,15 @@
 //  Cart page
 
-import React, { useState, useEffect } from "react";
-import Header from "../component/Header";
-import Footer from "../component/Footer";
-import CartJumboltron from "../component/CartJumboltron";
-import LoginModal from '../component/LoginModal';
-import PaymentSuccessModal from '../component/PaymentSuccessModal';
-import { removeItemToCart, removeAllCartItems } from "../store/actions/cartActions.js";
-import { useSelector, useDispatch } from "react-redux";
 import Head from "next/head";
 import Link from "next/link";
-import Image from 'next/image';
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import CartJumboltron from "../component/CartJumboltron";
+import Footer from "../component/Footer";
+import Header from "../component/Header";
+import LoginModal from '../component/LoginModal';
+import PaymentSuccessModal from '../component/PaymentSuccessModal';
+import { removeAllCartItems, removeItemToCart } from "../store/actions/cartActions.js";
 import payment from '../utils/payment';
 
 const CartPage = (props) => {

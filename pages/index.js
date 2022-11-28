@@ -1,10 +1,10 @@
 import Head from 'next/head';
-import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import Header from '../component/Header';
-import Jumboltron from '../component/Jumboltron';
+import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import Content from '../component/Content';
 import Footer from '../component/Footer';
+import Header from '../component/Header';
+import Jumboltron from '../component/Jumboltron';
 import Util from '../Utils/utility';
 
 const Homepage = (props) => {

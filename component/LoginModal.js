@@ -1,11 +1,11 @@
 //  loginOffcanvas.js
 
-import React, { useState, memo } from 'react';
+import React, { memo, useState } from 'react';
+import Alert from 'react-bootstrap/Alert';
 import Modal from 'react-bootstrap/Modal';
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { login } from "../store/actions/loginActions";
 import Util from '../Utils/utility';
-import Alert from 'react-bootstrap/Alert';
 
 const LoginModal = (props) => {
     const dispatch = useDispatch();

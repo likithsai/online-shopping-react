@@ -1,9 +1,7 @@
 //  admin.js
 //  admin page used to manage data
 
-import React, { useState, useEffect } from 'react';
-import Header from '../component/Header';
-import Footer from '../component/Footer';
+import React, { useState } from 'react';
 import Accordion from 'react-bootstrap/Accordion';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';

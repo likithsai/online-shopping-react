@@ -1,10 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import Header from '../component/Header';
+import React from 'react';
 import Footer from '../component/Footer';
+import Header from '../component/Header';
 import OrderJumboltron from "../component/OrderJumboltron";
-import { useSelector, useDispatch } from 'react-redux';
-import LoginModal from '../component/LoginModal';
-import Link from "next/link";
 
 const Orders = (props) => {
     return (

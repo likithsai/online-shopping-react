@@ -1,11 +1,11 @@
 //  header.js
-import React, { useState, useEffect, memo } from "react";
-import { useRouter } from "next/router";
-import Dropdown from "react-bootstrap/Dropdown";
-import { useSelector, useDispatch } from "react-redux";
-import { logout } from "../store/actions/loginActions.js";
-import LoginModal from "../component/LoginModal";
 import Link from "next/link";
+import { useRouter } from "next/router";
+import React, { memo, useEffect, useState } from "react";
+import Dropdown from "react-bootstrap/Dropdown";
+import { useDispatch, useSelector } from "react-redux";
+import LoginModal from "../component/LoginModal";
+import { logout } from "../store/actions/loginActions.js";
 
 const Header = (props) => {
     const history = useRouter();

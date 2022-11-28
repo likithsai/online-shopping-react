@@ -1,9 +1,9 @@
 //  content.js
 import Image from 'next/image';
-import React, { useState, useEffect, memo } from 'react';
-import { addItemToCart } from '../store/actions/cartActions';
-import { useSelector, useDispatch } from "react-redux";
 import Link from 'next/link';
+import React, { memo, useEffect, useState } from 'react';
+import { useDispatch, useSelector } from "react-redux";
+import { addItemToCart } from '../store/actions/cartActions';
 
 const Content = (props) => {
     const dispatch = useDispatch();

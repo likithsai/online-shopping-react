@@ -1,7 +1,7 @@
-import '../styles/app.scss';
-import { wrapper, store } from '../store/store';
-import { Provider } from 'react-redux';
 import { useEffect } from 'react';
+import { Provider } from 'react-redux';
+import { store, wrapper } from '../store/store';
+import '../styles/app.scss';
 // import dotenv from 'dotenv';
 
 // dotenv.config();

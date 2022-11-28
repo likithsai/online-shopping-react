@@ -1,18 +1,18 @@
 //  productsjs
-import React, { useState, useEffect } from 'react';
 import Head from 'next/head';
+import Image from 'next/image';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
+import React, { useEffect, useState } from 'react';
 import Carousel from 'react-bootstrap/Carousel';
-import Header from '../../component/Header';
+import { useDispatch, useSelector } from 'react-redux';
 import Footer from '../../component/Footer';
+import Header from '../../component/Header';
 import LoginModal from '../../component/LoginModal';
 import PaymentSuccessModal from '../../component/PaymentSuccessModal';
-import Utils from '../../utils/utility';
 import { addItemToCart } from '../../store/actions/cartActions';
-import { useSelector, useDispatch } from 'react-redux';
-import Link from 'next/link';
-import Image from 'next/image';
 import payment from '../../utils/payment';
+import Utils from '../../utils/utility';
 
 export default function Products() {
     const { query: { id } } = useRouter();
