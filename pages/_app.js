@@ -2,12 +2,9 @@ import { useEffect } from 'react';
 import { Provider } from 'react-redux';
 import { store, wrapper } from '../store/store';
 import '../styles/app.scss';
-// import dotenv from 'dotenv';
-
-// dotenv.config();
 
 function MyApp({ Component, pageProps }) {
-    
+
     useEffect(() => {
         // add razorpay payment library
         // const URL = "https://checkout.razorpay.com/v1/checkout.js"
